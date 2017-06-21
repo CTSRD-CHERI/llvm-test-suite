@@ -2491,7 +2491,7 @@ void StoreMV8x8(int dir)
 *    Restore motion vectors for 8x8 partition
 *************************************************************************************
 */
-void RestoreMVBlock8x8(int dir, int block8x8, RD_8x8DATA tr, int bframe)
+void RestoreMVBlock8x8(int dir, int block8x8, RD_8x8DATA* tr, int bframe)
 {
   int i, j, i0, j0, ii, jj;
   short ******all_mv  = img->all_mv;
@@ -2500,10 +2500,10 @@ void RestoreMVBlock8x8(int dir, int block8x8, RD_8x8DATA tr, int bframe)
   short (*lc_l1_mv8x8)[4][2] = all_mv8x8[dir][LIST_1];
   short (*lc_pr_mv8x8)[4][2] = NULL;
 
-  short pdir8  = tr.part8x8pdir [block8x8];
-  short mode   = tr.part8x8mode [block8x8];
-  short ref    = tr.part8x8fwref[block8x8];
-  short bw_ref = tr.part8x8bwref[block8x8];
+  short pdir8  = tr->part8x8pdir [block8x8];
+  short mode   = tr->part8x8mode [block8x8];
+  short ref    = tr->part8x8fwref[block8x8];
+  short bw_ref = tr->part8x8bwref[block8x8];
 
   i0 = (block8x8 & 0x01) << 1;
   j0 = (block8x8 >> 1) << 1;
@@ -2600,7 +2600,7 @@ void RestoreMV8x8(int dir)
   int bframe = (img->type == B_SLICE);
 
   for (block8x8=0; block8x8<4; block8x8++)
-    RestoreMVBlock8x8(dir, block8x8, tr8x8, bframe);
+    RestoreMVBlock8x8(dir, block8x8, &tr8x8, bframe);
 }
 
 
