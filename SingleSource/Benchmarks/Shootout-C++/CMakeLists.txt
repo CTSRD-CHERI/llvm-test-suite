@@ -37,7 +37,7 @@ if(ARCH STREQUAL "XCore")
     set(XCORE_TARGET_NEEDS_MEMORY 256)
   endif()
 endif()
-list(APPEND LDFLAGS -lstdc++ -lm)
+list(APPEND LDFLAGS ${TEST_SUITE_CXX_LIBRARY} -lm)
 if(TARGET_OS STREQUAL "Darwin")
   # Necessary for ackermann on iOS
   list(APPEND LDFLAGS -Xlinker -stack_size -Xlinker 0x800000)

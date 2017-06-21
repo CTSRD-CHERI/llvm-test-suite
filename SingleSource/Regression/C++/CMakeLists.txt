@@ -1,4 +1,4 @@
 add_subdirectory(EH)
 
-list(APPEND LDFLAGS -lstdc++)
+list(APPEND LDFLAGS ${TEST_SUITE_CXX_LIBRARY})
 llvm_singlesource(PREFIX "Regression-C++-")

@@ -1,7 +1,7 @@
 set(PROG burg)
 list(APPEND CPPFLAGS -DDEBUG)
 list(APPEND CFLAGS -std=gnu89)
-list(APPEND LDFLAGS -lstdc++)
+list(APPEND LDFLAGS ${TEST_SUITE_CXX_LIBRARY})
 set(STDIN_FILENAME ${CMAKE_CURRENT_SOURCE_DIR}/sample.gr)
 
 include_directories(${CMAKE_CURRENT_BINARY_DIR})

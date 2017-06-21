@@ -1,3 +1,3 @@
-list(APPEND LDFLAGS -lm -lstdc++)
+list(APPEND LDFLAGS -lm ${TEST_SUITE_CXX_LIBRARY})
 set(FP_TOLERANCE 0.001)
 llvm_singlesource()

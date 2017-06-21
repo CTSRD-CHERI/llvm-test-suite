@@ -1,5 +1,5 @@
 set(PROG hexxagon)
 set(REQUIRES_EH_SUPPORT 1)
-list(APPEND LDFLAGS -lstdc++)
+list(APPEND LDFLAGS ${TEST_SUITE_CXX_LIBRARY})
 set(STDIN_FILENAME ${CMAKE_CURRENT_SOURCE_DIR}/input)
 llvm_multisource()

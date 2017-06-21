@@ -1,6 +1,6 @@
 add_subdirectory(Large)
 
-list(APPEND LDFLAGS -lm -lstdc++)
+list(APPEND LDFLAGS -lm ${TEST_SUITE_CXX_LIBRARY})
 set(FP_ABSTOLERANCE 0.01)
 if(ARCH STREQUAL "XCore")
   if(NOT DEFINED SMALL_PROBLEM_SIZE)

@@ -1,3 +1,3 @@
 set(RUN_OPTIONS 31415926)
-list(APPEND LDFLAGS -lstdc++)
+list(APPEND LDFLAGS ${TEST_SUITE_CXX_LIBRARY})
 llvm_singlesource()

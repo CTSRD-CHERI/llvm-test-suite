@@ -32,7 +32,7 @@ if(ARCH STREQUAL "XCore")
   list(REMOVE_ITEM Source initp1.cpp)
   set(XCORE_TARGET_NEEDS_MEMORY 1)
 endif()
-list(APPEND LDFLAGS -lstdc++)
+list(APPEND LDFLAGS ${TEST_SUITE_CXX_LIBRARY})
 if(NOT ARCH STREQUAL "x86")
   list(REMOVE_ITEM Source
     ms_struct-bitfield.c

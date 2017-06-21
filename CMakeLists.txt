@@ -75,6 +75,9 @@ set(TEST_SUITE_RUN_UNDER "" CACHE STRING "RunSafely.sh run-under (-u) parameter"
 set(TEST_SUITE_RUN_TYPE "train" CACHE STRING
     "Type of benchmark inputs (may be test,train or ref)")
 
+set(TEST_SUITE_CXX_LIBRARY "-lstdc++" CACHE STRING
+    "The C++ standard library to link against (default=-lstdc++)")
+
 get_filename_component(CMAKE_C_COMPILER_DIRECTORY ${CMAKE_C_COMPILER} DIRECTORY)
 
 option(TEST_SUITE_COLLECT_CODE_SIZE "Measure code size of binaries" On)

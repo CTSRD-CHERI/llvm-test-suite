@@ -1,4 +1,4 @@
 set(RUN_OPTIONS 31415926)
-list(APPEND LDFLAGS -lstdc++)
+list(APPEND LDFLAGS ${TEST_SUITE_CXX_LIBRARY})
 set(HASH_PROGRAM_OUTPUT 1)
 llvm_singlesource()

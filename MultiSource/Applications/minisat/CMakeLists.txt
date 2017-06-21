@@ -1,5 +1,5 @@
 set(PROG minisat)
-list(APPEND LDFLAGS -lstdc++ -lm)
+list(APPEND LDFLAGS ${TEST_SUITE_CXX_LIBRARY} -lm)
 if(SMALL_PROBLEM_SIZE)
   set(RUN_OPTIONS -verbosity=0 ${CMAKE_CURRENT_SOURCE_DIR}/small.cnf)
 else()
