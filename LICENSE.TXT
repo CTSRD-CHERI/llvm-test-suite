@@ -62,6 +62,7 @@ licenses, and/or restrictions:
 Program             Directory
 -------             ---------
 Autoconf:           llvm-test/autoconf
+Benchmark:          llvm-test/libs/benchmark-1.1.0
 Burg:               llvm-test/MultiSource/Applications/Burg
 Aha:                llvm-test/MultiSource/Applications/aha
 SGEFA:              llvm-test/MultiSource/Applications/sgefa
@@ -83,6 +84,8 @@ ASC Sequoia:        llvm-test/MultiSource/Benchmarks/ASC_Sequoia/AMGmk
                     llvm-test/MultiSource/Benchmarks/ASC_Sequoia/sphot
 smg2000:            llvm-test/MultiSource/Benchmarks/ASCI_Purple/SMG2000
 XSBench:            llvm-test/MultiSource/Benchmarks/DOE-ProxyApps-C/XSBench
+HPCCG:              llvm-test/MultiSource/Benchmarks/DOE-ProxyApps-C++/HPCCG
+PENNANT:            llvm-test/MultiSource/Benchmarks/DOE-ProxyApps-C++/PENNANT
 Fhourstones:        llvm-test/MultiSource/Benchmarks/Fhourstones
 Fhourstones-3.1:    llvm-test/MultiSource/Benchmarks/Fhourstones-3.1
 McCat:              llvm-test/MultiSource/Benchmarks/McCat
