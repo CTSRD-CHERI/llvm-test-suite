@@ -7,14 +7,14 @@
 */
 
 #ifndef S_INCLUDED
-extern void S_wordcpy();
-extern void S_skipword();
-extern void S_skipspace();
-extern void S_nextword();
-extern int  S_wordcmp();
-extern void S_trimzeros();
-extern void S_savestr();
-extern void S_savenstr();
-extern void S_allocstr();
+extern void S_wordcpy(char *to, char *from);
+extern void S_skipword(char **theptr);
+extern void S_skipspace(char **theptr);
+extern void S_nextword(char **theptr);
+extern int  S_wordcmp(char *s1, char *s2);
+extern void S_trimzeros(char *str);
+extern void S_savestr(char **to, char *from);
+extern void S_savenstr(char **to,char *from);
+extern void S_allocstr(char **to, int size);
 #define S_INCLUDED
 #endif
