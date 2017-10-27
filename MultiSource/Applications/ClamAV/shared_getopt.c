@@ -40,6 +40,7 @@
 #endif
 
 #include <stdio.h>
+#include <stdlib.h>
 
 #ifndef C_WINDOWS
 int strncmp(const char *s1, const char *s2, size_t n);
@@ -211,10 +212,6 @@ static char *posixly_correct;
 
 /* Avoid depending on library functions or files
    whose names are inconsistent.  */
-
-#ifndef getenv
-extern char *getenv ();
-#endif
 
 static char *
 my_index (str, chr)
