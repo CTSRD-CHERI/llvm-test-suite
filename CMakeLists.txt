@@ -152,6 +152,10 @@ if(NOT DEFINED ENDIAN)
   endif()
 endif()
 
+if(${CMAKE_SYSTEM_PROCESSOR} MATCHES "CHERI")
+  set(CHERI ON)
+endif()
+
 # Disabling address space randomization makes the performance of memory/cache
 # intensive benchmarks more deterministic.
 option(TEST_SUITE_DISABLE_PIE
