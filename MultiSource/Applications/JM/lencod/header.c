@@ -55,7 +55,7 @@ static int pred_weight_table      (Bitstream *bitstream);
  *    number of bits used
  ********************************************************************************************
 */
-int SliceHeader()
+int SliceHeader(void)
 {
   int dP_nr = assignSE2partition[input->partition_mode][SE_HEADER];
   Bitstream *bitstream = img->currentSlice->partArr[dP_nr].bitstream;

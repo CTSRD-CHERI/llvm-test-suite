@@ -250,7 +250,7 @@ doStart(name) char *name;
 }
 
 void
-doGrammarNts()
+doGrammarNts(void)
 {
 	List l;
 	int new;

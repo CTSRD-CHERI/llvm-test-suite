@@ -785,7 +785,7 @@ void fill_wp_params(struct img_par *img);
 void reset_wp_params(struct img_par *img);
 
 void FreePartition (DataPartition *dp, int n);
-DataPartition *AllocPartition();
+DataPartition *AllocPartition(int n);
 
 void tracebits2(const char *trace_str, int len, int info);
 

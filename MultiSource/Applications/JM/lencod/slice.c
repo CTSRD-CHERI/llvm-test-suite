@@ -98,7 +98,7 @@ int start_slice()
 
     currStream->write_flag = 0;
     if (i==0)     // First partition
-      header_len += SliceHeader (0);
+      header_len += SliceHeader();
     else          // Second/Third partition
       header_len += Partition_BC_Header(i);
 

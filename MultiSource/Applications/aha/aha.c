@@ -35,7 +35,7 @@ print_expr(int opn)
 // --------------------------- print_pgm -------------------------------
 
 void
-print_pgm()
+print_pgm(int unused_arg)
 {
    int i, j, k, opndj;
 

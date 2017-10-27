@@ -128,5 +128,5 @@ extern int 	trimflag;
 extern int 	speedflag;
 extern int 	grammarflag;
 
-extern void doGrammarNts();
-extern void doGram();
+extern void doGrammarNts ARGS((void));
+extern void doGram ARGS((List));
