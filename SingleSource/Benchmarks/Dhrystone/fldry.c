@@ -162,8 +162,8 @@ typedef int		boolean;
 #define	REG
 #endif
 
-extern Enumeration	Func1();
-extern boolean		Func2();
+extern Enumeration	Func1(CapitalLetter CharPar1, CapitalLetter CharPar2);
+extern boolean		Func2(String30 StrParI1, String30 StrParI2);
 
 #ifdef TIMES
 #include <sys/types.h>
@@ -403,7 +403,7 @@ Proc5()
 	BoolGlob = FALSE;
 }
 
-extern boolean Func3();
+extern boolean Func3(REG Enumeration EnumParIn);
 
 Proc6(EnumParIn, EnumParOut)
 REG Enumeration	EnumParIn;
