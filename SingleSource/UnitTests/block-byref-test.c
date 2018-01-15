@@ -1,5 +1,5 @@
 #if defined(__BLOCKS__)
-extern void abort();
+extern void abort(void);
 
 int main() {
     __block unsigned char b1bool = 0;

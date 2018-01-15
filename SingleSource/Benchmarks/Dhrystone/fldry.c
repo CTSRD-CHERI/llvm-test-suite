@@ -174,15 +174,15 @@ extern boolean		Func2(String30 StrParI1, String30 StrParI2);
 #include <stdlib.h>
 #include <time.h>
 
-int Proc0();
-int Proc1();
-int Proc2();
-int Proc3();
-int Proc4();
-int Proc5();
-int Proc6();
-int Proc7();
-int Proc8();
+int Proc0(void);
+int Proc1(RecordPtr);
+int Proc2(OneToFifty*);
+int Proc3(RecordPtr*);
+int Proc4(void);
+int Proc5(void);
+int Proc6(Enumeration, Enumeration*);
+int Proc7(OneToFifty, OneToFifty, OneToFifty*);
+int Proc8(Array1Dim, Array2Dim, OneToFifty, OneToFifty);
 
 int main( argc, argv)
 int argc;

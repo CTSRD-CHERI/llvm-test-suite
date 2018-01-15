@@ -12,6 +12,13 @@ float y[2*N] __attribute__ ((aligned (16)));
 float z[2*N] __attribute__ ((aligned (16)));
 float w[  N] __attribute__ ((aligned (16)));
 
+void ccopy(int n, float x[][2], float y[][2]);
+void cffti(int n, float w[][2]);
+void cfft2(int n, float x[][2], float y[][2], float w[][2], float sign);
+float ggl(float *);
+void step(int n, int mj, float a[][2],float b[][2], float c[][2],float d[][2],
+          float w[][2], float sign);
+
 int main()
 {
 /* 
@@ -19,9 +26,8 @@ int main()
        W. Petersen, SAM. Math. ETHZ 2 May, 2002 
 */
    int first,i,icase,it,n;
-   float seed,error,fnm1,sign,z0,z1,ggl();
+   float seed,error,fnm1,sign,z0,z1;
    float t1,ln2,mflops;
-   void cffti(),cfft2();
 
    first = 1;
    seed  = 331.0;
@@ -85,12 +91,10 @@ int main()
    }
    return 0;
 }
-void cfft2(n,x,y,w,sign)
-int n;
-float x[][2],y[][2],w[][2],sign;
+void cfft2(int n, float x[][2], float y[][2], float w[][2], float sign)
 {
    int jb, m, j, mj, tgle;
-   void ccopy(),step();
+
    m    = (int) (log((float) n)/log(1.99));
    mj   = 1;
    tgle = 1;  /* toggling switch for work array */
@@ -153,9 +157,8 @@ float ggl(float *ds)
    *ds = (float) t;
    return((float) ((t-1.0e0)/(d2-1.0e0)));
 }
-void step(n,mj,a,b,c,d,w,sign)
-int n, mj; 
-float a[][2],b[][2],c[][2],d[][2],w[][2],sign;
+void step(int n, int mj, float a[][2],float b[][2], float c[][2],float d[][2],
+          float w[][2], float sign)
 {
    int j,k,jc,jw,l,lj,mj2,mseg;
    float rp,up;

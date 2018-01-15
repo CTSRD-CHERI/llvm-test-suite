@@ -22,9 +22,10 @@ int main()
 */
    int first,i,icase,it,n;
    double error;
-   float fnm1,seed,sign,z0,z1,ggl();
+   float fnm1,seed,sign,z0,z1,ggl(float*);
    float t1,ln2,mflops;
-   void cffti(),cfft2();
+   void cffti(int, float[][2]);
+   void cfft2(int, float[][2],float[][2], float[][2], float);
 
    first = 1;
    seed  = 331.0;
@@ -88,9 +89,7 @@ int main()
    }
    return 0;
 }
-void cfft2(n,x,y,w,sign)
-int n;
-float x[][2],y[][2],w[][2],sign;
+void cfft2(int n, float x[][2],float y[][2], float w[][2], float sign)
 {
    int jb, jc, jw, k, k2, lj, m, j, mj, mj2, pass, tgle;
    float (*a)[2],(*b)[2],(*c)[2],(*d)[2];

@@ -1,7 +1,7 @@
 #include <stddef.h>
 #include <string.h>
 
-extern void abort();
+extern void abort(void);
 
 #pragma pack(8)
 

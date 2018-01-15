@@ -45,7 +45,7 @@ char func_13 (unsigned, unsigned short, short);
 
 char func_21 (unsigned char, unsigned, int *);
 
-struct S2 func_1 (vo)
+struct S2 func_1 (void)
 {
   int l_2 = 1;
   l_2 && func_13 (0, 0, 0), 0;

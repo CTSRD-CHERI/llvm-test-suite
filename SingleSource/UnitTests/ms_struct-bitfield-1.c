@@ -1,5 +1,5 @@
 #include <stddef.h>
-extern void abort();
+extern void abort(void);
 
 #pragma ms_struct on
 

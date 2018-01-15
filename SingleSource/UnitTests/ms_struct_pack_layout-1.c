@@ -1,4 +1,4 @@
-extern void abort ();
+extern void abort (void);
 
 union u
 {

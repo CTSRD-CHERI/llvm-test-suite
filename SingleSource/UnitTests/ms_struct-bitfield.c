@@ -1,4 +1,4 @@
-extern void abort ();
+extern void abort (void);
 
 #define ATTR __attribute__((__ms_struct__))
 

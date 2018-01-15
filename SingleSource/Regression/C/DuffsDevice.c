@@ -6,9 +6,7 @@
 
 #include <stdio.h>
 
-	sum(to, from, count)
-	register short *to, *from;
-	register count;
+	void sum(short *to, short *from, int count)
 	{
 		register n=(count+7)/8;
 		switch(count%8){

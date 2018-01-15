@@ -1,5 +1,5 @@
 // rdar://8453812
-extern void abort();
+extern void abort(void);
 
 _Complex int getComplex(_Complex int val) {
   static int count;

@@ -7,7 +7,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-static double getDC(), getDS(), getDI();
+static double getDC(void), getDS(void), getDI(void);
 
 int
 main(int argc, char** argv) {
@@ -22,6 +22,6 @@ main(int argc, char** argv) {
   return 0;
 }
 
-static double getDC() { return (double) ((1L  <<  8) - 16L ); }
-static double getDS() { return (double) ((1LL << 16) - 16L ); }
-static double getDI() { return (double) ((1LL << 32) - 16LL); }
+static double getDC(void) { return (double) ((1L  <<  8) - 16L ); }
+static double getDS(void) { return (double) ((1LL << 16) - 16L ); }
+static double getDI(void) { return (double) ((1LL << 32) - 16LL); }

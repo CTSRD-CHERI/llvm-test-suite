@@ -1,8 +1,6 @@
 
 #include <stdio.h>
-sum(to, from, count)
-     short *to, *from;
-     short count;
+void sum(short *to, short *from, short count)
 {
   int i;
   for (i = 0; i != count; ++i)

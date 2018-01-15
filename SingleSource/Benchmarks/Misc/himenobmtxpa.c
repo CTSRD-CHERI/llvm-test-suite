@@ -63,7 +63,7 @@ float jacobi(int n,Matrix* M1,Matrix* M2,Matrix* M3,
              Matrix* M4,Matrix* M5,Matrix* M6,Matrix* M7);
 double fflop(int,int,int);
 double mflops(int,double,double);
-double second();
+double second(void);
 
 float   omega=0.8;
 Matrix  a,b,c,p,bnd,wrk1,wrk2;

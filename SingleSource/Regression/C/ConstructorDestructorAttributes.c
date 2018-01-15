@@ -1,13 +1,13 @@
 #include <stdio.h>
 
-void ctor() __attribute__((constructor));
+void ctor(void) __attribute__((constructor));
 
-void ctor() {
+void ctor(void) {
    printf("Create!\n");
 }
-void dtor() __attribute__((destructor));
+void dtor(void) __attribute__((destructor));
 
-void dtor() {
+void dtor(void) {
    printf("Create!\n");
 }
 
