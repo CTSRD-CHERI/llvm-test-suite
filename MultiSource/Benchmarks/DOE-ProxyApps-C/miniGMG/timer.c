@@ -4,7 +4,7 @@
 // Lawrence Berkeley National Lab
 //------------------------------------------------------------------------------------------------------------------------------
 #include <stdint.h>
-uint64_t CycleTime(){
+uint64_t CycleTime(void){
   #ifndef __has_builtin
   #define __has_builtin(x) 0
   #endif 

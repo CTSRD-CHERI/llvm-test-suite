@@ -186,7 +186,7 @@ bool Node_addEdgeToNode(Node *this, Node *node)
  */
 
 /* Constructor */
-NodeList * NodeList_new()
+NodeList * NodeList_new(void)
 {
     NodeList *list = malloc(sizeof(NodeList));
 
@@ -291,7 +291,7 @@ bool NodeList_insertBack(NodeList *this, Node *newBack)
  */
 
 /* Constructor */
-EdgeList *EdgeList_new()
+EdgeList *EdgeList_new(void)
 {
     EdgeList *newNode = malloc( sizeof( struct EdgeListStruct ));
     if ( newNode )

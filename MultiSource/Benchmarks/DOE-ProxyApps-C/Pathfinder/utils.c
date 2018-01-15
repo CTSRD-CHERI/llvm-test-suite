@@ -131,7 +131,7 @@ void systemCallMapPrettyPrint( SystemCallMap *map )
     printf( "\t%d total System Call Map elements\n", map->contentSize );
 }
 
-bool testGraph()
+bool testGraph(void)
 {
     /* Build it and see if it will get made */
     Graph *graph = malloc( sizeof( Graph ) );
@@ -186,7 +186,7 @@ void printStack ( NodePtrVec *stack )
     fflush(stdout);
 }
 
-void testStack()
+void testStack(void)
 {
     /* This was written when the stack was storing integers
     int a, b, c, d, e;

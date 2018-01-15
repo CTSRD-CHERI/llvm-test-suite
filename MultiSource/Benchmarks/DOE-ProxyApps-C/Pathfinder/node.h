@@ -113,7 +113,7 @@ struct NodeListStruct
 
 /* "methods" for NodeLists */
 
-NodeList *NodeList_new(); /* Constructor */
+NodeList *NodeList_new(void); /* Constructor */
 
 /* Destructor - also frees the data allocated for nodes if freeMemory is
  * true (calls their "destructor )
@@ -152,7 +152,7 @@ struct EdgeListStruct
     EdgeList *nextEdge;
 };
 
-EdgeList *EdgeList_new(); /* Constructor */
+EdgeList *EdgeList_new(void); /* Constructor */
 void EdgeList_clear(EdgeList* this); /* Destructor */
 bool EdgeList_insertNodeId(EdgeList *this, int targetNodeId); /* Id based insertion method */
 

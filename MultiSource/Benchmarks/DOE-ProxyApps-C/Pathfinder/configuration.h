@@ -64,7 +64,7 @@ struct SearchOptionsStruct
     BuildType buildType;
 };
 
-SearchOptions * SearchOptions_new();
+SearchOptions * SearchOptions_new(void);
 
 typedef struct ConfigurationStruct Configuration;
 struct ConfigurationStruct
@@ -75,6 +75,6 @@ struct ConfigurationStruct
     int qThreadCount; /* recursion depth to STOP spawning new tasks */
 };
 
-Configuration* Configuration_new();
+Configuration* Configuration_new(void);
 
 #endif /*  CONFIGURATION_H_  */

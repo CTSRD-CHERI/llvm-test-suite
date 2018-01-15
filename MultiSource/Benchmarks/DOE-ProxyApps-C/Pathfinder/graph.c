@@ -77,7 +77,7 @@
  * the graph pointer.
  */
 
-Graph *Graph_new()
+Graph *Graph_new(void)
 {
     Graph *graph= NULL;
     graph = malloc( sizeof( Graph ));

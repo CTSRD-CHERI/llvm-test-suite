@@ -61,10 +61,10 @@ extern "C"
 {
 #endif
 
-long long memstats_memused();
-long long memstats_mempeak();
-long long memstats_memfree();
-long long memstats_memtotal();
+long long memstats_memused(void);
+long long memstats_mempeak(void);
+long long memstats_memfree(void);
+long long memstats_memtotal(void);
 
 #ifdef __cplusplus
 }

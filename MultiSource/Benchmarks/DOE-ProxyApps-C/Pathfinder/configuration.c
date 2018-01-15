@@ -37,7 +37,7 @@
 #include <stdio.h>
  #include "configuration.h"
 
- SearchOptions* SearchOptions_new()
+ SearchOptions* SearchOptions_new(void)
  {
     SearchOptions *options = malloc(sizeof(SearchOptions));
     if ( !options )
@@ -51,7 +51,7 @@
     return(options);
  }
 
- Configuration* Configuration_new()
+ Configuration* Configuration_new(void)
  {
     Configuration *new = malloc(sizeof(Configuration));
     SearchOptions *options = SearchOptions_new();

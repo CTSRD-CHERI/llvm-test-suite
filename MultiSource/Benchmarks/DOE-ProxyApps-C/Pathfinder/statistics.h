@@ -61,11 +61,11 @@ struct StatsStruct
     int *histogram;
 };
 
-Stats *Stats_new();
+Stats *Stats_new(void);
 void Stats_delete(Stats* stats);
 bool Stats_logPath(Stats* stats, NodePtrVec* path);
 void Stats_calculate(Stats* stats);
 
-void testStats();
+void testStats(void);
 
 #endif // STATISTICS_H

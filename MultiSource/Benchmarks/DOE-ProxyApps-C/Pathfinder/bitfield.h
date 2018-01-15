@@ -63,7 +63,7 @@ bool Bitfield_nodeVisited(Bitfield *this, struct NodeStruct *node);
 /* Makes a byte-by-byte copy of the "from" bitfield */
 Bitfield *Bitfield_copy(Bitfield *from);
 
-void Bitfield_clear();
+void Bitfield_clear(Bitfield *);
 
 #endif
 

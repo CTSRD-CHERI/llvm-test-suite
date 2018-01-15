@@ -37,8 +37,8 @@
  #ifndef YAML_H
  #define YAML_H
  
- void YAMLOpen();
- void YAMLClose();
+ void YAMLOpen(void);
+ void YAMLClose(void);
  void YAMLWriteString(char *tag, char *data);
  void YAMLWriteInt(char *tag, int data);
  void YAMLWriteDouble(char *tag, double data);

@@ -53,7 +53,7 @@
 #include "yaml.h"
 
 
-extern double currentTime();
+extern double currentTime(void);
 
 static Stats *globalStats = NULL;
 

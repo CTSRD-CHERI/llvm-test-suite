@@ -75,7 +75,7 @@
 pid_t pid;
 FILE *stat_fp = NULL, *meminfo_fp = NULL;
 
-long long memstats_memused(){
+long long memstats_memused(void){
    long long mem_current=0;
 #ifdef __APPLE_CC__
 /* This is all memory used and we want the memory for only our process -- do alternate
@@ -151,7 +151,7 @@ long long memstats_memused(){
    return(mem_current);
 }
 
-long long memstats_mempeak(){
+long long memstats_mempeak(void){
    char proc_stat_file[50];
    char *p;
    int err;
@@ -208,7 +208,7 @@ long long memstats_mempeak(){
 }
 
 #define TIMER_ONEK 1024
-long long memstats_memfree(){
+long long memstats_memfree(void){
    long long freemem;
 #ifdef __APPLE_CC__
    vm_size_t page_size;
@@ -273,7 +273,7 @@ long long memstats_memfree(){
    return(freemem);
 }
 
-long long memstats_memtotal(){
+long long memstats_memtotal(void){
    long long totalmem;
 #ifdef __APPLE_CC__
 /*

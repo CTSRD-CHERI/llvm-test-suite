@@ -30,7 +30,7 @@
 
 // This file contains routines that modify the number of blocks so that the
 // number is close (+- 3) to the target number of blocks for the problem.
-int reduce_blocks()
+int reduce_blocks(void)
 {
    int l, i, j, p, c, num_comb, comb, num_parents, nm_t;
    double t1, t2, t3;
@@ -73,7 +73,7 @@ int reduce_blocks()
    return(nm_t);
 }
 
-void add_blocks()
+void add_blocks(void)
 {
    int l, i, j, n, in, num_split, split;
    double t1, t2, t3;

@@ -80,7 +80,7 @@ struct GraphStruct
 
 /* "methods" */
 
-Graph *Graph_new(); /* Graph constructor */
+Graph *Graph_new(void); /* Graph constructor */
 void Graph_delete( Graph *trash ); /* Destructor - erases current graph */
 bool Graph_addOuterNode( Graph *graph, Node *newOuterNode );
 /* Finds a node within the graph. If deep is true, we check interior nodes as well.

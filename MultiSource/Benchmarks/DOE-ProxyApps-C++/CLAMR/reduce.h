@@ -97,15 +97,15 @@ void init_kernel_2stage_min(void);
 void terminate_kernel_2stage_sum(void);
 void terminate_kernel_2stage_sum_int(void);
 
-void release_kernels_reduce();
-void release_kernel_sum();
-void release_kernel_2stage_sum();
-void release_kernel_2stage_sum_int();
-void release_kernel_product();
-void release_kernel_max();
-void release_kernel_2stage_max();
-void release_kernel_min();
-void release_kernel_2stage_min();
+void release_kernels_reduce(void);
+void release_kernel_sum(void);
+void release_kernel_2stage_sum(void);
+void release_kernel_2stage_sum_int(void);
+void release_kernel_product(void);
+void release_kernel_max(void);
+void release_kernel_2stage_max(void);
+void release_kernel_min(void);
+void release_kernel_2stage_min(void);
 
 #ifdef __cplusplus
 }

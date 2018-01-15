@@ -45,8 +45,8 @@ void nodeListPrettyPrint( NodeList *nodes, int depth, char *separator, bool mult
 void graphPrettyPrint( Graph *graph );
 void systemCallMapPrettyPrint( SystemCallMap *map );
 void printStack ( NodePtrVec *stack );
-bool testGraph();
-void testStack();
+bool testGraph(void);
+void testStack(void);
 
 void searchDiagramPrettyPrint ( SearchDiagram *diagram );
 

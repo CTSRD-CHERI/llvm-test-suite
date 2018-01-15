@@ -76,8 +76,8 @@ void reset_all(void);
 void stencil_calc(int);
 
 // target.c
-int reduce_blocks();
-void add_blocks();
+int reduce_blocks(void);
+void add_blocks(void);
 void zero_refine(void);
 
 // util.c

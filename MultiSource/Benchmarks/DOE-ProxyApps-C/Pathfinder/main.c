@@ -54,7 +54,7 @@
    #include "qThreadSearch.h"
 #endif /* QT */
 
-extern double currentTime();
+extern double currentTime(void);
 
 #define helpString "\nUsage: PathFinder.exe [OPTIONS] [<fileName>]\n\n\
   Operation:\n\
