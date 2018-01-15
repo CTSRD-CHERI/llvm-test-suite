@@ -715,9 +715,9 @@ void free_slice(struct inp_par *inp, struct img_par *img);
 
 int  decode_one_frame(struct img_par *img,struct inp_par *inp, struct snr_par *snr);
 void init_picture(struct img_par *img, struct inp_par *inp);
-void exit_picture();
+void exit_picture(void);
 
-int  read_new_slice();
+int  read_new_slice(void);
 void decode_one_slice(struct img_par *img,struct inp_par *inp);
 
 void start_macroblock(struct img_par *img,int CurrentMBInScanOrder);
@@ -753,15 +753,15 @@ int  cabac_startcode_follows(struct img_par *img, int eos_bit);
 void free_Partition(Bitstream *currStream);
 
 // ErrorConcealment
-void reset_ec_flags();
+void reset_ec_flags(void);
 
 void error(char *text, int code);
-int  is_new_picture();
-void init_old_slice();
+int  is_new_picture(void);
+void init_old_slice(void);
 
 // dynamic mem allocation
-int  init_global_buffers();
-void free_global_buffers();
+int  init_global_buffers(void);
+void free_global_buffers(void);
 
 void frame_postprocessing(struct img_par *img, struct inp_par *inp);
 void field_postprocessing(struct img_par *img, struct inp_par *inp);

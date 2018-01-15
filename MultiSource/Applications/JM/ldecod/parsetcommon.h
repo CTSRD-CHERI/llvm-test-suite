@@ -202,8 +202,8 @@ typedef struct
 } seq_parameter_set_rbsp_t;
 
 
-pic_parameter_set_rbsp_t *AllocPPS ();
-seq_parameter_set_rbsp_t *AllocSPS ();
+pic_parameter_set_rbsp_t *AllocPPS (void);
+seq_parameter_set_rbsp_t *AllocSPS (void);
 
 void FreePPS (pic_parameter_set_rbsp_t *pps);
 void FreeSPS (seq_parameter_set_rbsp_t *sps);

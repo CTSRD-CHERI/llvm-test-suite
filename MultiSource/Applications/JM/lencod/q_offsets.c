@@ -60,7 +60,7 @@ short **OffsetList8x8input;
 short **OffsetList4x4;
 short **OffsetList8x8;
 
-void InitOffsetParam ();
+void InitOffsetParam (void);
 
 const int OffsetBits = 11;
 

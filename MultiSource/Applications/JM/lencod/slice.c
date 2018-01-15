@@ -38,14 +38,14 @@
 #include "symbol.h"
 
 // Local declarations
-static Slice *malloc_slice();
+static Slice *malloc_slice(void);
 static void  free_slice(Slice *slice);
 static void  init_slice(int start_mb_addr);
-static void set_ref_pic_num();
+static void set_ref_pic_num(void);
 extern ColocatedParams *Co_located;
 extern StorablePicture **listX[6];
 void poc_ref_pic_reorder(StorablePicture **list, unsigned num_ref_idx_lX_active, int *reordering_of_pic_nums_idc, int *abs_diff_pic_num_minus1, int *long_term_pic_idx, int list_no);
-void SetLagrangianMultipliers();
+void SetLagrangianMultipliers(void);
 
 /*!
  ************************************************************************
@@ -53,7 +53,7 @@ void SetLagrangianMultipliers();
  *    init_ref_pic_list_reordering initializations should go here
  ************************************************************************
  */
-void init_ref_pic_list_reordering()
+void init_ref_pic_list_reordering(void)
 {
   Slice* currSlice = img->currentSlice;
 
@@ -75,7 +75,7 @@ void init_ref_pic_list_reordering()
  *      slice, sets img->currSlice
  ************************************************************************
 */
-int start_slice()
+int start_slice(void)
 {
   EncodingEnvironmentPtr eep;
   Slice *currSlice = img->currentSlice;

@@ -19,7 +19,7 @@
 #include "nalucommon.h"
 
 int WriteAnnexbNALU (NALU_t *n);
-void CloseAnnexbFile();
+void CloseAnnexbFile(void);
 void OpenAnnexbFile (char *Filename);
 
 #endif //_ANNEXB_H_

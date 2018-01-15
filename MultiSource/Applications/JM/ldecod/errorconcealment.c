@@ -151,7 +151,7 @@ int set_ec_flag(
  *
  ***********************************************************************
  */
-void reset_ec_flags()
+void reset_ec_flags(void)
 {
   int i;
   for (i=0; i<SE_MAX_ELEMENTS; i++)

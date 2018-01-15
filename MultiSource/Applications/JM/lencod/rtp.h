@@ -63,7 +63,7 @@ void end_sub_sequence_rtp();
 
 void RTPUpdateTimestamp (int tr);
 void OpenRTPFile (char *Filename);
-void CloseRTPFile ();
+void CloseRTPFile (void);
 int WriteRTPNALU (NALU_t *n);
 
 

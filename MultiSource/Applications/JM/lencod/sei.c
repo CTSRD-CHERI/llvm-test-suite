@@ -716,7 +716,7 @@ Boolean CompressSpareMBMap(unsigned char **map_sp, Bitstream *bitstream)
  *        Make sure it is byte aligned.
  ************************************************************************
  */
-void FinalizeSpareMBMap()
+void FinalizeSpareMBMap(void)
 {
   int CurrFrameNum = img->number % MAX_FN;
   int delta_frame_num;
@@ -1312,7 +1312,7 @@ void ClosePanScanRectInfo()
  */
 Boolean seiHasUser_data_unregistered_info;
 user_data_unregistered_information_struct seiUser_data_unregistered;
-void InitUser_data_unregistered()
+void InitUser_data_unregistered(void)
 {
 
   seiUser_data_unregistered.data = malloc( sizeof(Bitstream) );
@@ -1326,7 +1326,7 @@ void InitUser_data_unregistered()
 }
 
 
-void ClearUser_data_unregistered()
+void ClearUser_data_unregistered(void)
 {
   memset( seiUser_data_unregistered.data->streamBuffer, 0, MAXRTPPAYLOADLEN);
   seiUser_data_unregistered.data->bits_to_go  = 8;
@@ -1340,7 +1340,7 @@ void ClearUser_data_unregistered()
   seiHasUser_data_unregistered_info = TRUE;
 }
 
-void UpdateUser_data_unregistered()
+void UpdateUser_data_unregistered(void)
 {
   int i, temp_data;
   int total_byte;
@@ -1355,7 +1355,7 @@ void UpdateUser_data_unregistered()
   seiUser_data_unregistered.total_byte = total_byte;
 }
 
-void FinalizeUser_data_unregistered()
+void FinalizeUser_data_unregistered(void)
 {
   int i;
   SyntaxElement sym;
@@ -1391,7 +1391,7 @@ void FinalizeUser_data_unregistered()
   seiUser_data_unregistered.payloadSize = dest->byte_pos;
 }
 
-void CloseUser_data_unregistered()
+void CloseUser_data_unregistered(void)
 {
   if (seiUser_data_unregistered.data)
   {
@@ -1417,7 +1417,7 @@ void CloseUser_data_unregistered()
  */
 Boolean seiHasUser_data_registered_itu_t_t35_info;
 user_data_registered_itu_t_t35_information_struct seiUser_data_registered_itu_t_t35;
-void InitUser_data_registered_itu_t_t35()
+void InitUser_data_registered_itu_t_t35(void)
 {
 
   seiUser_data_registered_itu_t_t35.data = malloc( sizeof(Bitstream) );
@@ -1431,7 +1431,7 @@ void InitUser_data_registered_itu_t_t35()
 }
 
 
-void ClearUser_data_registered_itu_t_t35()
+void ClearUser_data_registered_itu_t_t35(void)
 {
   memset( seiUser_data_registered_itu_t_t35.data->streamBuffer, 0, MAXRTPPAYLOADLEN);
   seiUser_data_registered_itu_t_t35.data->bits_to_go  = 8;
@@ -1447,7 +1447,7 @@ void ClearUser_data_registered_itu_t_t35()
   seiHasUser_data_registered_itu_t_t35_info = TRUE;
 }
 
-void UpdateUser_data_registered_itu_t_t35()
+void UpdateUser_data_registered_itu_t_t35(void)
 {
   int i, temp_data;
   int total_byte;
@@ -1474,7 +1474,7 @@ void UpdateUser_data_registered_itu_t_t35()
   seiUser_data_registered_itu_t_t35.total_byte = total_byte;
 }
 
-void FinalizeUser_data_registered_itu_t_t35()
+void FinalizeUser_data_registered_itu_t_t35(void)
 {
   int i;
   SyntaxElement sym;
@@ -1528,7 +1528,7 @@ void FinalizeUser_data_registered_itu_t_t35()
   seiUser_data_registered_itu_t_t35.payloadSize = dest->byte_pos;
 }
 
-void CloseUser_data_registered_itu_t_t35()
+void CloseUser_data_registered_itu_t_t35(void)
 {
   if (seiUser_data_registered_itu_t_t35.data)
   {

@@ -35,10 +35,10 @@
 #include "erc_api.h"
 
 static void insert_picture_in_dpb(FrameStore* fs, StorablePicture* p);
-static void output_one_frame_from_dpb();
+static void output_one_frame_from_dpb(void);
 static int  is_used_for_reference(FrameStore* fs);
 static void get_smallest_poc(int *poc,int * pos);
-static int  remove_unused_frame_from_dpb();
+static int  remove_unused_frame_from_dpb(void);
 static int  is_short_term_reference(FrameStore* fs);
 static int  is_long_term_reference(FrameStore* fs);
 void gen_field_ref_ids(StorablePicture *p);
@@ -2735,7 +2735,7 @@ static void get_smallest_poc(int *poc,int * pos)
  *    Remove a picture from DPB which is no longer needed.
  ************************************************************************
  */
-static int remove_unused_frame_from_dpb()
+static int remove_unused_frame_from_dpb(void)
 {
   unsigned i;
 
@@ -2757,7 +2757,7 @@ static int remove_unused_frame_from_dpb()
  *    Output one picture stored in the DPB.
  ************************************************************************
  */
-static void output_one_frame_from_dpb()
+static void output_one_frame_from_dpb(void)
 {
   int poc, pos;
   //diagnostics

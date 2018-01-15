@@ -965,7 +965,7 @@ static int GenerateVUISequenceParameters(Bitstream *bitstream)
  *
  *************************************************************************************
  */
-NALU_t *GenerateSEImessage_NALU()
+NALU_t *GenerateSEImessage_NALU(void)
 {
   NALU_t *n = AllocNALU(64000);
   int RBSPlen = 0;

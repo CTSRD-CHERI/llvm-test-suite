@@ -11,8 +11,8 @@
 #ifndef _HEADER_H_
 #define _HEADER_H_
 
-int FirstPartOfSliceHeader();
-int RestOfSliceHeader();
+int FirstPartOfSliceHeader(void);
+int RestOfSliceHeader(void);
 
 void dec_ref_pic_marking(Bitstream *currStream);
 

@@ -1680,7 +1680,7 @@ void ercWriteMBMODEandMV(struct img_par *img,struct inp_par *inp)
  *    NAL unit of a picture"
  ************************************************************************
  */
-void init_old_slice()
+void init_old_slice(void)
 {
   old_slice.field_pic_flag = 0;
 

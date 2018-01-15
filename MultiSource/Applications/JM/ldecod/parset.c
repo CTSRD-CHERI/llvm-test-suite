@@ -462,7 +462,7 @@ void MakePPSavailable (int id, pic_parameter_set_rbsp_t *pps)
   pps->slice_group_id          = NULL;
 }
 
-void CleanUpPPS()
+void CleanUpPPS(void)
 {
   int i;
 

@@ -26,7 +26,7 @@ void FreeParameterSets (void);
 
 NALU_t *GenerateSeq_parameter_set_NALU (void);
 NALU_t *GeneratePic_parameter_set_NALU (int);
-NALU_t *GenerateSEImessage_NALU();
+NALU_t *GenerateSEImessage_NALU(void);
 
 // The following are local helpers, but may come handy in the future, hence public
 void GenerateSequenceParameterSet(seq_parameter_set_rbsp_t *sps, int SPS_id);

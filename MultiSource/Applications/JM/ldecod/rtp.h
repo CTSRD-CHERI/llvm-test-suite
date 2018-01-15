@@ -43,6 +43,6 @@ void DumpRTPHeader (RTPpacket_t *p);
 
 int  GetRTPNALU (NALU_t *nalu);
 void OpenRTPFile (char *fn);
-void CloseRTPFile();
+void CloseRTPFile(void);
 
 #endif

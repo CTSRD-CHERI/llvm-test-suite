@@ -21,9 +21,9 @@
 int FastFullPelBlockMotionSearch (imgpel* orig_pic, short ref, int list, int pic_pix_x, int pic_pix_y,
                               int blocktype, short pred_mv_x, short pred_mv_y, short* mv_x, short* mv_y,
                               int search_range,  int min_mcost, int lambda_factor);
-void InitializeFastFullIntegerSearch ();
-void ResetFastFullIntegerSearch ();
-void ClearFastFullIntegerSearch ();
+void InitializeFastFullIntegerSearch (void);
+void ResetFastFullIntegerSearch (void);
+void ClearFastFullIntegerSearch (void);
 
 #endif
 

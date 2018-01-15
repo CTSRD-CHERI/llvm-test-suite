@@ -92,12 +92,12 @@ extern Boolean seiHasSparePicture;
 //extern Boolean sei_has_sp;
 extern spare_picture_struct seiSparePicturePayload;
 
-void InitSparePicture();
-void CloseSparePicture();
-void CalculateSparePicture();
+void InitSparePicture(void);
+void CloseSparePicture(void);
+void CalculateSparePicture(void);
 void ComposeSparePictureMessage(int delta_spare_frame_num, int ref_area_indicator, Bitstream *tmpBitstream);
 Boolean CompressSpareMBMap(unsigned char **map_sp, Bitstream *bitstream);
-void FinalizeSpareMBMap();
+void FinalizeSpareMBMap(void);
 
 //! Subseq Information
 typedef struct
@@ -133,9 +133,9 @@ typedef struct
 extern Boolean seiHasSubseqLayerInfo;
 extern subseq_layer_information_struct seiSubseqLayerInfo;
 
-void InitSubseqLayerInfo();
-void CloseSubseqLayerInfo();
-void FinalizeSubseqLayerInfo();
+void InitSubseqLayerInfo(void);
+void CloseSubseqLayerInfo(void);
+void FinalizeSubseqLayerInfo(void);
 
 //! Subseq Characteristics
 typedef struct
@@ -158,11 +158,11 @@ typedef struct
 extern Boolean seiHasSubseqChar;
 extern subseq_char_information_struct seiSubseqChar;
 
-void InitSubseqChar();
-void ClearSubseqCharPayload();
-void UpdateSubseqChar();
-void FinalizeSubseqChar();
-void CloseSubseqChar();
+void InitSubseqChar(void);
+void ClearSubseqCharPayload(void);
+void UpdateSubseqChar(void);
+void FinalizeSubseqChar(void);
+void CloseSubseqChar(void);
 
 
 typedef struct
@@ -178,10 +178,10 @@ typedef struct
 extern Boolean seiHasSceneInformation;
 extern scene_information_struct seiSceneInformation;
 
-void InitSceneInformation();
-void CloseSceneInformation();
+void InitSceneInformation(void);
+void CloseSceneInformation(void);
 void UpdateSceneInformation(Boolean HasSceneInformation, int sceneID, int sceneTransType, int secondSceneID);
-void FinalizeSceneInformation();
+void FinalizeSceneInformation(void);
 
 //! PanScanRect Information
 typedef struct
@@ -199,11 +199,11 @@ typedef struct
 extern Boolean seiHasPanScanRectInfo;
 extern panscanrect_information_struct seiPanScanRectInfo;
 
-void InitPanScanRectInfo();
-void ClearPanScanRectInfoPayload();
-void UpdatePanScanRectInfo();
-void FinalizePanScanRectInfo();
-void ClosePanScanRectInfo();
+void InitPanScanRectInfo(void);
+void ClearPanScanRectInfoPayload(void);
+void UpdatePanScanRectInfo(void);
+void FinalizePanScanRectInfo(void);
+void ClosePanScanRectInfo(void);
 
 //! User_data_unregistered Information
 typedef struct
@@ -217,11 +217,11 @@ typedef struct
 extern Boolean seiHasUser_data_unregistered_info;
 extern user_data_unregistered_information_struct seiUser_data_unregistered;
 
-void InitUser_data_unregistered();
-void ClearUser_data_unregistered();
-void UpdateUser_data_unregistered();
-void FinalizeUser_data_unregistered();
-void CloseUser_data_unregistered();
+void InitUser_data_unregistered(void);
+void ClearUser_data_unregistered(void);
+void UpdateUser_data_unregistered(void);
+void FinalizeUser_data_unregistered(void);
+void CloseUser_data_unregistered(void);
 
 //! User_data_registered_itu_t_t35 Information
 typedef struct
@@ -237,11 +237,11 @@ typedef struct
 extern Boolean seiHasUser_data_registered_itu_t_t35_info;
 extern user_data_registered_itu_t_t35_information_struct seiUser_data_registered_itu_t_t35;
 
-void InitUser_data_registered_itu_t_t35();
-void ClearUser_data_registered_itu_t_t35();
-void UpdateUser_data_registered_itu_t_t35();
-void FinalizeUser_data_registered_itu_t_t35();
-void CloseUser_data_registered_itu_t_t35();
+void InitUser_data_registered_itu_t_t35(void);
+void ClearUser_data_registered_itu_t_t35(void);
+void UpdateUser_data_registered_itu_t_t35(void);
+void FinalizeUser_data_registered_itu_t_t35(void);
+void CloseUser_data_registered_itu_t_t35(void);
 
 //! Recovery Point Information
 typedef struct
@@ -258,11 +258,11 @@ typedef struct
 extern Boolean seiHasRecoveryPoint_info;
 extern recovery_point_information_struct seiRecoveryPoint;
 
-void InitRandomAccess();
-void ClearRandomAccess();
-void UpdateRandomAccess();
-void FinalizeRandomAccess();
-void CloseRandomAccess();
+void InitRandomAccess(void);
+void ClearRandomAccess(void);
+void UpdateRandomAccess(void);
+void FinalizeRandomAccess(void);
+void CloseRandomAccess(void);
 
 
 // This is only temp
@@ -281,11 +281,11 @@ typedef struct
 Boolean seiHasBufferingPeriod_info;
 bufferingperiod_information_struct seiBufferingPeriod;
 
-void InitBufferingPeriod();
-void ClearBufferingPeriod();
-void CloseBufferingPeriod();
-void UpdateBufferingPeriod();
-void FinalizeBufferingPeriod();
+void InitBufferingPeriod(void);
+void ClearBufferingPeriod(void);
+void CloseBufferingPeriod(void);
+void UpdateBufferingPeriod(void);
+void FinalizeBufferingPeriod(void);
 
 //! Picture timing Information
 typedef struct
@@ -315,11 +315,11 @@ typedef struct
 Boolean seiHasPicTiming_info;
 pictiming_information_struct seiPicTiming;
 
-void InitPicTiming();
-void ClearPicTiming();
-void ClosePicTiming();
-void UpdatePicTiming();
-void FinalizePicTiming();
+void InitPicTiming(void);
+void ClearPicTiming(void);
+void ClosePicTiming(void);
+void UpdatePicTiming(void);
+void FinalizePicTiming(void);
 
 // end of temp additions
 #endif

@@ -28,7 +28,7 @@
  *************************************************************************************
  */
 
-pic_parameter_set_rbsp_t *AllocPPS ()
+pic_parameter_set_rbsp_t *AllocPPS (void)
  {
    pic_parameter_set_rbsp_t *p;
 
@@ -50,7 +50,7 @@ pic_parameter_set_rbsp_t *AllocPPS ()
  *************************************************************************************
  */
 
-seq_parameter_set_rbsp_t *AllocSPS ()
+seq_parameter_set_rbsp_t *AllocSPS (void)
  {
    seq_parameter_set_rbsp_t *p;
 

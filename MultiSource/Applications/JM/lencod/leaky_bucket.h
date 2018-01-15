@@ -22,7 +22,7 @@ int get_LeakyBucketRate(unsigned long NumberLeakyBuckets, unsigned long *Rmin);
 void PutBigDoubleWord(unsigned long dw, FILE *fp);
 void write_buffer(unsigned long NumberLeakyBuckets, unsigned long Rmin[], unsigned long Bmin[], unsigned long Fmin[]);
 void Sort(unsigned long NumberLeakyBuckets, unsigned long *Rmin);
-void calc_buffer();
+void calc_buffer(void);
 #endif
 
 #endif

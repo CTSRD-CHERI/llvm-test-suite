@@ -34,8 +34,8 @@ extern StorablePicture *dec_picture;
 
 extern int UsedBits;
 
-static void ref_pic_list_reordering();
-static void pred_weight_table();
+static void ref_pic_list_reordering(void);
+static void pred_weight_table(void);
 
 
 /*!
@@ -66,7 +66,7 @@ unsigned CeilLog2( unsigned uiVal)
  *    Length of the first part of the slice header (in bits)
  ************************************************************************
  */
-int FirstPartOfSliceHeader()
+int FirstPartOfSliceHeader(void)
 {
   Slice *currSlice = img->currentSlice;
   int dP_nr = assignSE2partition[currSlice->dp_mode][SE_HEADER];
@@ -98,7 +98,7 @@ int FirstPartOfSliceHeader()
  *    Length of the second part of the Slice header in bits
  ************************************************************************
  */
-int RestOfSliceHeader()
+int RestOfSliceHeader(void)
 {
   Slice *currSlice = img->currentSlice;
   int dP_nr = assignSE2partition[currSlice->dp_mode][SE_HEADER];
@@ -297,7 +297,7 @@ int RestOfSliceHeader()
  *    read the reference picture reordering information
  ************************************************************************
  */
-static void ref_pic_list_reordering()
+static void ref_pic_list_reordering(void)
 {
   Slice *currSlice = img->currentSlice;
   int dP_nr = assignSE2partition[currSlice->dp_mode][SE_HEADER];
@@ -374,7 +374,7 @@ static void ref_pic_list_reordering()
  *    read the weighted prediction tables
  ************************************************************************
  */
-static void pred_weight_table()
+static void pred_weight_table(void)
 {
   Slice *currSlice = img->currentSlice;
   int dP_nr = assignSE2partition[currSlice->dp_mode][SE_HEADER];

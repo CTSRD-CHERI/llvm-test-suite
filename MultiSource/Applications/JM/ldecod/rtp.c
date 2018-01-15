@@ -135,7 +135,7 @@ void OpenRTPFile (char *fn)
  *    Closes the bit stream file
  ************************************************************************
  */
-void CloseRTPFile()
+void CloseRTPFile(void)
 {
   fclose (bits);
 }
