@@ -14,7 +14,7 @@ extern void S_nextword(char **theptr);
 extern int  S_wordcmp(char *s1, char *s2);
 extern void S_trimzeros(char *str);
 extern void S_savestr(char **to, char *from);
-extern void S_savenstr(char **to,char *from);
+extern void S_savenstr(char **to,char *from, int count);
 extern void S_allocstr(char **to, int size);
 #define S_INCLUDED
 #endif
