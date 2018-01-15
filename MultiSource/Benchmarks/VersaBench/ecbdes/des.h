@@ -189,7 +189,7 @@ char *des_crypt(const char *buf,const char *salt);
 #ifdef HEADER_DES_LOCL_H
 char *crypt(const char *buf,const char *salt);
 #else
-char *crypt();
+char *crypt(const char *buf,const char *salt);
 #endif
 #endif
 void des_ofb_encrypt(unsigned char *in,unsigned char *out,

@@ -98,13 +98,16 @@ programs.
 #undef UNIX
 #endif
 
-int SIM();
-int big_pass();
-int fatal();
-int fatalf();
-int locate();
-int no_cross();
-int small_pass();
+#define CMAX 256                        /* for EBCDIC */
+
+int SIM(char[], char[], long, long, long, long[][CMAX], long, long, long);
+int big_pass(char[], char[], long, long, long, long);
+int fatal(const char*);
+int fatalf(const char*, const char*);
+int locate(char[], char[], long );
+int no_cross(void);
+int small_pass(char[], char[], long, long);
+long addnode(long, long, long, long, long, long, long);
 
 static const char *mybasename(const char *str) {
   const char *base = strrchr(str, '/');
@@ -126,19 +129,21 @@ static char *ckalloc(long amount) {
 
 static char *name1, *name2;             /* names of sequence files    */
 
-#define CMAX 256                        /* for EBCDIC */
 /*#define round(x) nint(x)              /* round to larger magnitude */
 #define round(x) ((x)>0.0 ? (x)+0.5 : (x)-0.5)
+
+FILE* ckopen(char*, char*);
+double atof(const char*);
+double dtime(void);
 
 main(argc, argv) int argc; char *argv[];
 { long  M, N, K;                        /* Sequence lengths and k     */
   char  *A,  *B;                        /* Storing two sequences      */
   int symbol;
   long V[CMAX][CMAX], Q, R;             /* Converted integer weights  */
-  double starttime, benchtime, dtime();
+  double starttime, benchtime;
   double parm_M, parm_I, parm_V, parm_O, parm_E, v;
-  double atof();
-  FILE *Bp, *Ap, *Cp, *ckopen();
+  FILE *Bp, *Ap, *Cp;
   char *arg1, *arg2, *arg3;
 
   if ((Cp = fopen("Output/sim.res","a+")) == NULL)
@@ -310,7 +315,8 @@ static short flag;                /* indicate if recomputation necessary*/
 
 /* The following definitions are for function diff() */
 
-long  diff(), display();
+long  diff(char *, char *, long, long, long, long);
+long  display(char[], char[], long , long, long[], long, long);
 static long  zero = 0;                     /* long type zero */
 
 #define gap(k)  ((k) <= 0 ? 0 : q+r*(k))   /* k-symbol indel score */
@@ -360,7 +366,7 @@ SIM(A,B,M,N,K,V,Q,R,nseq)
   register  long  i, j;                 /* row and column indices */
   long  *S;                             /* saving operations for diff */
   vertexptr cur;                        /* temporary pointer */
-  vertexptr findmax();                 /* return the largest score node */
+  vertexptr findmax(void);                 /* return the largest score node */
 	
 	/* allocate space for all vectors */
 	j = (N + 1) * sizeof(long);
@@ -470,7 +476,6 @@ big_pass(A,B,M,N,K,nseq) char A[],B[]; long M,N,K,nseq;
   register  long  fi, fj;               /* end-point associated with f */
   register  long  pi, pj;               /* end-point associated with p */
   long  *va;                            /* pointer to v(A[i], B[j]) */
-  long   addnode();                     /* function for inserting a node */
 
 	
 	/* Compute the matrix and save the top K best scores in LIST
@@ -551,7 +556,6 @@ locate(A,B,nseq) char A[],B[]; long nseq;
   register  long  pi, pj;           /* end-point associated with p */
   short  cflag, rflag;              /* for recomputation */
   long  *va;                        /* pointer to v(A[i], B[j]) */
-  long   addnode();                 /* function for inserting a node */
   long  limit;                      /* the bound on j */
 
 	/* Reverse pass
@@ -772,7 +776,6 @@ small_pass(A,B,count,nseq) char A[], B[]; long count, nseq;
   register  long  fi, fj;           /* end-point associated with f */
   register  long  pi, pj;           /* end-point associated with p */
   long  *va;                        /* pointer to v(A[i], B[j]) */
-  long   addnode();                 /* function for inserting a node */
   long  limit;                      /* lower bound on j */
 
 	for ( j = n1 + 1; j <= nn ; j++ )
@@ -890,7 +893,7 @@ long addnode(c, ci, cj, i, j, K, cost)  long c, ci, cj, i, j, K, cost;
 
 /* Find and remove the largest score in list */
 
-vertexptr findmax()
+vertexptr findmax(void)
 { vertexptr  cur;
   register long i, j;
 
@@ -909,7 +912,7 @@ vertexptr findmax()
 
 /* return 1 if no node in LIST share vertices with the area */
 
-no_cross()
+no_cross(void)
 { vertexptr  cur;
   register long i;
 
@@ -1163,7 +1166,7 @@ char *msg, *val;
 FILE *ckopen(name, mode)
 char *name, *mode;
 {
-	FILE *fopen(), *fp;
+	FILE *fp;
 
 	if ((fp = fopen(name, mode)) == NULL)
 		fatalf("Cannot open %s.", name);

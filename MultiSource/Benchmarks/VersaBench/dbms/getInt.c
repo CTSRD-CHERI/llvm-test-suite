@@ -38,8 +38,6 @@
 #include "dataManagement.h" /* for primitive type definitions */
 #include "getInt.h"         /* for getInt() return codes      */
 
-extern int errno;
-
 /*
  *  Function prototype
  */

@@ -376,7 +376,7 @@ makeClosureArray()
 }
 
 void
-makeCostVector(z,d) _Bool z; DeltaCost d;
+makeCostVector(_Bool z, DeltaCost d)
 {
 	fprintf(outfile, "\t{");
 #ifdef NOLEX

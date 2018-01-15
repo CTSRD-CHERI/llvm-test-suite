@@ -26,9 +26,9 @@ double totalWallTime = 0.0;
 double totalCPUTime  = 0.0;
 
 // 
-void test_Matvec();
-void test_Relax();
-void test_Axpy();
+void test_Matvec(void);
+void test_Relax(void);
+void test_Axpy(void);
 
 //
 int main(int argc, char *argv[])
@@ -115,7 +115,7 @@ int main(int argc, char *argv[])
 
 }
 
-void test_Matvec()
+void test_Matvec(void)
 {
   struct timeval  t0, t1;
   clock_t t0_cpu = 0,
@@ -177,7 +177,7 @@ void test_Matvec()
 
 }
 
-void test_Relax()
+void test_Relax(void)
 {
   struct timeval  t0, t1;
   clock_t t0_cpu = 0,
@@ -236,7 +236,7 @@ void test_Relax()
 
 }
 
-void test_Axpy()
+void test_Axpy(void)
 {
   struct timeval  t0, t1;
   clock_t t0_cpu = 0,

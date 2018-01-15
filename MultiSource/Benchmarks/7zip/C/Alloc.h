@@ -13,7 +13,7 @@ extern "C" {
 void *MyAlloc(size_t size);
 void MyFree(void *address);
 
-void SetLargePageSize();
+void SetLargePageSize(void);
 
 void *MidAlloc(size_t size);
 void MidFree(void *address);

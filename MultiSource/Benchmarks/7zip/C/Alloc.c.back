@@ -190,7 +190,7 @@ size_t largePageMinimum()
 #endif
 #endif
 
-void SetLargePageSize()
+void SetLargePageSize(void)
 {
   #ifdef _7ZIP_LARGE_PAGES
   size_t size;

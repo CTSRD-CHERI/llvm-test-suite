@@ -54,9 +54,7 @@
 StrTreeNode *tree_head;
 
 long
-internet_checksum (addr, count)
-     unsigned short * addr;
-     int count;
+internet_checksum (unsigned short * addr, int count)
 {
   /* 
    *  Compute Internet Checksum for "count" bytes

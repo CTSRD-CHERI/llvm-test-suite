@@ -78,7 +78,7 @@ typedef struct _Heap
  * Return values:
  *   none
  */
-void  InitFHeap();
+void  InitFHeap(void);
 
 /*
  * Create a heap structure.
@@ -92,7 +92,7 @@ void  InitFHeap();
  * Return values:
  *   a heap, to be precise an empty, i.e. NULL_HEAP
  */
-HeapP * MakeHeap();
+HeapP * MakeHeap(void);
 
 /*
  * Find the item with lowest key.

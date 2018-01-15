@@ -357,14 +357,14 @@ void hypre_error_handler(char *filename, int line, int ierr);
  *--------------------------------------------------------------------------*/
 
 /* Return the current hypre error flag */
-int HYPRE_GetError();
+int HYPRE_GetError(void);
 
 /* Check if the given error flag contains the given error code */
 int HYPRE_CheckError(int hypre_ierr, int hypre_error_code);
 
 /* Return the index of the argument (counting from 1) where
    argument error (HYPRE_ERROR_ARG) has occured */
-int HYPRE_GetErrorArg();
+int HYPRE_GetErrorArg(void);
 
 /* Describe the given error flag in the given string */
 void HYPRE_DescribeError(int hypre_ierr, char *descr);

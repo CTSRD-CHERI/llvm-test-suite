@@ -15,7 +15,7 @@
  */
 #define MAX_PACKETS 100
 
-char *get_next_packet ();
+char *get_next_packet (int);
 
 /* For testing...*/
 unsigned int packet_size (unsigned int);

@@ -18,7 +18,7 @@ typedef struct _shuryoten
 
 static int localstop;
 
-static int compshuryo( Shuryoten *s1_arg, Shuryoten *s2_arg )
+static int compshuryo( const Shuryoten *s1_arg, const Shuryoten *s2_arg )
 {
 	Shuryoten *s1 = (Shuryoten *)s1_arg;
 	Shuryoten *s2 = (Shuryoten *)s2_arg;
@@ -613,7 +613,7 @@ fprintf( stderr, "\n" );
 	fprintf( stderr, "endalj = %d\n", endalj );
 #endif
 
-	qsort( shuryo, 100, sizeof( Shuryoten ), (int (*)())compshuryo );
+	qsort( shuryo, 100, sizeof( Shuryoten ), /*(int (*)(const void *, const void *))*/compshuryo );
 	for( k=0; k<100; k++ )
 	{
 		fprintf( stderr, "shuryo[%d].i,j,wm = %d,%d,%f\n", k, shuryo[k].i, shuryo[k].j, shuryo[k].wm );

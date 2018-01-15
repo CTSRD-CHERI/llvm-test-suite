@@ -24,7 +24,7 @@ extern int CHno;
 /* ********************************************************************* */
 /* FUNCTION: empty - determins if the tree-structure is empty            */
 
-bool empty() {
+bool empty(void) {
   return (Splaytree == NULL);
 }
 
@@ -173,7 +173,7 @@ void add_segments(DCEL_segment *n,DCEL_segment *act,DCEL_segment *first,
 /* FUNCTION: construct_ch - finds the points on the convex hull and
              drops the rest                                              */
 
-CHpoints *construct_ch() {
+CHpoints *construct_ch(void) {
   DCEL_segment *root;
   /* Left and right are the pointer that point to the segments to
      the left and right of the rightmost point in the convex hull

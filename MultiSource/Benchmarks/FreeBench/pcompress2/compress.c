@@ -30,8 +30,8 @@ unsigned char *rle; /* The RLE:d data */
 unsigned char *ari; /* The ARI:d data */
 static unsigned int size;
 
-static void do_bwe();
-static unsigned int do_rle();
+static void do_bwe(void);
+static unsigned int do_rle(void);
 unsigned int do_ari(unsigned int insize); /* In "arithmetic.c" */
 
 void compress(int argc, char *argv[]) 

@@ -42,7 +42,7 @@ void hypre_error_handler(char *filename, int line, int ierr)
 #endif
 }
 
-int HYPRE_GetError()
+int HYPRE_GetError(void)
 {
    return hypre_error_flag;
 }
@@ -70,7 +70,7 @@ void HYPRE_DescribeError(int ierr, char *msg)
       sprintf(msg,"[Method did not converge] ");
 }
 
-int HYPRE_GetErrorArg()
+int HYPRE_GetErrorArg(void)
 {
    return (hypre_error_flag>>3 & 31);
 }

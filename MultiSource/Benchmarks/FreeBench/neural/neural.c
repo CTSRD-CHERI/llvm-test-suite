@@ -76,18 +76,18 @@ unsigned long randnum;
 
 /* Function Declarations  */
 static int hamming(int *ny, int *orig, int mode);
-static void checkham ();
+static void checkham(void);
 static void generateT (int mode);
 static void delta(real n);
 static int run (signed int *source, signed int *dest);
 static void readvector (FILE *fp);
-static void storecheck ();
-static void printT();
+static void storecheck(void);
+static void printT(void);
 static void printV(int vector, signed int *vect);
 static void unlearn(int seed, int iter);
 static int runcont(signed int *source, signed int *dest);
 static void mysrand(unsigned long seed);
-static real myrand();
+static real myrand(void);
 static double myexp(double in);
 
 #ifndef BENCHMARK

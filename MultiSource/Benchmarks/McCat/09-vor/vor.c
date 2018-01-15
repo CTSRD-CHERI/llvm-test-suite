@@ -32,7 +32,7 @@ int Ecount=1;          /* Ecount-1 is the number of Edges */
 /* ********************************************************************* */
 /* PROCEDURE: clean_up - cleans up                                       */
 
-void clean_up() {
+void clean_up(void) {
   free(K);                                    /* Frees the Voronoi nodes */
   free(E);                                    /* Frees the Voronoi edges */
   Kcount=1; 
@@ -303,7 +303,7 @@ void draw_sec(CHpoints *p) {
 /* ********************************************************************* */
 /* PROCEDURE: alg2 - Main procedure of the algorithm                     */
 
-void alg2() {
+void alg2(void) {
   point c;
   dpoint dc;
   CHpoints *p,*q;  
@@ -346,7 +346,7 @@ void alg2() {
 /* PROCEDURE: construct_vor - call the procedures to construct the
               voronoi diagram                                            */
 
-void construct_vor() {
+void construct_vor(void) {
   S = construct_ch();
   number_points(S);
   alg2();

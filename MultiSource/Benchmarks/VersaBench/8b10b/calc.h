@@ -25,11 +25,11 @@
 #ifndef CALC_H
 #define CALC_H
 
-void calcSetup();
+void calcSetup(void);
 unsigned int calc(unsigned int theWord, unsigned int k);
-void bigTableSetup();
+void bigTableSetup(void);
 
 unsigned int bigTableCalc(unsigned int theWord);
-void resetDisparity();
+void resetDisparity(void);
 
 #endif

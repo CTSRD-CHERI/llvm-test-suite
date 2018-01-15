@@ -141,10 +141,8 @@ extern int rnakozo;
 extern char rnaprediction;
 
 /* sengen no ichi ha koko dake de ha nai */
-extern void constants();
-extern char **Calignm1();
-extern char **Dalignm1();
-extern char **align0();
+extern float Aalign( char **, char **, double *, double *, int, int, int );
+extern char **Calignm1( float *, char **, char *, double *, int, int );
 extern double Cscore_m_1( char **, int, int, double ** );
 extern double score_m_1(  char **, int, int, double ** );
 extern double score_calc0( char **, int, double **, int );
@@ -154,24 +152,9 @@ extern float substitution_score( char *, char * );
 extern float substitution_nid( char *, char * );
 extern float substitution_hosei( char *, char * );
 extern double ipower( double, int );
-extern float translate_and_Calign();
-extern float A__align();
-extern float A__align11();
-extern float A__align_gapmap();
-extern float partA__align();
-extern float L__align11();
-extern float G__align11();
-extern float Falign();
-extern float Falign_localhom();
-extern float Conalign();
-extern float Aalign();
 extern float imp_match_out_sc( int, int );
 extern float part_imp_match_out_sc( int, int );
-extern void ErrorExit();
-extern void cpmx_calc();
 extern void intergroup_score( char **, char **, double *, double *, int, int, int, double * );
-extern int conjuctionfortbfast();
-extern int fastconjuction();
 extern char seqcheck( char ** );
 
 typedef struct _LocalHom

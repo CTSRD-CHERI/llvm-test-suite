@@ -29,10 +29,10 @@
 #include <ctype.h>
 #include "V.h"
 
-int    GaussianMask();
-int    DGaussianMask();
-int    dfilter();
-float *dnon_max();
+int    GaussianMask(float, int *, float **, char*);
+int    DGaussianMask(float, int *, float **, char*);
+int    dfilter(float *, float *, float *, int, int, int, int, float**, char*);
+float *dnon_max(float *, float *, float *, int, int);
 
 int L_canny(sigma, image, nc, nr, edge, err)
 float    sigma;
@@ -191,12 +191,7 @@ char   *err;
   return(0);
 }
 
-float *dnon_max(gr, Ix, Iy, nc, nr)
-float  *gr;
-float  *Ix;
-float  *Iy;
-int     nc;
-int     nr;
+float *dnon_max(float *gr, float *Ix, float *Iy, int nc, int nr)
 {
   int      i, j;
   float   *maxima;

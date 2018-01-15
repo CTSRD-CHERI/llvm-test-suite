@@ -3308,7 +3308,7 @@ return;
 ** the inputs (outputs from middle layer), modified by the
 ** sigmoid function.
 **/
-static void  do_out_forward()
+static void  do_out_forward(void)
 {
 double sum;
 int neurode, i;
@@ -3759,7 +3759,7 @@ return;
 **
 ** Returns -1 if any file error occurred, otherwise 0.
 **/
-static int read_data_file()
+static int read_data_file(void)
 {
 FILE *infile;
 

@@ -31,9 +31,9 @@ short           d, e;
 
 FILE * in;
 
-int code();
+int code(void);
 
-assemble() 
+int assemble(void)
 {
   
   

@@ -10,7 +10,7 @@ typedef struct{
 
 
 
-double seconds();
+double seconds(void);
 
 void Stopwtach_reset(Stopwatch Q);
 

@@ -6,30 +6,30 @@
 #define r 1
 
 /* vor.c */
-void clean_up();
+void clean_up(void);
 void getpoint(int x,int y);
-int set_node();
-int do_quit();
+int set_node(void);
+int do_quit(void);
 void build_menu(void);
-void get_file();
+void get_file(void);
 void add_point(point p);
 point compute_v(CHpoints *P);
 void add_infinit_points_to_K(CHpoints *S);
 void add_edge(int p1,int p2);
 void draw_sec(CHpoints *p);
 CHpoints *maximize_radius_and_angle(CHpoints *S);
-void alg2();
-void construct_vor();
+void alg2(void);
+void construct_vor(void);
 
 /* ch.c */
-bool empty();
+bool empty(void);
 bool point_equal(point p1,point p2);
 int determinant(point p1, point p2, point p3);
 bool visible(int direction,point p1,point p2,point p3);
 CHpoints *get_points_on_hull(DCEL_segment *left,DCEL_segment *right);
 void add_segments(DCEL_segment *n,DCEL_segment *act,DCEL_segment *first,
 		  int direction);
-CHpoints *construct_ch();
+CHpoints *construct_ch(void);
 
 /* splay.c */
 void traverse(splay_node *root);

@@ -43,19 +43,19 @@ extern int columns[], height[];
 
 extern int64 posed;
 
-extern int trans_init();
-extern int wins();
-extern int makemove();
-extern int backmove();
-extern int transpose();
-extern int transrestore();
-extern int transtore();
-extern int printMoves();
-extern int reset();
-extern int emptyTT();
-extern int htstat();
+extern int trans_init(void);
+extern int wins(int, int, int);
+extern int makemove(int);
+extern int backmove(void);
+extern int transpose(void);
+extern int transrestore(int, int);
+extern int transtore(int, int);
+extern int printMoves(void);
+extern int reset(void);
+extern int emptyTT(void);
+extern int htstat(void);
 
-void c4_init()
+void c4_init(void)
 {
   trans_init();
 }
@@ -159,7 +159,7 @@ int solve()
   int i,side;
   int x,work,score;
   int64 poscnt;
-  extern int64 millisecs();
+  extern int64 millisecs(void);
 
   nodes = 0;
   msecs = 1;

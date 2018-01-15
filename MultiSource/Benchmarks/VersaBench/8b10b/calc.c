@@ -156,7 +156,7 @@ unsigned int bigTable[1024];
 unsigned int disparity0 = 0;
 unsigned int disparity1 = 1;
 
-void calcSetup()
+void calcSetup(void)
 {
 }
 
@@ -242,12 +242,12 @@ unsigned int bigTableCalc(unsigned int theWord)
 	return (result&0x3ff);
 }
 
-void resetDisparity()
+void resetDisparity(void)
 {
         disparity0 = 0;
 }
 
-void bigTableSetup()
+void bigTableSetup(void)
 {
 	int counter;
 	unsigned int tempResult;

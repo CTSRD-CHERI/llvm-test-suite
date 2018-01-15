@@ -31,7 +31,7 @@ unsigned char *debw;
 unsigned int size;
 unsigned int orgpos;
 
-static void do_debwe();
+static void do_debwe(void);
 static void do_derle(int insize);
 unsigned int do_deari(unsigned int insize);  /* In "unarithmetic.c" */
 

@@ -34,7 +34,7 @@ typedef struct V_struct{
     int             *dim;          /* dimensions of data */
 } V_struct;
 
-typedef (*FUNC_PTR)();
+typedef (*FUNC_PTR)(void);
 
 typedef struct command {
   char *name;                    /* name of the command */

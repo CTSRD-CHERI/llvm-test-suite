@@ -14,9 +14,9 @@ int64 posed, hits;		/* counts transtore calls */
 
 extern int columns[];
 
-extern int play_init();
+extern int play_init(void);
 
-void trans_init()
+void trans_init(void)
 {
   play_init();
   ht = (unsigned int *)calloc(TRANSIZE, sizeof(unsigned int));

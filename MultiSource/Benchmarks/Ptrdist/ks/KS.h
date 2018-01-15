@@ -92,7 +92,7 @@ float CAiBj(ModuleRecPtr mrA, ModuleRecPtr mrB);
 void SwapNode(ModuleRecPtr maxPrev, ModuleRecPtr max,
 	      ModuleListPtr group, ModuleListPtr swapTo);
 void UpdateDs(ModuleRecPtr max, Groups group);
-float FindMaxGpAndSwap();
+float FindMaxGpAndSwap(void);
 void SwapSubsetAndReset(unsigned long iMax);
 void PrintResults(int verbose);
 int main(int argc, char **argv);

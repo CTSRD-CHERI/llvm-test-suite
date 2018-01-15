@@ -39,7 +39,9 @@
 #include "dataManagement.h" /* for primitive type definitions */
 #include "getFloat.h"       /* for getFloat() return codes    */
 
+#ifndef errno
 extern int errno;
+#endif
 
 /*
  *  Function prototype

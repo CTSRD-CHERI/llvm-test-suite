@@ -55,8 +55,8 @@ Vertices * AddEdges(Vertices * graph, int nVertex, int nEdge);
 Vertices * PickVertex(Vertices * graph, int whichVertex);
 void      Connect(Vertices * vertex1, Vertices * vertex2);
 int       Duplicate(Vertices * vertex1, Vertices * vertex2);
-Vertices * NewVertex();
-Edges * NewEdge();
+Vertices * NewVertex(void);
+Edges * NewEdge(void);
 void      PrintNeighbors(Vertices * vertex);
 
 /*
