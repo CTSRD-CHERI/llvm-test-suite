@@ -1,6 +1,30 @@
 include(External)
 llvm_externals_find(TEST_SUITE_CUDA_ROOT "cuda" "CUDA prerequisites")
 
+set(SUPPORTED_GPU_CUDA_7_0
+  sm_20 sm_21
+  sm_30 sm_32 sm_35 sm_37
+  sm_50 sm_52 sm_53)
+set(SUPPORTED_GPU_CUDA_7_5
+  sm_20 sm_21
+  sm_30 sm_32 sm_35 sm_37
+  sm_50 sm_52 sm_53)
+set(SUPPORTED_GPU_CUDA_8_0
+  sm_20 sm_21
+  sm_30 sm_32 sm_35 sm_37
+  sm_50 sm_52 sm_53
+  sm_60 sm_61 sm_62)
+set(SUPPORTED_GPU_CUDA_9_0
+  sm_30 sm_32 sm_35 sm_37
+  sm_50 sm_52 sm_53
+  sm_60 sm_61 sm_62
+  sm_70)
+set(SUPPORTED_GPU_CUDA_9_1
+  sm_30 sm_32 sm_35
+  sm_50 sm_52 sm_53
+  sm_60 sm_61 sm_62
+  sm_70 sm_72)
+
 # Helper macro to extract version number at the end of the string
 # Input: get_version(Var String)
 #    Where String = /some/string/with/version-x.y.z
@@ -37,6 +61,7 @@ macro(create_one_local_test Name FileGlob)
     llvm_test_run()
   endif()
   llvm_test_executable(${_executable} ${_sources})
+  target_compile_options(${_executable} PUBLIC ${VariantCPPFLAGS})
   if(VariantLibs)
     target_link_libraries(${_executable} ${VariantLibs})
   endif()
@@ -74,7 +99,8 @@ macro(create_one_thrust_test TestSource)
   llvm_test_run(--verbose ${_ExtraThrustTestArgs})
   llvm_test_executable(${_executable} ${TestSource})
   target_link_libraries(${_executable} ${VariantLibs})
-  target_compile_options(${_executable} PUBLIC ${THRUST_CPPFLAGS})
+  target_compile_options(${_executable} BEFORE PUBLIC ${THRUST_CPPFLAGS})
+  target_compile_options(${_executable} PUBLIC ${VariantCPPFLAGS})
   list(APPEND THRUST_VARIANT_TESTS ${_executable})
 endmacro()
 
@@ -87,7 +113,8 @@ function(create_thrust_tests VariantSuffix)
     # test framework is common for all tests, so we build it once as a
     # library.
     add_library(ThrustTestFrameworkLib-${VariantSuffix} STATIC ${ThrustTestFramework})
-    append_compile_flags(ThrustTestFrameworkLib-${VariantSuffix} ${CPPFLAGS} ${THRUST_CPPFLAGS})
+    target_compile_options(ThrustTestFrameworkLib-${VariantSuffix} BEFORE PRIVATE ${THRUST_CPPFLAGS})
+    target_compile_options(ThrustTestFrameworkLib-${VariantSuffix} PRIVATE ${VariantCPPFLAGS})
     add_dependencies(ThrustTestFrameworkLib-${VariantSuffix} timeit-host fpcmp-host)
     list(APPEND VariantLibs ThrustTestFrameworkLib-${VariantSuffix})
 
@@ -109,8 +136,12 @@ function(create_thrust_tests VariantSuffix)
     # overhead, so it's actually way slower than running all tests
     # sequentially.
     llvm_test_run(--verbose ${_ExtraThrustTestArgs})
+    # CUDA SDK comes with its own version of thrust in its include directory.
+    # In order to use the thrust library we want, its include path must precede
+    # that of the CUDA SDK include path.
     llvm_test_executable(${_ThrustMainTarget} ${ThrustTestFramework} ${ThrustAllTestSources})
-    target_compile_options(${_ThrustMainTarget} PUBLIC ${THRUST_CPPFLAGS})
+    target_compile_options(${_ThrustMainTarget} BEFORE PUBLIC ${THRUST_CPPFLAGS})
+    target_compile_options(${_executable} PUBLIC ${VariantCPPFLAGS})
     target_link_libraries(${_ThrustMainTarget} ${VariantLibs})
   endif()
   add_dependencies(cuda-tests-${VariantSuffix} cuda-tests-thrust-${VariantSuffix})
@@ -124,7 +155,7 @@ function(create_cuda_test_variant Std VariantSuffix)
     COMMENT "Build CUDA test variant ${VariantSuffix}")
 
   set(VariantLibs ${_Cuda_Libs} ${_Stdlib_Libs})
-  list(APPEND CPPFLAGS ${_Cuda_CPPFLAGS} ${_Std_CPPFLAGS} ${_Stdlib_CPPFLAGS})
+  set(VariantCPPFLAGS ${_Cuda_CPPFLAGS} ${_Std_CPPFLAGS} ${_Stdlib_CPPFLAGS})
   list(APPEND LDFLAGS ${_Cuda_LDFLAGS} ${_Std_LDFLAGS} ${_Stdlib_LDFLAGS})
 
   # Create a separate test target for simple tests that can be built/tested quickly.
@@ -177,14 +208,11 @@ macro(create_cuda_tests)
   if(NOT CUDA_GPU_ARCH)
     list(APPEND CUDA_GPU_ARCH sm_35)
   endif()
+  list(SORT CUDA_GPU_ARCH)
 
   if (CUDA_JOBS)
     set(TEST_SUITE_LIT_FLAGS ${TEST_SUITE_LIT_FLAGS} -j ${CUDA_JOBS})
   endif()
-
-  foreach(GpuArch IN LISTS CUDA_GPU_ARCH)
-    list(APPEND CPPFLAGS --cuda-gpu-arch=${GpuArch})
-  endforeach()
 
   file(GLOB GccVersions ${TEST_SUITE_CUDA_ROOT}/gcc-*)
   list(SORT GccVersions)
@@ -263,6 +291,24 @@ macro(create_cuda_tests)
     get_version(_CudaVersion ${_CudaPath})
     set(_Cuda_Suffix "cuda-${_CudaVersion}")
     set(_Cuda_CPPFLAGS --cuda-path=${_CudaPath} -I${_CudaPath}/include)
+    # clear the list of GPUs to compile for.
+    set(_CudaArchFlags)
+    set(_CudaArchList)
+    string(REPLACE "." "_" _CudaVersionSuffix ${_CudaVersion})
+    foreach(_CudaGpuArch IN LISTS CUDA_GPU_ARCH)
+      if(_CudaGpuArch IN_LIST SUPPORTED_GPU_CUDA_${_CudaVersionSuffix})
+        list(APPEND _CudaArchFlags --cuda-gpu-arch=${_CudaGpuArch})
+        list(APPEND _CudaArchList ${_CudaGpuArch})
+      endif()
+    endforeach()
+    if (_CudaArchList)
+      message(STATUS "Building ${_Cuda_Suffix} targets for ${_CudaArchList}")
+    else()
+      message(WARNING "${_Cuda_Suffix} does not support ${CUDA_GPU_ARCH} GPUs. Skipped.")
+      continue()
+    endif()
+    list(APPEND _Cuda_CPPFLAGS ${_CudaArchFlags})
+
     set(_Cuda_Libs cudart-${_CudaVersion})
     foreach(_Std IN ITEMS "c++98" "c++11" "c++14")
       set(_Std_Suffix "${_Std}")
