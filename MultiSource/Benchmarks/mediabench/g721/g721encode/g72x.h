@@ -100,17 +100,17 @@ extern int g723_40_decoder(
 		int out_coding,
 		struct g72x_state *state_ptr);
 
-int alaw2linear();
-int linear2alaw();
-int linear2ulaw();
-int predictor_pole();
-int predictor_zero();
-int quantize();
-int reconstruct();
-int step_size();
-int tandem_adjust_alaw();
-int tandem_adjust_ulaw();
-int ulaw2linear();
-void update();
+int alaw2linear(int);
+int linear2alaw(int);
+int linear2ulaw(int);
+int predictor_pole(struct g72x_state *);
+int predictor_zero(struct g72x_state *);
+int quantize(int, int, short *, int);
+int reconstruct(int, int, int);
+int step_size(struct g72x_state *);
+int tandem_adjust_alaw(int, int, int, int, int, short *);
+int tandem_adjust_ulaw(int, int, int, int, int, short *);
+int ulaw2linear(int);
+void update(int, int, int, int,int, int, int, struct g72x_state*);
 
 #endif /* !_G72X_H */

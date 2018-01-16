@@ -54,7 +54,7 @@ static int  Get_Val _ANSI_ARGS_((char *argv[]));
 
 /* #define DEBUG */
 
-static void Clear_Options();
+static void Clear_Options(void);
 #ifdef DEBUG
 static void Print_Options();
 #endif

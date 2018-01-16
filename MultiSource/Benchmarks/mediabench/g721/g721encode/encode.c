@@ -47,7 +47,7 @@ main(
 	int			in_coding;
 	int			in_size;
 	unsigned		*in_buf;
-	int			(*enc_routine)();
+	int			(*enc_routine)(int, int, struct g72x_state *);
 	int			enc_bits;
 
 	g72x_init_state(&state);

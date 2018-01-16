@@ -32,7 +32,7 @@
 
 #include "g72x.h"
 
-extern int abs();
+extern int abs(int);
 
 static short power2[15] = {1, 2, 4, 8, 0x10, 0x20, 0x40, 0x80,
 			0x100, 0x200, 0x400, 0x800, 0x1000, 0x2000, 0x4000};
@@ -143,7 +143,7 @@ predictor_zero(
  */
 int
 predictor_pole(
-	struct g72x_state *state_ptr)
+				struct g72x_state *state_ptr)
 {
 	return (fmult(state_ptr->a[1] >> 2, state_ptr->sr[1]) +
 	    fmult(state_ptr->a[0] >> 2, state_ptr->sr[0]));

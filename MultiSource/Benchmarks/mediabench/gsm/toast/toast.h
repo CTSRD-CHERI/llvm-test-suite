@@ -19,7 +19,7 @@
 #include <signal.h>
 
 #include <errno.h>
-#ifndef	HAS_ERRNO_DECL
+#if !defined(HAS_ERRNO_DECL) && !defined(errno)
 	 extern int	errno;
 #endif
 
