@@ -24,8 +24,8 @@ static double Q=1.0;
 /* Leaf optimization procedures                 */
 
 void optimize_node (double pi_R, double pi_I);
-double find_g ();
-double find_h ();
+double find_g (void);
+double find_h (void);
 double find_gradient_f (double pi_R, double pi_I, double* gradient);
 double find_gradient_g (double* gradient);
 double find_gradient_h (double* gradient);

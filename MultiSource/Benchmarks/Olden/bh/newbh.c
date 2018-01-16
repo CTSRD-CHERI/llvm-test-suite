@@ -15,8 +15,8 @@
 
 int nbody;
 
-double sqrt(), xrand(), my_rand();
-real pow();
+double xrand(double xl, double xh, double r);
+double my_rand(int seed);
 extern icstruct intcoord(bodyptr p, treeptr t);
 extern int BhDebug;
 
@@ -35,10 +35,10 @@ typedef struct {
 } datapoints;
 
 
-bodyptr testdata();
+bodyptr testdata(void);
 datapoints uniform_testdata(int proc, int nbody, int seedfactor);
 void stepsystem(treeptr t, int nstep);
-treeptr old_main();
+treeptr old_main(void);
 void my_free(nodeptr n);
 bodyptr ubody_alloc(int p);
 bodyptr movebodies(bodyptr list, int proc);
@@ -46,8 +46,8 @@ void freetree(nodeptr n);
 void freetree1(nodeptr n);
 int old_subindex(icstruct ic, int l);
 
-int dealwithargs();
-int error();
+int dealwithargs(int, char**);
+int error(const char*);
 
 int arg1;
 
@@ -66,7 +66,7 @@ int main(int argc, char **argv) {
 /* global! */
 
 /* Main routine from original program */
-treeptr old_main() {
+treeptr old_main(void) {
   real tnow;
   real tout;
   int i, nsteps, nprocs;
@@ -191,7 +191,7 @@ treeptr old_main() {
 #define MFRAC  0.999		/* mass cut off at MFRAC of total */
 
 /* don't use this unless it is fixed on random numbers, &c */
-bodyptr testdata()
+bodyptr testdata(void)
 {
     real rsc, vsc, r, v, x, y;
     vector cmr, cmv;
@@ -750,8 +750,6 @@ hgstruct gravsub(nodeptr p, hgstruct hg)
  * 	    It's free because it's yours.
  */
 
-double ceil();
-
 bodyptr body_alloc(int p, real p0, real p1, real p2, real v0, real v1, real v2, real a0, real a1, real a2, real mass, bodyptr ob);
 bodyptr ubody_alloc(int p);
 cellptr cell_alloc(int p);
@@ -936,7 +934,7 @@ nodeptr loadtree(bodyptr p, icstruct xpic, nodeptr t, int l, treeptr tr)
 /* called from expandbox */
 icstruct intcoord1(double rp0, double rp1, double rp2, treeptr t)
 {
-    double xsc, floor();
+    double xsc;
     /*double rmin,rsize;*/
     icstruct ic;
 
@@ -985,7 +983,6 @@ icstruct intcoord1(double rp0, double rp1, double rp2, treeptr t)
 icstruct intcoord(bodyptr p, treeptr t)
 {
     register double xsc;
-    double floor();
     icstruct ic;
     register real rsize;
     vector pos;
@@ -1034,7 +1031,7 @@ icstruct intcoord(bodyptr p, treeptr t)
 
 int ic_test(bodyptr p, treeptr t)
 {
-    double xsc, rsize, floor();
+    double xsc, rsize;
     int result;
     vector pos;
 
@@ -1083,7 +1080,7 @@ int subindex(bodyptr p, treeptr t , int l)
 {
     register int i, k;
     register real rsize;
-    double xsc, floor();
+    double xsc;
     int xp[NDIM];
     vector pos;
 

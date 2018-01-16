@@ -19,7 +19,7 @@ int gen_number(int range);
 int gen_signed_number(int range);
 
 /* Generate a double from 0.0 to 1.0 */
-double gen_uniform_double();
+double gen_uniform_double(void);
 
 /* Return 1, percent percent of the time and 0 otherwise */
 int check_percent(int percent);

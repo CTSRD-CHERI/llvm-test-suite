@@ -278,7 +278,7 @@ void do_all(table_t *table, int groupname, int nproc,
   }
 }
 
-graph_t *initialize_graph() {
+graph_t *initialize_graph(void) {
   table_t *table;
   graph_t *retval;
   int i,j,blocksize;

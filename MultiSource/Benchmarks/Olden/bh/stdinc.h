@@ -83,9 +83,9 @@ typedef char *string;
  * real-valued functions, respectively.
  */
 
-typedef void (*proc)();
-typedef int (*iproc)();
-typedef real (*rproc)();
+typedef void (*proc)(void);
+typedef int (*iproc)(void);
+typedef real (*rproc)(void);
 
 /*
  * PRIVATE: declare something to be local to a file.

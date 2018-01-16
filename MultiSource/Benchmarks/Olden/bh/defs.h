@@ -27,8 +27,6 @@ int NumNodes;
 #include "vectmath.h"
 
 #define MAX_NUM_NODES 64
-extern double fabs();
-
 
 /*
  * BODY and CELL data structures are used to represent the tree:

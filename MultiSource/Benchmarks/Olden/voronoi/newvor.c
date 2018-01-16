@@ -86,8 +86,7 @@ QUAD_EDGE build_delaunay_triangulation(tree,extra)
     return retval.left;
 }
 
-VERTEX_PTR get_low(tree)
-     register VERTEX_PTR tree;
+VERTEX_PTR get_low(VERTEX_PTR tree)
 {
   register VERTEX_PTR temp;
   while((temp=tree->left)) tree=temp;             /* 3% load penalty */
@@ -223,9 +222,8 @@ void free_edge(QUAD_EDGE e) {
 /*	Geometric primitives                                    */
 /****************************************************************/
 
-BOOLEAN incircle(a,b,c,d)
+BOOLEAN incircle(VERTEX_PTR a, VERTEX_PTR b, VERTEX_PTR c, VERTEX_PTR d)
      /* incircle, as in the Guibas-Stolfi paper. */
-     VERTEX_PTR a,b,c,d;
 {
   double adx, ady, bdx, bdy, cdx, cdy, dx, dy, anorm, bnorm, cnorm, dnorm;
   double dret ;
@@ -269,8 +267,7 @@ BOOLEAN ccw(VERTEX_PTR a, VERTEX_PTR b, VERTEX_PTR c) {
 /****************************************************************/
 /*	Quad-edge manipulation primitives                       */
 /****************************************************************/
-QUAD_EDGE makeedge(origin, destination)
-VERTEX_PTR origin, destination;
+QUAD_EDGE makeedge(VERTEX_PTR origin, VERTEX_PTR destination)
 {
     register QUAD_EDGE temp, ans;
     temp =  alloc_edge();
@@ -346,8 +343,7 @@ QUAD_EDGE e;
 /****************************************************************/
 /*#define valid(l) ccw(orig(basel), dest(l), dest(basel))*/
 
-int valid(l,basel)
-     QUAD_EDGE l,basel;
+int valid(QUAD_EDGE l, QUAD_EDGE basel)
 {
   register VERTEX_PTR t1,t2,t3;
 
@@ -360,8 +356,7 @@ int valid(l,basel)
   return ccw(t1,t2,t3);
 }
 
-void dump_quad(ptr)
-     QUAD_EDGE ptr;
+void dump_quad(QUAD_EDGE ptr)
 {
   int i;
   QUAD_EDGE j;
@@ -531,8 +526,7 @@ EDGE_PAIR do_merge(QUAD_EDGE ldo, QUAD_EDGE ldi, QUAD_EDGE rdi, QUAD_EDGE rdo)
 
 int loop = 0, randum = 1, filein = 0 , fileout = 1, statistics = 0; 
 
-void in_order(tree)
-     VERTEX_PTR tree;
+void in_order(VERTEX_PTR tree)
 {
   VERTEX_PTR tleft, tright;
   double x, y;
@@ -625,9 +619,7 @@ struct EDGE_STACK *allocate_stack(int num_vertice)
   return my_stack;
 }
 
-void free_all(cont,my_stack)
-     int cont;
-     struct EDGE_STACK *my_stack;
+void free_all(int cont, struct EDGE_STACK *my_stack)
 {
   free(my_stack->elts);
   free(my_stack);
@@ -711,9 +703,7 @@ void push_ring(struct EDGE_STACK *stack, QUAD_EDGE edge) {
     }
 }
 
-void push_nonzero_ring(stack, edge)
-     struct EDGE_STACK *stack;
-     QUAD_EDGE edge;
+void push_nonzero_ring(struct EDGE_STACK *stack, QUAD_EDGE edge)
 {
   QUAD_EDGE nex;
   nex = onext(edge);

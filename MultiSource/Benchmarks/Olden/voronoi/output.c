@@ -3,20 +3,19 @@
 #include "defines.h"
 #include <stdio.h>
 
-extern struct VEC2 V2_sum();
-extern struct VEC2 V2_sub();
-extern struct VEC2 V2_times();
-extern double V2_cprod();
-extern struct VEC2 V2_cross();
-extern double V2_dot();
-extern double V2_magn();
+extern struct VEC2 V2_sum(struct VEC2 u, struct VEC2 v);
+extern struct VEC2 V2_sub(struct VEC2 u, struct VEC2 v);
+extern struct VEC2 V2_times(double c, struct VEC2 v);
+extern double V2_cprod(struct VEC2 u, struct VEC2 v);
+extern struct VEC2 V2_cross(struct VEC2 v);
+extern double V2_dot(struct VEC2 u, struct VEC2 v);
+extern double V2_magn(struct VEC2 u);
 
 /****************************************************************/
 /*	Voronoi Output Routines */
 /****************************************************************/
 
-void plot_dedge(p1, p2)
-VERTEX_PTR p1, p2;
+void plot_dedge(VERTEX_PTR p1, VERTEX_PTR p2)
 {
   double x1,x2,y1,y2;
 
@@ -29,8 +28,7 @@ VERTEX_PTR p1, p2;
 	 (float) x2, (float) y2);
 }
 
-void plot_vedge(p1, p2)
-     struct VEC2 p1, p2;
+void plot_vedge(struct VEC2 p1, struct VEC2 p2)
 {
   /* plots a Voronoi-diagram edge on your favorite device. */
 

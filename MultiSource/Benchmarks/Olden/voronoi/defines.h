@@ -76,21 +76,21 @@ struct EDGE_STACK {
 #define rotinv(a) ((QUAD_EDGE) ( (((uptrint) (a) + 3*SIZE) & ANDF) | ((uptrint) (a) & ~ANDF) ))
 #define base(a) ((QUAD_EDGE) ((uptrint a) & ~ANDF))
 
-QUAD_EDGE alloc_edge();
+QUAD_EDGE alloc_edge(void);
 void free_edge(QUAD_EDGE e);
-QUAD_EDGE makeedge();
-void splice();
-void swapedge();
-void deleteedge();
-QUAD_EDGE build_delaunay_triangulation();
+QUAD_EDGE makeedge(VERTEX_PTR origin, VERTEX_PTR destination);
+void splice(QUAD_EDGE, QUAD_EDGE);
+void swapedge(QUAD_EDGE);
+void deleteedge(QUAD_EDGE);
+QUAD_EDGE build_delaunay_triangulation(VERTEX_PTR tree, VERTEX_PTR extra);
 EDGE_PAIR build_delaunay(VERTEX_PTR tree, VERTEX_PTR extra);
 EDGE_PAIR do_merge(QUAD_EDGE ldo, QUAD_EDGE ldi, QUAD_EDGE rdi, QUAD_EDGE rdo);
-QUAD_EDGE connect_left();
-QUAD_EDGE connect_right();
+QUAD_EDGE connect_left(QUAD_EDGE a, QUAD_EDGE b);
+QUAD_EDGE connect_right(QUAD_EDGE a, QUAD_EDGE b);
 
 int myrandom(int seed);
-void zero_seen();
-QUAD_EDGE pop_edge();
+void zero_seen(struct EDGE_STACK *my_stack, QUAD_EDGE edge);
+QUAD_EDGE pop_edge(struct EDGE_STACK *x);
 
 #define drand(seed) (((double) (seed=myrandom(seed))) / (double) 2147483647)
 

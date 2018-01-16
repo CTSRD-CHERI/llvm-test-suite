@@ -12,7 +12,7 @@
 #define lrand48() (rand() << 16 | rand())
 #define drand48() (1.0*rand() / RAND_MAX)
 #else
-extern double drand48();
+extern double drand48(void);
 #endif
 
 static int percentcheck=0,numlocal=0;

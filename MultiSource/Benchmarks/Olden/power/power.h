@@ -87,7 +87,7 @@ typedef struct leaf {
 Root build_tree(void);
 Lateral build_lateral(int i, int num);
 Branch build_branch(int i, int j, int num);
-Leaf build_leaf();
+Leaf build_leaf(void);
 
 void Compute_Tree(Root r);
 Demand Compute_Lateral(Lateral l, double theta_R, double theta_I,
