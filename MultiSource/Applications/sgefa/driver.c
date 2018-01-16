@@ -5,6 +5,7 @@
   ****************************************************************/
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <math.h>
 #include "ge.h"
 
@@ -16,22 +17,26 @@
 #define SCALE	 1		/* System sizes are scaled by this amount. */
 #endif
 
-int matgen();
-int matvec();
-int get_space();
-void exit();
+void ivecdump(int *vec, int len, char *head);
+void fvecdump(float *vec, int len, char *head);
+void matdump(struct FULL *a, char *head);
+int matgen(struct FULL *a, float **x, float **b, float **bt, int **ipvt,
+           int test_case, int scale);
+int matvec(struct FULL *a, float *x, float *b, int job);
+int get_space(struct FULL *a, float **x, float **b, float **bt, int **ipvt);
+double snrm2(int n, float *sx, int incx);
+void exit(int);
 
-main()
+int main()
 {
   register int i, j, k;
   struct FULL a;
 
   /* Storage for rhs, rhs of trans(A)x and solution. */
   float *b, *bt, *x, anorm, *col, t;
-  double err, snrm2();
+  double err;
   int 	*ipvt, retval, test_case = 0;
-  void  matdump(), ivecdump(), fvecdump();
-  
+
   /* Loop over the test cases. */
   /* Initilize matrix. */
   while( !matgen( &a, &x, &b, &bt, &ipvt, ++test_case, SCALE ) ) {
@@ -114,8 +119,6 @@ int	    **ipvt, test_case, scale;
   register int i, j;
   int  n;
   float *col, tl, tu;
-  char *malloc();
-  void free(), matdump(), ivecdump(), fvecdump();
 
   if( test_case>1 ) {			/* Free up memory used in the last test. */
     printf("\n\n**********************************************************************\n");
@@ -326,7 +329,6 @@ int         **ipvt;
   This routine gets space for the above vectors.
 */
 {
-  char *malloc();
   register int i,j;
 
   /* Get space for the columns. */

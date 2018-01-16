@@ -20,9 +20,7 @@
 #ifndef HUGEsp
 #define HUGEsp		1.0e+38		/* Largest binary float */
 #endif
-int isamax( n, sx, incx )
-float	*sx;
-int	n, incx;
+int isamax( int n, float *sx, int incx )
 /*
     PURPOSE
         Finds the index of element having max. absolute value.
@@ -66,9 +64,7 @@ int	n, incx;
   return( istmp );
 }
  
-void saxpy( n, sa, sx, incx, sy, incy )
-float *sx, *sy, sa;
-int   n, incx, incy;
+void saxpy( int n, float sa, float *sx, int incx, float *sy, int incy )
 /*
   PURPOSE
     Vector times a scalar plus a vector.  sy = sy + sa*sx.
@@ -109,9 +105,7 @@ int   n, incx, incy;
     *sy += sa*(*sx);
 }
  
-void saxpyx( n, sa, sx, incx, sy, incy )
-float *sx, *sy, sa;
-int   n, incx, incy;
+void saxpyx( int n, float sa, float *sx, int incx, float *sy, int incy )
 /*
   PURPOSE
     Vector times a scalar plus a vector.  sx = sy + sa*sx.
@@ -152,9 +146,7 @@ int   n, incx, incy;
     *sx = *sy + sa*(*sx);
 }
 
-void scopy( n, sx, incx, sy, incy )
-float  *sx, *sy;
-int     n, incx, incy;
+void scopy( int n, float *sx, int incx, float *sy, int incy )
 /*
     PURPOSE
         Copies vector sx into vector sy.
@@ -193,9 +185,7 @@ int     n, incx, incy;
     (*sx) = (*sy);
   return;
 }
-double sdot( n, sx, incx, sy, incy )
-float	*sx, *sy;
-int	n, incx, incy;
+double sdot( int n, float *sx, int incx, float *sy, int incy )
 /*
     PURPOSE
         Forms the dot product of a vector.
@@ -238,9 +228,7 @@ int	n, incx, incy;
   return( stemp );
 }				/* End of ---SDOT--- */
 
-double snrm2( n, sx, incx )
-float	*sx;
-int	n, incx;
+double snrm2( int n, float *sx, int incx )
 /*
     PURPOSE
         Computes the Euclidean norm of sx while being
@@ -262,7 +250,7 @@ int	n, incx;
 {
   register int i;
   int	 phase = 3;
-  double sum = 0.0e0, cutlo, cuthi, hitst, r1mach();
+  double sum = 0.0e0, cutlo, cuthi, hitst, r1mach(void);
   float xmax;
 
   if( n<1 || incx<1 ) return( sum );
@@ -343,7 +331,8 @@ double r1mach()
 }
 /*-------------------- end of function r1mach ------------------------*/
  
-int min0( n, a, b, c, d, e, f, g, h, i, j, k, l, m, o, p )
+int min0( int n, int a, int b, int c, int d, int e, int f, int g, int h, int i,
+          int j, int k, int l, int m, int o, int p )
 /*
     PURPOSE
         Determine the minimum of the arguments a-p.
@@ -355,7 +344,6 @@ int min0( n, a, b, c, d, e, f, g, h, i, j, k, l, m, o, p )
     RETURNS
         min0    Minimum of a thru p.
 */
-int n, a, b, c, d, e, f, g, h, i, j, k, l, m, o, p;
 {
     int mt;
  
@@ -405,9 +393,7 @@ int n, a, b, c, d, e, f, g, h, i, j, k, l, m, o, p;
     if( mt > p  ) mt = p;
     return( mt );
 }
-int sscal( n, sa, sx, incx )
-int     n, incx;
-float  sa, *sx;
+int sscal( int n, float sa, float *sx, int incx )
 /*
     PURPOSE
         Scales a vector by a constant.
@@ -438,9 +424,7 @@ float  sa, *sx;
     *sx *= sa;
   return 0;
 }
-void vexopy( n, v, x, y, itype )
-int	n, itype;
-float	*v, *x, *y;
+void vexopy( int n, float *v, float *x, float *y, int itype )
 /*
   Purpose:
     To operate on the vectors x and y.
@@ -468,9 +452,7 @@ float	*v, *x, *y;
     for( i=0; i<n; i++, x++, y++, v++ )
       *v = *x - *y;
 }
-void vfill( n, v, val )
-int	n;
-float	*v, val;
+void vfill( int n, float *v, float val )
 /*
   Purpose
     To fill the FLOAT vector v with the FLOAT value val.

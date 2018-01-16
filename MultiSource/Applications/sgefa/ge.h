@@ -41,6 +41,6 @@ struct FULL {		/* Struct definition for the FULL matrix structure. */
    in the FULL structure. */
 #define pelem(a,r,c)	(*(a->pd[(c)]+(r)))
 
-extern int sgefa();
-extern int sgesl();
-extern int vexopy();
+extern int sgefa(struct FULL *a, int *ipvt);
+extern int sgesl(struct FULL *a, int *ipvt, float b[], int job);
+extern int vexopy(int n, float *v, float *x, float *y, int itype);
