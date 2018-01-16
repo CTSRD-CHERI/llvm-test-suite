@@ -1,5 +1,8 @@
 set(PROG tramp3d-v4)
 list(APPEND CXXFLAGS -fno-exceptions)
+if(CHERI)
+  list(APPEND CXXFLAGS -mxgot)
+endif()
 list(APPEND LDFLAGS ${TEST_SUITE_CXX_LIBRARY})
 if(SMALL_PROBLEM_SIZE)
   set(RUN_OPTIONS --cartvis 1.0 0.0 --rhomin 1e-8 -n 4 --domain 32 32 32)
