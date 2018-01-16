@@ -47,7 +47,7 @@ int	    *ipvt;
 */
 {
   register int  i, j;
-  int		isamax(float*, int, int), k, l, nm1, info, n;
+  int		isamax(int, float*, int), k, l, nm1, info, n;
   float		t, *akk, *alk, *aij, *mik;
 
   /* Gaussian elimination with partial pivoting. */
