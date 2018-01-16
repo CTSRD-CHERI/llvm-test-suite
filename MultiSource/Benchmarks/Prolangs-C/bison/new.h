@@ -36,7 +36,7 @@ void FREE(void *temp)
 }
 */
 
-extern	char *mallocate();
+extern	char *mallocate(unsigned);
 
 
 

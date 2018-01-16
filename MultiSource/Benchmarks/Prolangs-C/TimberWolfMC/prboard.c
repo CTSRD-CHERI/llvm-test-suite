@@ -8,7 +8,7 @@ int j , cell , site , terminal , xpos , ypos ;
 CELLBOXPTR cellptr ;
 TILEBOXPTR tileptr ;
 TERMBOXPTR termptr ;
-FILE *fp , *fopen() ;
+FILE *fp;
 char filename[1024] ;
 
 sprintf( filename, "%s.brd" , cktName ) ;

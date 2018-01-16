@@ -18,26 +18,25 @@
  * Optional alternate memory allocator
  */
 #ifndef MYALLOC
+#include <stdlib.h>
 
 #    ifdef BWGC
-extern char *gc_malloc_atomic();
+extern char *gc_malloc_atomic(size_t);
 #define allocate(size)	(char *) gc_malloc_atomic(size)
 
 #    else
-extern void *malloc();
 #define allocate(size)	(char *) malloc(size)
 #    endif
 
 #ifdef IGNOREFREE
 #define deallocate(p)	{};
 #else
-extern int  free();
 #define deallocate(p)	free(p)
 #endif
 
 #else
-extern char  *allocate();
-extern void  deallocate();
+extern char  *allocate(unsigned long);
+extern void  deallocate(void*);
 #endif
 
 /*
@@ -127,6 +126,6 @@ typedef cacheType	*cachePtr;
 /*
  * Function definitions are all in the global include file "mathdefs.h".
  */
-extern precision 	palloc();	/* semi-private */
-extern int 		pfree();	/* semi-private */
-extern void 		pnorm();	/* semi-private */
+extern precision 	palloc(posit);	/* semi-private */
+extern int 		pfree(precision u);	/* semi-private */
+extern void 		pnorm(precision u);	/* semi-private */

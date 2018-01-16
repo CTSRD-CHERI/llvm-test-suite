@@ -164,13 +164,13 @@ extern int memcmp(), strcmp();
 #endif /* lint */
 
 /* a few extras */
-extern VOID_HACK srandom();
-extern long random();
+extern VOID_HACK srandom(unsigned int);
+extern long random(void);
 
 #if defined(ultrix3)
 extern unsigned sleep();
 #else
-extern VOID_HACK sleep();
+extern VOID_HACK sleep(unsigned int);
 #endif
 
 /* assertion macro */

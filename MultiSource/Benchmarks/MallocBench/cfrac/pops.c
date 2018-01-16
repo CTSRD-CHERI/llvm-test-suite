@@ -255,8 +255,7 @@ precision pparmf(u)
 /*
  * Function version of pdestroy macro
  */
-void pdestroyf(u)
-   register precision u;
+void pdestroyf(precision u)
 {
 #ifndef BWGC
    if (u != pUndef && --u->refcount == 0) {

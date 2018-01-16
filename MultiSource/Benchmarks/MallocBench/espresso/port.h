@@ -203,8 +203,8 @@ extern int rand();
 #define srandom(a) srand(a)
 #define bzero(a,b) memset(a, 0, b)
 #else
-extern VOID_HACK srandom();
-extern long random();
+extern VOID_HACK srandom(unsigned int);
+extern long random(void);
 #endif
 
 /*
@@ -214,7 +214,7 @@ extern long random();
 #if defined(ultrix3) || defined(ultrix4) ||  defined(hpux)
 extern unsigned sleep();
 #else
-extern VOID_HACK sleep();
+extern VOID_HACK sleep(unsigned int);
 #endif
 #endif  /* _std_h */
 /* assertion macro */

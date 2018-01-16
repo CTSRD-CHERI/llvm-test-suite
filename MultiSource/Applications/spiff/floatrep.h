@@ -33,9 +33,9 @@ typedef struct R_flstr *R_float;
 
 #define R_getfrac(x)	(x->mantissa)
 
-extern R_float R_makefloat();
+extern R_float R_makefloat(void);
 
-extern int R_getexp();
+extern int R_getexp(R_float);
 
 #define R_getsign(x)	(x->man_sign)
 

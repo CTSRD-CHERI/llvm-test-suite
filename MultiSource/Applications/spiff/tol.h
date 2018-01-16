@@ -29,12 +29,12 @@ typedef struct _T_tstr{
 #define _T_ADEF		"1e-10"	/* default absolute tolerance */
 #define _T_RDEF		"1e-10"	/* default relative tolerance */
 
-extern T_tol T_gettol();
-extern void T_clear_tols();
-extern void T_initdefault();
-extern void T_setdef();
-extern void T_tolline();
-extern T_tol T_picktol();
+extern T_tol T_gettol(void);
+extern void T_clear_tols(void);
+extern void T_initdefault(void);
+extern void T_setdef(void);
+extern void T_tolline(void);
+extern T_tol T_picktol(void);
 extern int T_moretols(int next_tol);
 
 #define T_gettype(x)	(x->tol_type)
@@ -49,8 +49,8 @@ extern int T_moretols(int next_tol);
 #define T_isnull(x)	((x) == _T_null)
 
 extern T_tol _T_gtol;
-extern void _T_addtol();
-extern void _T_appendtols();
+extern void _T_addtol(void);
+extern void _T_appendtols(void);
 
 /*
 **	routines for building the global tolerance list

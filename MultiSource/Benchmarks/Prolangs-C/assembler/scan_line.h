@@ -14,13 +14,13 @@ enum pass_type {pass1,pass2};
 /* 1 parameter:                                                              */
 /*    1) char CH;            Character in question.                          */
 /* True if CH is a blank or a tab, otherwise false.                          */
-extern int IS_BLANK_OR_TAB();
+extern int IS_BLANK_OR_TAB(char);
 
 /* ----------------------------- eoln -------------------------------------- */
 /* 1 parameter:                                                              */
 /*    1) char CH;            Character in question.                          */
 /* true if CH is the End Of LiNe character, otherwise false.                 */
-extern int eoln();
+extern int eoln(char);
 
 /* -------------------------------- GET_LABEL ------------------------------ */
 /* 4 parameters:                                                             */
@@ -31,7 +31,7 @@ extern int eoln();
 /*  4) char **NEXT_CHAR;      where to start looking for the label in INPUT  */
 /* Get a SIC/XE Label (Letter followeb by zero to seven letters or digits).  */
 /* Return it in LABEL. Get it from INPUT starting from NEXT_CHAR.            */
-extern void GET_LABEL();
+extern void GET_LABEL(char *, char *, enum pass_type, char **);
 
 /* ---------------------------- SCAN_LINE ---------------------------------- */
 /* 9 parameters:                                                             */
@@ -50,4 +50,5 @@ extern void GET_LABEL();
 /*                                     the source code                       */
 /*  9) FILE *INPUT_STREAM;           Where to get the source line from       */
 /* Reads in a sourse program line and does simple parsing.                   */
-extern void SCAN_LINE();
+extern void SCAN_LINE(int, char **, char *, int *, char *, char **,
+                      enum pass_type, FILE *, FILE *);

@@ -42,13 +42,13 @@ extern struct BUFFER_TYPE ERROR_REC_BUF;
 /* used as a fix to a problem I. In pass2, I call a procedure used by pass1, */
 /* which outputs errors in a different format. This is used to, in pass2,    */
 /* convert the pass1 errors. Upon completion the buffer is empty.            */
-extern void OUTPUT_BUFFER();
+extern void OUTPUT_BUFFER(struct BUFFER_TYPE *, FILE *, int);
 
 /* ----------------------- ADD_TO_END_OF_BUFFER ---------------------------- */
 /* 2 parameters:                                                             */
 /*     1) struct BUFFER_TYPE *BUF;   the buffer to add onto                  */
 /*     2) char *INPUT_STR;           what to add onto the buffer             */
 /* Puts the string INPUT_STR, on the end of the buffer pointed to by BUF.    */
-extern void ADD_TO_END_OF_BUFFER();
+extern void ADD_TO_END_OF_BUFFER(struct BUFFER_TYPE *, char *);
 
 

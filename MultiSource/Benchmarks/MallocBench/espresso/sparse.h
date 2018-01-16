@@ -99,9 +99,9 @@ struct sm_matrix_struct {
 #define sm_get(type, x) \
 	((type) (x->user_word))
 
-extern sm_matrix *sm_alloc(), *sm_alloc_size(), *sm_dup();
-extern void sm_free(), sm_delrow(), sm_delcol(), sm_resize();
-extern void sm_write(), sm_print(), sm_dump(), sm_cleanup();
+extern sm_matrix *sm_alloc(void), *sm_alloc_size(int, int), *sm_dup(sm_matrix *);
+extern void sm_free(sm_matrix *), sm_delrow(), sm_delcol(), sm_resize();
+extern void sm_write(), sm_print(), sm_dump(sm_matrix *, char *, int), sm_cleanup();
 extern void sm_copy_row(), sm_copy_col();
 extern void sm_remove(), sm_remove_element();
 extern sm_element *sm_insert(), *sm_find();
@@ -109,7 +109,7 @@ extern sm_row *sm_longest_row();
 extern sm_col *sm_longest_col();
 extern int sm_read(), sm_read_compressed();
 
-extern sm_row *sm_row_alloc(), *sm_row_dup(), *sm_row_and();
+extern sm_row *sm_row_alloc(void), *sm_row_dup(sm_row *), *sm_row_and();
 extern void sm_row_free(), sm_row_remove(), sm_row_print();
 extern sm_element *sm_row_insert(), *sm_row_find();
 extern int sm_row_contains(), sm_row_intersects();

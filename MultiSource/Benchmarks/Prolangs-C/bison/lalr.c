@@ -72,7 +72,7 @@ short *goto_map;
 short *from_state;
 short *to_state;
 
-short **transpose();
+short **transpose(void);
 
 
 static int infinity;

@@ -129,7 +129,7 @@ void free(), exit(), perror();
   void setprogname();
   int dotmpfile(), dofileargs();
 #endif /* __STDC__ */
-  FILE *tmpfile();
+  FILE *tmpfile(void);
 
 /* variables used during parsing */
 unsigned modbits = 0;
@@ -647,8 +647,7 @@ const char *argv0;
 /* Run down the list of keywords to see if the */
 /* program is being called named as one of them */
 /* or the first argument is one of them. */
-int namedkeyword(argn)
-char *argn;
+int namedkeyword(char *argn)
 {
     static char *cmdlist[] =
 	{

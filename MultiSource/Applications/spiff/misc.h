@@ -31,18 +31,18 @@ extern char Z_err_buf[];
 #define Z_MAX(x,y)	(( (x) > (y) )? (x):(y))
 
 #define Z_ALLOC(n,type)	((type*) _Z_myalloc((n) * sizeof (type)))
-extern int *_Z_myalloc();
+extern int *_Z_myalloc(int);
 
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 
-extern void Z_complain();
-extern void Z_fatal();
-extern void Z_exceed();
-extern void Z_setquiet();
+extern void Z_complain(const char*);
+extern void Z_fatal(const char*);
+extern void Z_exceed(int);
+extern void Z_setquiet(void);
 #ifndef NOCHATTER
-extern void Z_chatter();
+extern void Z_chatter(const char*);
 #endif
 
 #define Z_INCLUDED

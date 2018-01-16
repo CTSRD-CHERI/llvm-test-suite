@@ -65,7 +65,6 @@ char *str;
 */
 int L_init_file(int fnumber, char *fname)
 {
-	extern char *fgets();
 	FILE *fp;
 	static char buf[Z_LINELEN+2];	/* +2 is to leave room for us to add
 						a newline if we need to */

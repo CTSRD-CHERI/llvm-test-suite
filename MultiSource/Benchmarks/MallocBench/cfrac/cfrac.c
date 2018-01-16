@@ -33,9 +33,7 @@ extern unsigned primesize;
 /*
  * Return the value of "f(p,d)" from Knuth's exercise 28
  */
-float pfKnuthEx28(p, d)
-   unsigned p;
-   precision d;
+float pfKnuthEx28(unsigned p, precision d)
 {
    register float res;
    precision k = pUndef;
@@ -79,9 +77,7 @@ float pfKnuthEx28(p, d)
    return res;
 }
 
-float logf_(p, n, k)
-   precision n;
-   unsigned p, k;
+float logf_(unsigned p, precision n, unsigned k)
 {
    register float     res; 
 
@@ -108,10 +104,7 @@ float logf_(p, n, k)
  *    m      - pointer to size of factorbase (0 = select "best" size)
  *    aborts - the number of early aborts
  */
-unsigned findk(n, m, aborts, maxk)
-   precision n;
-   register unsigned *m;
-   unsigned aborts, maxk;
+unsigned findk(precision n, unsigned *m, unsigned aborts, unsigned maxk)
 {
    unsigned k, bestk = 0, count, bestcount = 0, maxpm;
    float sum, max = -1.0E+15;		/* should be small enough */
@@ -167,7 +160,7 @@ extern int optind;
 
 char *progName;
 
-extern int getopt();
+extern int getopt(int, char* const *, const char*);
 
 int main(argc, argv)
    int argc;

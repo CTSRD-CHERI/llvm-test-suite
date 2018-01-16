@@ -7,8 +7,6 @@
 #include "pcvt.h"
 #include "precision.h"
 
-extern precision palloc();
-
 /*
  * double to precision
  */

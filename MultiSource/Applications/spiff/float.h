@@ -22,11 +22,11 @@ typedef struct R_flstr *F_float;
 #define F_getsign(x)	R_getsign(x)
 #define F_zerofloat(x)	R_zerofloat(x)
 
-extern F_float F_atof();
+extern F_float F_atof(const char*, int);
 
-extern F_float F_floatmul();
-extern F_float F_floatmagadd();
-extern F_float F_floatsub();
+extern F_float F_floatmul(F_float, F_float);
+extern F_float F_floatmagadd(F_float, F_float);
+extern F_float F_floatsub(F_float, F_float);
 extern int F_floatcmp(F_float f1,F_float f2);
 extern int F_isfloat(char *str,int need_decimal,int allow_sign);
 

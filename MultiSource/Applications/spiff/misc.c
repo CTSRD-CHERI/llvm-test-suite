@@ -23,7 +23,7 @@ static char rcsid[]= "$Header$";
 static int _Z_qflag = 0;
 
 void
-Z_setquiet()
+Z_setquiet(void)
 {
 	_Z_qflag = 1;
 }

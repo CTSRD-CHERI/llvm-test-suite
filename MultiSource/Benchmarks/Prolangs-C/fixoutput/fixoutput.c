@@ -14,10 +14,10 @@ extern char *FRONT,*BACK;  /* FRONT: pointer to current input character in
 			      LEXEME, in fact equal to LEXEME */
 extern unsigned LEX_LEN;   /* current size of LEXEME buffer. Will change. */
 
-extern void FLUSH();       /* a function that sets LEXEME to null */
-extern void GETCHR();      /* a function that gets the next character and 
+extern void FLUSH(void);       /* a function that sets LEXEME to null */
+extern void GETCHR(void);      /* a function that gets the next character and
 			      updates LEXEME,FRONT,and BACK appropriately */
-extern void BACKUP();      /* a function that undoes the last not undone 
+extern void BACKUP(void);      /* a function that undoes the last not undone
 			      GETCHR */
 
 static EOF_FLAG = 1, ERROR_CNT = 0;   /* End Of File Flag and ERROR CouNT */

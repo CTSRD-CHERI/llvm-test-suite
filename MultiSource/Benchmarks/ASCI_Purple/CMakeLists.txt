@@ -1,1 +1,1 @@
-add_subdirectory(SMG2000)
+# add_subdirectory(SMG2000)

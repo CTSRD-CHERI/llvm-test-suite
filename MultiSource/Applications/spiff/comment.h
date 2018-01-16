@@ -59,23 +59,23 @@ extern char _W_eolchar;
 #define W_setbolchar(x)		(_W_bolchar = x)
 #define W_seteolchar(x)		(_W_eolchar = x)
 
-extern W_bol W_isbol();
-extern W_lit W_islit();
-extern W_com W_iscom();
+extern W_bol W_isbol(char*);
+extern W_lit W_islit(char*);
+extern W_com W_iscom(char*);
 
-extern int W_is_bol();
-extern int W_is_lit();
-extern int W_is_com();
+extern int W_is_bol(W_com);
+extern int W_is_lit(W_com);
+extern int W_is_com(W_com);
 extern int W_is_nesting(W_com ptr);
 
 extern _W_bolstruct _W_bols[];
 extern _W_litstruct _W_lits[];
 extern _W_comstruct _W_coms[];
 
-extern void W_clearcoms();
-extern void W_clearlits();
-extern void W_addcom();
-extern void W_addlit();
+extern void W_clearcoms(void);
+extern void W_clearlits(void);
+extern void W_addcom(char*, int);
+extern void W_addlit(char*);
 
 #define W_BOLNULL		((W_bol)0)
 #define W_COMNULL		((W_com)0)

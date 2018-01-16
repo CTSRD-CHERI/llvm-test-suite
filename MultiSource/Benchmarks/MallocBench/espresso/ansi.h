@@ -28,7 +28,7 @@
 #if defined(__cplusplus)
 #define NULLARGS	(void)
 #else
-#define NULLARGS	()
+#define NULLARGS	(void)
 #endif
 
 #ifdef __cplusplus

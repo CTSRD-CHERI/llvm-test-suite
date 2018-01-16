@@ -698,8 +698,8 @@ void def_from(char *from)
 
 	char *nameptr;
 	char name[SMLBUF];
-	char *getenv(), *login;
-	char *pwfnam(), *pwuid();
+	char *login;
+	char *pwfnam(char *);
 
 	if (from_addr != NULL) {
 		(void) sprintf(fromline, "From: %s", from_addr);

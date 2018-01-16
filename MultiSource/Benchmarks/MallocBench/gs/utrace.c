@@ -62,7 +62,7 @@ trace_name(char *name, FILE *mapf, char *arg_format, int retsize)
 
 /* Trace a procedure */
 int
-trace(void (*proc)(), char *name, char *arg_format, int retsize)
+trace(void (*proc)(void), char *name, char *arg_format, int retsize)
 {	return -1;
 }
 
@@ -73,7 +73,7 @@ char *stack_next_frame(P1(char *));
 
 /* Get the address of the caller's frame */
 char *
-stack_top_frame()
+stack_top_frame(void)
 {	jmp_buf buf;
 	setjmp(buf);			/* acquire registers */
 	return stack_next_frame(cstack_top_frame(buf));

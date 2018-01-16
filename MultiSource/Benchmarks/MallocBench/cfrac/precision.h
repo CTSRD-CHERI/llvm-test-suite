@@ -8,7 +8,7 @@
 #ifndef BASE
 typedef unsigned short	prefc;		/* reference counter type */
 typedef prefc		*precision;	/* this a a private data structure */
-extern	int		pfree();	/* free (private) */
+extern	int		pfree(precision u);	/* free (private) */
 #endif
 
 typedef precision 	*pvector;	/* a vector of precision */
@@ -185,18 +185,17 @@ extern	int				/* precision to base */
 #ifdef BUFSIZ
 extern	precision	fgetp(FILE *stream);	        /* input precision */
 extern	int		fputp(FILE *stream, precision); /* output precision */
-extern	int		
-   fprintp(FILE *stream, precision, int minWidth); /* output within a field */
+extern	int		fprintp(FILE *stream, precision, int minWidth); /* output within a field */
 #else
-extern	precision	fgetp();	        /* input precision */
-extern	int		fputp(); 		/* output precision */
-extern	int		fprintp(); 		/* output within a field */
+//extern	precision	fgetp(FILE*);	        /* input precision */
+//extern	int		fputp(FILE*, precision); 		/* output precision */
+//extern	int		fprintp(FILE*, precision, int); 		/* output within a field */
 #endif
 
 extern	int		putp(precision);  	  /* stdout  with '\n' */
 
 extern	void		pshow(precision);	  /* display debug info */
-extern	precision	prandnum();		  /* debug and profil only */
+extern	precision	prandnum(void);		  /* debug and profil only */
 extern	precision	pshift(precision, int);	  /* shift left */
 
 extern	precision	errorp(int errnum, char *routine, char *message);
@@ -292,7 +291,7 @@ extern	int		putp();		/* output precision '\n' to stdout */
 extern	int		fprintp();	/* output a precision within a field */
 
 extern	void		pshow();	/* display debug info */
-extern	precision	prandnum();	/* for debug and profil only */
+extern	precision	prandnum(void);	/* for debug and profil only */
 extern	precision	pshift();	/* shift left */
 
 extern	precision	errorp();	/* user-substitutable error handler */

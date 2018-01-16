@@ -8,7 +8,7 @@
 
 #ifndef X_INCLUDED
 
-extern int X_com();
+extern int X_com(int a, int b, int flag);
 
 #define X_INCLUDED
 #endif

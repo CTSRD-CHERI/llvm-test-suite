@@ -41,7 +41,7 @@ extern K_token _K_bto[];
 /*
 **	save token X from file
 */
-extern void K_settoken(/*file,X,ptr*/);
+extern void K_settoken(void/*file,X,ptr*/);
 #define K_gettoken(file, X)	(file?(_K_bto[X]):(_K_ato[X]))
 
 extern int _K_atm;	/* count of tokens */

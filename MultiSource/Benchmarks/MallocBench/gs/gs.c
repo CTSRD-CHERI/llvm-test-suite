@@ -42,7 +42,7 @@ extern ref *osbot, *osp, *esp;
 extern ref estack[];
 
 /* Forward references */
-private void init1(), init2();
+private void init1(void), init2(void);
 private void set_lib_paths();
 private void run_file(P2(char *file_name, int user_errors));
 private void debug_dump_stack(P1(int code));
@@ -220,7 +220,7 @@ interpret_string(char *str)
 
 private int init1_done = 0, init2_done = 0;
 private void
-init1()
+init1(void)
 {	if ( !init1_done )
 	   {	alloc_init(gs_malloc, gs_free, memory_chunk_size);
 		name_init();
@@ -230,7 +230,7 @@ init1()
 	   }
 }
 private void
-init2()
+init2(void)
 {	init1();
 	if ( !init2_done )
 	   {	gs_init();

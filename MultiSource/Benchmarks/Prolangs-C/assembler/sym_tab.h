@@ -26,7 +26,7 @@ typedef struct SYMBOL_TABLE_ENTRY {
 /* 1 parameter:                                                              */
 /*   1) SYMBOL_TABLE *TABLE;                                                 */
 /* Initialize the symbol table TABLE.                                        */
-extern void INIT_SYM_TAB();
+extern void INIT_SYM_TAB(SYMBOL_TABLE *);
 
 /* ------------------------- LOOK_UP_SYMBOL -------------------------------- */
 /* 3 parameters:                                                             */
@@ -35,7 +35,7 @@ extern void INIT_SYM_TAB();
 /*   3) SYMBOL_TABLE *TABLE;             /* Table to look in.                */
 /* find a symbol in the table. Return a pointer to its entry in the table, if*/
 /* found, otherwise return NULL.                                             */
-extern struct SYMBOL_TABLE_ENTRY *LOOK_UP_SYMBOL();
+extern struct SYMBOL_TABLE_ENTRY *LOOK_UP_SYMBOL(char[], char[], SYMBOL_TABLE *);
 
 /* -------------------------- INSERT_IN_SYM_TAB ---------------------------- */
 /* 5 parameters:                                                             */
@@ -49,6 +49,6 @@ extern struct SYMBOL_TABLE_ENTRY *LOOK_UP_SYMBOL();
 /* If <MODULE,LABEL> pair is not in the symbol table, put it there and       */
 /* TRUE (integer 1). Otherwise return FALSE (integer 0).                     */
 /* Puts onto front of the linked list.                                       */
-extern int INSERT_IN_SYM_TAB();
+extern int INSERT_IN_SYM_TAB(char *, char *, int, enum kind, SYMBOL_TABLE *);
 
 

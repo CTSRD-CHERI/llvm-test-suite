@@ -63,7 +63,7 @@ gs_main(int argc, char *argv[], char *map_name,
 	/* We have to do this as the very first thing, */
 	/* because it detects attempts to run 80N86 executables (N>0) */
 	/* on incompatible processors. */
-	   {	extern void gp_init();
+	   {	extern void gp_init(void);
 		gp_init();		/* Platform-dependent init */
 	   }
 #ifdef DEBUG
@@ -137,7 +137,7 @@ gs_main(int argc, char *argv[], char *map_name,
 				   }
 				/* Print the address of 'main' so that */
 				/* we can decipher return addresses later. */
-			   {	extern main();
+			   {	extern int main(int argc, char** argv);
 				printf("[T]main = %lx\n", (ulong)main);
 			   }
 			   }
@@ -203,7 +203,7 @@ gs_log_error(int err)
 
 /* Dump the C stack. */
 /* This is actually only used for debugging. */
-extern char *stack_top_frame();
+extern char *stack_top_frame(void);
 extern unsigned long stack_return(P1(char *));
 extern char *stack_next_frame(P1(char *));
 void

@@ -398,8 +398,7 @@ V_cleanup()
 **	the mgr window manager installed
 */
 int
-V_visual(d)
-int d;
+V_visual(int d)
 {
 	Z_fatal("visual mode is not available on this machine\n");
 	return(-d);	/* boiler plate */

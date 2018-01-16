@@ -17,8 +17,9 @@
 #define MAXLINE 512
 
 extern char Progname[];
+#ifndef errno
 extern int errno;
-
+#endif
 unsigned char ibuf[MAXLINE];
 
 /**************************************************************************

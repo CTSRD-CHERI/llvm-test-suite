@@ -16,7 +16,7 @@ sm_col *sm_col_freelist;
 
 
 sm_matrix *
-sm_alloc()
+sm_alloc(void)
 {
     register sm_matrix *A;
 

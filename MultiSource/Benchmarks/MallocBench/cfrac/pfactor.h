@@ -6,7 +6,7 @@ typedef struct Pfs {
 
 typedef Pfactor    *FactorPtr;
 typedef FactorPtr  FactorList;
-typedef precision  (*pfunc)();	/* pointer to func returning precision */
+typedef precision  (*pfunc)(void);	/* pointer to func returning precision */
 
 #ifndef __STDC__
 

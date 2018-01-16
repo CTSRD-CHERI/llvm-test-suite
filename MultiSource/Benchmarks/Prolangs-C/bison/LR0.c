@@ -39,8 +39,8 @@ core *first_state;
 shifts *first_shift;
 reductions *first_reduction;
 
-int get_state();
-core *new_state();
+int get_state(int);
+core *new_state(int);
 
 static core *this_state;
 static core *last_state;

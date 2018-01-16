@@ -43,18 +43,14 @@ typedef Soln *SolnPtr;
 
 #define BPI(x)	((sizeof x[0]) << 3)
 
-void setBit(bv, bno, value)
-   register BitVector bv;
-   register unsigned bno, value;
+void setBit(BitVector bv, unsigned bno, unsigned value)
 {
    bv  += bno / BPI(bv);
    bno %= BPI(bv);
    *bv |= ((value != 0) << bno);
 }
 
-unsigned getBit(bv, bno)
-   register BitVector bv;
-   register unsigned bno;
+unsigned getBit(BitVector bv, unsigned bno)
 {
    register unsigned res;
 
@@ -65,9 +61,7 @@ unsigned getBit(bv, bno)
    return res;
 }
 
-BitVector newBitVector(value, size)
-   register solnvec value;
-   unsigned size;
+BitVector newBitVector(solnvec value, unsigned size)
 {
    register BitVector res;
    register solnvec  vp = value + size;
@@ -89,12 +83,8 @@ BitVector newBitVector(value, size)
    return res;
 }
 
-void printSoln(stream, prefix, suffix, pm, m, p, t, e)
-   FILE *stream;
-   char *prefix, *suffix;
-   register unsigned *pm, m;
-   precision p, t;
-   register solnvec e;
+void printSoln(FILE *stream, char *prefix, char *suffix, unsigned *pm,
+               unsigned m, precision p, precision t, solnvec e)
 {
    register unsigned i, j = 0;
 
@@ -125,12 +115,8 @@ void printSoln(stream, prefix, suffix, pm, m, p, t, e)
 /*
  * Combine two solutions 
  */
-void combineSoln(x, t, e, pm, m, n, bp)
-   precision *x, *t, n;
-   uvec	     pm;
-   register  solnvec e;
-   unsigned  m;
-   SolnPtr   bp;
+void combineSoln(precision *x, precision *t, solnvec e, uvec pm, unsigned m,
+                 precision n, SolnPtr bp)
 {
    register unsigned j;
 
@@ -159,13 +145,8 @@ void combineSoln(x, t, e, pm, m, n, bp)
 /*
  * Create a normalized solution structure from the given inputs
  */
-SolnPtr newSoln(n, pm, m, next, x, t, e)
-   precision n;
-   unsigned  m;
-   uvec     pm;
-   SolnPtr next;
-   precision x, t;
-   solnvec e;
+SolnPtr newSoln(precision n, uvec pm, unsigned m, SolnPtr next, precision x,
+                precision t, solnvec e)
 {
 #ifdef BWGC 		 
    SolnPtr bp = (SolnPtr) gc_malloc(sizeof (Soln));
@@ -189,8 +170,7 @@ SolnPtr newSoln(n, pm, m, next, x, t, e)
    return bp;
 }
 
-void freeSoln(p)
-   register SolnPtr p;
+void freeSoln(SolnPtr p)
 {
    if (p != (SolnPtr) 0) {
       pdestroy(p->x);
@@ -203,8 +183,7 @@ void freeSoln(p)
    }
 }
 
-void freeSolns(p)
-   register SolnPtr p;
+void freeSolns(SolnPtr p)
 {
    register SolnPtr l;
    
@@ -215,9 +194,7 @@ void freeSolns(p)
    }
 }
 
-SolnPtr findSoln(sp, t)
-   register SolnPtr sp;
-   precision t;
+SolnPtr findSoln(SolnPtr sp, precision t)
 {
    (void) pparm(t);
    while (sp != (SolnPtr) 0) {
@@ -242,8 +219,7 @@ typedef struct {
 
 typedef EasEntry *EasPtr;
 
-void freeEas(eas)
-   EasPtr eas;
+void freeEas(EasPtr eas)
 {
    register EasPtr ep = eas;
 
@@ -261,9 +237,7 @@ void freeEas(eas)
 /*
  * Return Pomerance's L^alpha (L = exp(sqrt(log(n)*log(log(n)))))
  */
-double pomeranceLpow(n, y) 
-   double n;
-   double y;
+double pomeranceLpow(double n, double y)
 {
    double lnN = log(n);
    double res = exp(y * sqrt(lnN * log(lnN)));
@@ -274,9 +248,7 @@ double pomeranceLpow(n, y)
  * Pomerance's value 'a' from page 122 "of Computational methods in Number
  * Theory", part 1, 1982.
  */
-double cfracA(n, aborts)
-   double n;
-   unsigned aborts;
+double cfracA(double n, unsigned aborts)
 {
    return 1.0 / sqrt(6.0 + 2.0 / ((double) aborts + 1.0));
 }
@@ -303,10 +275,7 @@ double cfracA(n, aborts)
  * Returns: the list of primes actually generated (or (unsigned *) 0 if nomem)
  *          *m changed to reflect the number of elements in the list
  */
-uvec pfactorbase(n, k, m, aborts)
-   precision n;
-   unsigned k;
-   unsigned *m, aborts;
+uvec pfactorbase(precision n, unsigned k, unsigned *m, unsigned aborts)
 {
    double   dn, a;
    register unsigned short *primePtr = primes;
@@ -361,9 +330,7 @@ doneMk:
 /*
  * Compute Pomerance's early-abort-stragegy
  */
-EasPtr getEas(n, k, pm, m, aborts)
-   precision n;
-   unsigned k, *pm, m, aborts;
+EasPtr getEas(precision n, unsigned k, unsigned *pm, unsigned m, unsigned aborts)
 {
    double x    = 1.0 / ((double) aborts + 1.0);
    double a    = 1.0 / sqrt(6.0 + 2.0 * x);
@@ -430,13 +397,8 @@ foundpm:
  *     0 - if result is a "partial" factoring
  *     1 - normal return (a "full" factoring)
  */
-int pfactorQ(f, t, pm, e, m, eas)
-   precision *f;
-   precision t;
-   register unsigned *pm;
-   register solnvec  e;
-   register unsigned m;
-   EasEntry *eas;
+int pfactorQ(precision *f, precision t, unsigned *pm, solnvec e,
+             unsigned m, EasEntry* eas)
 {
    precision maxp  = pUndef; 
    unsigned  maxpm = pm[m-1], res = 0;

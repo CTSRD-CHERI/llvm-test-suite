@@ -1,4 +1,5 @@
 #include "precision.h"
+#include "pfactor.h"
 
 /*
  * Euclid's Algorithm

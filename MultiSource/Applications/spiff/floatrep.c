@@ -15,7 +15,7 @@ static char rcsid[]= "$Header$";
 #include "floatrep.h"
 
 R_float
-R_makefloat()
+R_makefloat(void)
 {
 	R_float retval;
 
