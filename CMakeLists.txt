@@ -33,6 +33,8 @@ endif()
 
 # We want reproducible builds, so using __DATE__ and __TIME__ is bad
 add_definitions(-Werror=date-time)
+add_definitions(-Werror=strict-prototypes)
+# add_definitions(-Werror=missing-prototypes)
 
 # Add path for custom modules
 set(CMAKE_MODULE_PATH
