@@ -1194,6 +1194,8 @@ int lame_encode(lame_global_flags *gfp, short int in_buffer[2][1152],char *mp3bu
 
 #ifdef __FreeBSD__
 # include <floatingpoint.h>
+fp_except_t fpgetmask(void);
+fp_except_t fpsetmask(fp_except_t);
 #endif
 
 
