@@ -83,6 +83,7 @@ programs.
 /* #define WIN32       */
 /***********************/
 
+#include   <stdarg.h>
 #include   <stdio.h>
 #include   <stdlib.h>
 #include   <string.h>
@@ -103,7 +104,7 @@ programs.
 int SIM(char[], char[], long, long, long, long[][CMAX], long, long, long);
 int big_pass(char[], char[], long, long, long, long);
 int fatal(const char*);
-int fatalf(const char*, const char*);
+int fatalf(const char*, ...);
 int locate(char[], char[], long );
 int no_cross(void);
 int small_pass(char[], char[], long, long);
@@ -1154,10 +1155,12 @@ char *msg;
 }
 
 /* fatalf - format message, print it, and die */
-fatalf(msg, val)
-char *msg, *val;
+fatalf(const char *msg, ...)
 {
-	fprintf(stderr, msg, val);
+	va_list ap;
+	va_start(ap, msg);
+	vfprintf(stderr, msg, ap);
+	va_end(ap);
 	putc('\n', stderr);
 	exit(1);
 }
