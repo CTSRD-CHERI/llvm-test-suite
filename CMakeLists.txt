@@ -172,6 +172,11 @@ if(TEST_SUITE_DISABLE_PIE)
   # TODO: Add apropriate flags to disable PIE/ASLR on linux, bsd, ...
 endif()
 
+option(TEST_SUITE_CHERI_FORCE_STATIC "Build cheri programs statically linked" ON)
+if(TEST_SUITE_CHERI_FORCE_STATIC AND CHERI)
+  list(APPEND LDFLAGS -static)
+endif()
+
 if(ARCH STREQUAL "Mips")
   check_symbol_exists(__mips16 "" MIPS_IS_MIPS16_ENABLED)
   check_symbol_exists(__mips64 "" MIPS_IS_MIPS64_ENABLED)
