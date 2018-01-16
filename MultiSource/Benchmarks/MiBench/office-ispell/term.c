@@ -71,6 +71,8 @@ static char Rcs_Id[] =
 #include "proto.h"
 #include "msgs.h"
 #include <signal.h>
+#include <sys/types.h>
+#include <sys/wait.h>
 
 #if defined(__GLIBC__) || defined(__FreeBSD__) || defined(__APPLE__)
 /* Use termios under at least glibc */
