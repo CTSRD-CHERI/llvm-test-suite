@@ -1911,7 +1911,7 @@ typedef struct back_end_rec {
     FULL_LENGTH urx, FULL_LENGTH ury);
   void (*LinkDest)(OBJECT name, FULL_LENGTH llx, FULL_LENGTH lly,
     FULL_LENGTH urx, FULL_LENGTH ury);
-  void (*LinkCheck)();
+  void (*LinkCheck)(void);
 } *BACK_END;
 
 
@@ -3251,7 +3251,7 @@ extern	MAP_VEC	  MapTable[];
 extern	MAPPING	  MapLoad(OBJECT filename, BOOLEAN recoded);
 extern	FULL_CHAR MapCharEncoding(FULL_CHAR *str, MAPPING m);
 extern	FULL_CHAR *MapEncodingName(MAPPING m);
-extern	void	  MapPrintEncodings();
+extern	void	  MapPrintEncodings(void);
 extern	void	  MapEnsurePrinted(MAPPING m, int curr_page);
 extern	void	  MapPrintPSResources(FILE *fp);
 extern	OBJECT	  MapSmallCaps(OBJECT x, STYLE *style);

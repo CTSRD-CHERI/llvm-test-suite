@@ -16,7 +16,7 @@
 #define echo_on()  term_option(0)
 #define echo_off() term_option(1)
 
-int term_option();
-int getch();
+int term_option(int);
+int getch(void);
 
 #endif /* UNXCONIO__H */

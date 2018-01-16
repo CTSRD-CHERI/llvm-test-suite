@@ -177,12 +177,12 @@ static struct ltchars	oltc;
 #endif
 #endif
 static int		termchanged = 0;
-static SIGNAL_TYPE	(*oldint) ();
-static SIGNAL_TYPE	(*oldterm) ();
+static SIGNAL_TYPE	(*oldint) (int);
+static SIGNAL_TYPE	(*oldterm) (int);
 #ifdef SIGTSTP
-static SIGNAL_TYPE	(*oldttin) ();
-static SIGNAL_TYPE	(*oldttou) ();
-static SIGNAL_TYPE	(*oldtstp) ();
+static SIGNAL_TYPE	(*oldttin) (int);
+static SIGNAL_TYPE	(*oldttou) (int);
+static SIGNAL_TYPE	(*oldtstp) (int);
 #endif
 
 void terminit ()

@@ -64,7 +64,7 @@
 #include <stdlib.h>
 #include "blowfish.h"
 
-int test();
+int test(void);
 
 char *bf_key[2]={
 	"abcdefghijklmnopqrstuvwxyz",
