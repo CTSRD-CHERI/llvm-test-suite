@@ -2,7 +2,6 @@ list(APPEND LDFLAGS -lm )
 set(FP_TOLERANCE 0.001)
 set(Source
   ReedSolomon.c
-  evalloop.c
   fbench.c
   ffbench.c
   flops-1.c
@@ -31,4 +30,9 @@ set(Source
 if(NOT ARCH STREQUAL "PowerPC" OR NOT TARGET_OS STREQUAL "Darwin")
   list(APPEND Source dt.c)
 endif()
+# XXXAR: https://github.com/CTSRD-CHERI/clang/issues/163 (computed goto)
+if(NOT CHERI)
+  list(APPEND Source evalloop.c)
+endif()
+
 llvm_singlesource()

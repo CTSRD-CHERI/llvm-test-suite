@@ -1,2 +1,7 @@
 list(APPEND LDFLAGS -lm)
-llvm_singlesource(PREFIX "Regression-C-")
+set(ignored)
+if (CHERI)
+    # XXXAR: https://github.com/CTSRD-CHERI/clang/issues/163 (computed goto)
+    list(APPEND ignored 2004-03-15-IndirectGoto)
+endif()
+llvm_singlesource(PREFIX "Regression-C-" IGNORED_TESTS "${ignored}")
