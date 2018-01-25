@@ -2,6 +2,7 @@
  * http://www.hackersdelight.org/HDcode/nlz.cc and
  * http://www.hackersdelight.org/HDcode/ntz.cc
  */
+#define _GNU_SOURCE // Needed for ffsl()
 #include <stdio.h>
 #include <string.h>
 #include <strings.h>
