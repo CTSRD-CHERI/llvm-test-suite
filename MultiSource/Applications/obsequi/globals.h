@@ -39,7 +39,7 @@ void    init_move_value     ();
 s32bit  set_move_value      (Move movelist, s32bit player);
 void    unset_move_value    (Move movelist, s32bit player);
 #else
-void    set_position_values ();
+void    set_position_values (void);
 #endif
 
 //========================================================
@@ -70,17 +70,17 @@ void
 update_real(s32bit player, s32bit row);
 
 
-void init_less_static_tables();
+void init_less_static_tables(void);
 
 
-void init_static_tables();
+void init_static_tables(void);
 
 
 
 // make the bitboard consistent with the info past into this function.
 void    init__board(s32bit num_rows, s32bit num_cols, s32bit board[30][30]);
 
-void    initialize_tables();
+void    initialize_tables(void);
 
 
 
@@ -109,10 +109,10 @@ s32bit  hashlookup     (s32bit *value, s32bit *alpha, s32bit *beta,
 //========================================================
 // Functions which varify pieces of information.
 //========================================================
-void    check_board();
-void    check_board_info();
+void    check_board(void);
+void    check_board_info(void);
 
-void    check_hash_code_sanity();
+void    check_hash_code_sanity(void);
 
 
 //========================================================
@@ -120,7 +120,7 @@ void    check_hash_code_sanity();
 //   readable format.
 //========================================================
 void    print_board(s32bit player);
-void    print_board_info();
+void    print_board_info(s32bit player);
 void    print_bitboard(s32bit player);
 void    print_hashkey(Hash_Key key);
 void    print_u64bit(u64bit val);
@@ -164,7 +164,10 @@ extern s32bit       g_first_move[2][32][32];
 extern s32bit       g_move_number[128];
 
 
-
+
+s32bit does_next_player_win(s32bit next_player, s32bit print);
+s32bit does_who_just_moved_win(s32bit who_just_moved, s32bit print);
+
 //########################################################
 // Tables of precalculated information.
 //

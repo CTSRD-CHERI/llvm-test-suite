@@ -64,18 +64,18 @@ ssize_t getline(char **lineptr, size_t *n, FILE *stream) {
 static void   decode_switches     (int argc, char **argv);
 
 // signal handlers.
-static void   sig_int_setup       ();
+static void   sig_int_setup       (void);
 static void   sig_int_handler     (int sig);
-static void   sig_alrm_setup      ();
+static void   sig_alrm_setup      (void);
 static void   sig_alrm_handler    (int sig);
-static void   sig_block           ();
+static void   sig_block           (void);
 static void   set_stop_alrm       (long minutes);
 
 // main command loop functions.
-static void   get_solve_command   ();
+static void   get_solve_command   (void);
 
 // lock file stuff.
-static void   get_solve_command_from_lock_file();
+static void   get_solve_command_from_lock_file(void);
 static void   write_to_lock_file(char winner, const char* num_nodes);
 
 

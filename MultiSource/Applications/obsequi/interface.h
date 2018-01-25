@@ -5,7 +5,7 @@
 //########################################################
 // 
 //########################################################
-void   print_external();
+void   print_external(void);
 
 //########################################################
 // This function initializes the solver.
@@ -16,7 +16,7 @@ void   print_external();
 // If it is called a second time it will re-zero all the
 //   data, (restart from scratch).
 //########################################################
-void   initialize_solver ();
+void   initialize_solver (void);
 
 
 //########################################################
@@ -40,6 +40,6 @@ s32bit search_for_move   (char player,
 // This function returns a string about the current
 //   state of the search.
 //########################################################
-const char*  current_search_state();
+const char*  current_search_state(void);
 
 #endif

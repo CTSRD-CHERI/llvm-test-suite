@@ -308,12 +308,8 @@ pack_safe(u32bit tmp_board[32], s32bit player,
 //#################################################################
 // 
 //#################################################################
-extern s32bit
-#ifdef PRINT_DOES_X_WIN_INFO
+s32bit
 does_next_player_win(s32bit next_player, s32bit print)
-#else
-does_next_player_win(s32bit next_player)
-#endif
 {
   // info we directly get from the board.
   s32bit prot;   // This is the number of protective regions.

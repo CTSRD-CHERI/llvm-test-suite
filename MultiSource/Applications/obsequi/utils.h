@@ -121,7 +121,7 @@ asprintf_my(char **str, s32bit offset, const char *format, ... )
 // This function does absolutely nothing.
 //########################################################
 extern void
-null_command();
+null_command(void);
 
 
 //########################################################
