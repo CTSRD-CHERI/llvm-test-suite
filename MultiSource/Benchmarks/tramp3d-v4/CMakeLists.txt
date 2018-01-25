@@ -1,6 +1,6 @@
 set(PROG tramp3d-v4)
 list(APPEND CXXFLAGS -fno-exceptions)
-if(CHERI)
+if(CHERI OR ARCH STREQUAL "Mips")
   list(APPEND CXXFLAGS -mxgot)
 endif()
 list(APPEND LDFLAGS ${TEST_SUITE_CXX_LIBRARY})
