@@ -16,7 +16,7 @@
 int nbody;
 
 double xrand(double xl, double xh, double r);
-double my_rand(int seed);
+double my_rand(double seed);
 extern icstruct intcoord(bodyptr p, treeptr t);
 extern int BhDebug;
 
