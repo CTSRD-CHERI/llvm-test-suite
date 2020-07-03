@@ -1,11 +1,10 @@
 include(CheckFunctionExists)
 check_function_exists(re_comp HAVE_RE_COMP)
 if(HAVE_RE_COMP)
-  set(PROG plot2fig)
   list(APPEND LDFLAGS -lm)
+  llvm_multisource(plot2fig)
   if(TARGET_OS MATCHES "FreeBSD")
     # re_comp is in libcompat on FreeBSD
     list(APPEND LDFLAGS -lcompat)
   endif()
-  llvm_multisource()
 endif()

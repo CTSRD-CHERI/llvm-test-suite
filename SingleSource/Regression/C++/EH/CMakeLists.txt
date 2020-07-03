@@ -1,3 +1,2 @@
-set(REQUIRES_EH_SUPPORT 1)
 list(APPEND LDFLAGS ${TEST_SUITE_CXX_LIBRARY})
 llvm_singlesource(PREFIX "Regression-C++-")

@@ -1,7 +1,6 @@
 """
 Datastructures for test plans; Parsing of .test files; Executing test plans.
 """
-from litsupport import shellcommand
 import lit.Test
 import lit.TestRunner
 import logging
@@ -22,6 +21,7 @@ class TestPlan(object):
         self.metricscripts = {}
         self.metric_collectors = []
         self.preparescript = []
+        self.profile_files = []
         self.profilescript = []
 
 
@@ -69,7 +69,10 @@ def _executeScript(context, script, scriptBaseName, useExternalSh=True):
         exitCode = 1
         timeoutInfo = None
     else:
-        (out, err, exitCode, timeoutInfo) = res
+        out = res[0]
+        err = res[1]
+        exitCode = res[2]
+        timeoutInfo = res[3]
 
     # Log script in test output
     context.result_output += "\n" + "\n".join(script)
@@ -143,6 +146,7 @@ def executePlanTestResult(context, testplan):
     lit.test.Result() object for the results."""
     context.result_output = ""
     context.result_metrics = {}
+    context.micro_results = {}
 
     result_code = _executePlan(context, testplan)
 
@@ -150,6 +154,9 @@ def executePlanTestResult(context, testplan):
     result = lit.Test.Result(result_code, context.result_output)
     for key, value in context.result_metrics.items():
         result.addMetric(key, value)
+    for key, value in context.micro_results.items():
+        result.addMicroResult(key, value)
+
     return result
 
 
@@ -163,3 +170,22 @@ def check_call(commandline, *aargs, **dargs):
     """Wrapper around subprocess.check_call that logs the command."""
     logging.info(" ".join(commandline))
     return subprocess.check_call(commandline, *aargs, **dargs)
+
+
+def default_read_result_file(context, path):
+    with open(path) as fd:
+        return fd.read()
+
+
+class TestContext:
+    """This class is used to hold data used while constructing a testrun.
+    For example this can be used by modules modifying the commandline with
+    extra instrumentation/measurement wrappers to pass the filenames of the
+    results to a final data collection step."""
+    def __init__(self, test, litConfig, tmpDir, tmpBase):
+        self.test = test
+        self.config = test.config
+        self.litConfig = litConfig
+        self.tmpDir = tmpDir
+        self.tmpBase = tmpBase
+        self.read_result_file = default_read_result_file

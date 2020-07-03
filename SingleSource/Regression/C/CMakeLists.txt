@@ -1,7 +1,6 @@
-list(APPEND LDFLAGS -lm)
-set(ignored)
-if (CHERI)
-    # XXXAR: https://github.com/CTSRD-CHERI/clang/issues/163 (computed goto)
-    list(APPEND ignored 2004-03-15-IndirectGoto)
+if(ARCH MATCHES "x86" OR ARCH MATCHES "riscv")
+  add_subdirectory(gcc-c-torture)
 endif()
-llvm_singlesource(PREFIX "Regression-C-" IGNORED_TESTS "${ignored}")
+
+list(APPEND LDFLAGS -lm)
+llvm_singlesource(PREFIX "Regression-C-")

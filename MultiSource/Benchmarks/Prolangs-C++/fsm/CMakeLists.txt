@@ -1,3 +1,2 @@
-set(PROG fsm)
 list(APPEND LDFLAGS ${TEST_SUITE_CXX_LIBRARY})
-llvm_multisource()
+llvm_multisource(fsm)

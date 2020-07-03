@@ -32,11 +32,6 @@ if(NOT TEST_SUITE_BENCHMARKING_ONLY)
     wordfreq.cpp
   )
 endif()
-if(ARCH STREQUAL "XCore")
-  if(NOT DEFINED SMALL_PROBLEM_SIZE)
-    set(XCORE_TARGET_NEEDS_MEMORY 256)
-  endif()
-endif()
 list(APPEND LDFLAGS ${TEST_SUITE_CXX_LIBRARY} -lm)
 if(TARGET_OS STREQUAL "Darwin")
   # Necessary for ackermann on iOS
