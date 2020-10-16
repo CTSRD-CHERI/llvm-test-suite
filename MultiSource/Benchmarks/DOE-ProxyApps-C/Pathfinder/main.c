@@ -299,7 +299,7 @@ void runInteractively(char *fileName, Configuration *config)
         do {
 
             printf("\nPlease insert a node label for this signature (\"\" to complete, \"bail\" to exit):\n");
-            gets(stringBuffer);
+            fgets(stringBuffer, sizeof(stringBuffer), stdin);
 
             if ( strcmp (stringBuffer, "bail") == 0 )
                 exit(1);
