@@ -2,7 +2,7 @@
 // specification.
 
 // Only build the tests if the proper extensions is available.
-#if __has_extension(matrix_types)
+#if __has_extension(matrix_types) && !defined(__riscv) /* FIXME: currently broken upstream */
 
 #include <iostream>
 #include <random>
