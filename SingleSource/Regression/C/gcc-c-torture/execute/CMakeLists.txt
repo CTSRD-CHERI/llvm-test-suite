@@ -327,6 +327,17 @@ endif()
 file(GLOB TestFiles CONFIGURE_DEPENDS
   *.c
 )
+
+# https://github.com/CTSRD-CHERI/llvm-project/issues/480
+list(APPEND TestsToSkip ${CMAKE_CURRENT_SOURCE_DIR}/pr85169.c)
+# https://github.com/CTSRD-CHERI/llvm-project/issues/481
+list(APPEND TestsToSkip ${CMAKE_CURRENT_SOURCE_DIR}/stkalign.c)
+# https://github.com/CTSRD-CHERI/llvm-project/issues/482
+list(APPEND TestsToSkip ${CMAKE_CURRENT_SOURCE_DIR}/pr71626-1.c)
+# Same bug:
+list(APPEND TestsToSkip ${CMAKE_CURRENT_SOURCE_DIR}/pr71626-2.c)
+
+
 foreach(TestToSkip ${TestsToSkip})
   list(REMOVE_ITEM TestFiles ${TestToSkip})
 endforeach()
