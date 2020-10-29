@@ -7,7 +7,11 @@ extern void abort (void);
 void *__attribute__((noinline))
 baz (void **lab)
 {
+#ifdef __CHERI_PURE_CAPABILITY__
+  asm volatile ("" : "+C" (lab));
+#else
   asm volatile ("" : "+r" (lab));
+#endif
   return *lab;
 }
 

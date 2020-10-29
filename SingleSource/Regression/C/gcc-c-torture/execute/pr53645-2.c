@@ -47,6 +47,12 @@ SV s[] =
   { ((SV) { 73, -9123, 32761, 8191, 16371, 1201, 12701, 9999 }),
     ((SV) { 9903, -1, -7323, 0, -7, -323, 9124, -9199 }) };
 
+#ifdef __CHERI_PURE_CAPABILITY__
+#define PTRIN "C"
+#else
+#define PTRIN "r"
+#endif
+
 int
 main ()
 {
@@ -58,29 +64,29 @@ main ()
     uq##a##b##c##d##e##f##g##h (&ur, u + i);		\
     if (ur[0] != u[i][0] / a || ur[3] != u[i][3] / d)	\
      abort ();						\
-    asm volatile ("" : : "r" (&ur) : "memory");		\
+    asm volatile ("" : : PTRIN (&ur) : "memory");		\
     if (ur[2] != u[i][2] / c || ur[1] != u[i][1] / b)	\
      abort ();						\
-    asm volatile ("" : : "r" (&ur) : "memory");		\
+    asm volatile ("" : : PTRIN (&ur) : "memory");		\
     if (ur[4] != u[i][4] / e || ur[7] != u[i][7] / h)	\
      abort ();						\
-    asm volatile ("" : : "r" (&ur) : "memory");		\
+    asm volatile ("" : : PTRIN (&ur) : "memory");		\
     if (ur[6] != u[i][6] / g || ur[5] != u[i][5] / f)	\
      abort ();						\
-    asm volatile ("" : : "r" (&ur) : "memory");		\
+    asm volatile ("" : : PTRIN (&ur) : "memory");		\
     ur##a##b##c##d##e##f##g##h (&ur, u + i);		\
     if (ur[0] != u[i][0] % a || ur[3] != u[i][3] % d)	\
      abort ();						\
-    asm volatile ("" : : "r" (&ur) : "memory");		\
+    asm volatile ("" : : PTRIN (&ur) : "memory");		\
     if (ur[2] != u[i][2] % c || ur[1] != u[i][1] % b)	\
      abort ();						\
-    asm volatile ("" : : "r" (&ur) : "memory");		\
+    asm volatile ("" : : PTRIN (&ur) : "memory");		\
     if (ur[4] != u[i][4] % e || ur[7] != u[i][7] % h)	\
      abort ();						\
-    asm volatile ("" : : "r" (&ur) : "memory");		\
+    asm volatile ("" : : PTRIN (&ur) : "memory");		\
     if (ur[6] != u[i][6] % g || ur[5] != u[i][5] % f)	\
      abort ();						\
-    asm volatile ("" : : "r" (&ur) : "memory");
+    asm volatile ("" : : PTRIN (&ur) : "memory");
   for (i = 0; i < sizeof (u) / sizeof (u[0]); i++)
     {
       TESTS
@@ -90,29 +96,29 @@ main ()
     sq##a##b##c##d##e##f##g##h (&sr, s + i);		\
     if (sr[0] != s[i][0] / a || sr[3] != s[i][3] / d)	\
      abort ();						\
-    asm volatile ("" : : "r" (&sr) : "memory");		\
+    asm volatile ("" : : PTRIN (&sr) : "memory");		\
     if (sr[2] != s[i][2] / c || sr[1] != s[i][1] / b)	\
      abort ();						\
-    asm volatile ("" : : "r" (&sr) : "memory");		\
+    asm volatile ("" : : PTRIN (&sr) : "memory");		\
     if (sr[4] != s[i][4] / e || sr[7] != s[i][7] / h)	\
      abort ();						\
-    asm volatile ("" : : "r" (&sr) : "memory");		\
+    asm volatile ("" : : PTRIN (&sr) : "memory");		\
     if (sr[6] != s[i][6] / g || sr[5] != s[i][5] / f)	\
      abort ();						\
-    asm volatile ("" : : "r" (&sr) : "memory");		\
+    asm volatile ("" : : PTRIN (&sr) : "memory");		\
     sr##a##b##c##d##e##f##g##h (&sr, s + i);		\
     if (sr[0] != s[i][0] % a || sr[3] != s[i][3] % d)	\
      abort ();						\
-    asm volatile ("" : : "r" (&sr) : "memory");		\
+    asm volatile ("" : : PTRIN (&sr) : "memory");		\
     if (sr[2] != s[i][2] % c || sr[1] != s[i][1] % b)	\
      abort ();						\
-    asm volatile ("" : : "r" (&sr) : "memory");		\
+    asm volatile ("" : : PTRIN (&sr) : "memory");		\
     if (sr[4] != s[i][4] % e || sr[7] != s[i][7] % h)	\
      abort ();						\
-    asm volatile ("" : : "r" (&sr) : "memory");		\
+    asm volatile ("" : : PTRIN (&sr) : "memory");		\
     if (sr[6] != s[i][6] % g || sr[5] != s[i][5] % f)	\
      abort ();						\
-    asm volatile ("" : : "r" (&sr) : "memory");
+    asm volatile ("" : : PTRIN (&sr) : "memory");
   for (i = 0; i < sizeof (s) / sizeof (s[0]); i++)
     {
       TESTS

@@ -7,7 +7,11 @@ __attribute__((noinline, noclone))
 struct S *bar (struct S *p)
 {
   struct S *r;
+#ifdef __CHERI_PURE_CAPABILITY__
+  asm volatile ("" : "=C" (r) : "0" (p) : "memory");
+#else
   asm volatile ("" : "=r" (r) : "0" (p) : "memory");
+#endif
   return r;
 }
 

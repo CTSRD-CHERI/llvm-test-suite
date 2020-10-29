@@ -78,7 +78,11 @@ int
 main ()
 {
   struct S *c = 0;
+#ifdef __CHERI_PURE_CAPABILITY__
+  asm ("" : "+C" (c) : "C" (&a));
+#else
   asm ("" : "+r" (c) : "r" (&a));
+#endif
   u.v.v2.t2.s1 = 8192;
   b = u.b;
   test (c);

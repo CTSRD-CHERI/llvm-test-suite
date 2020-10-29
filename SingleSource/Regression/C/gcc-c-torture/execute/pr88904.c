@@ -7,8 +7,13 @@ bar (const char *x, const char *y, int z)
 {
   if (!v)
     __builtin_abort ();
+#ifdef __CHERI_PURE_CAPABILITY__
+  asm volatile ("" : "+C" (x));
+  asm volatile ("" : "+C" (y));
+#else
   asm volatile ("" : "+g" (x));
   asm volatile ("" : "+g" (y));
+#endif
   asm volatile ("" : "+g" (z));
 }
 

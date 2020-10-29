@@ -14,7 +14,11 @@ fn1 (char *x, char *y)
 __attribute__((noinline, noclone)) int
 fn2 (char *x)
 {
+#ifdef __CHERI_PURE_CAPABILITY__
+  asm volatile ("" : "+C" (x) : : "memory");
+#else
   asm volatile ("" : "+g" (x) : : "memory");
+#endif
   return x == &v[0];
 }
 

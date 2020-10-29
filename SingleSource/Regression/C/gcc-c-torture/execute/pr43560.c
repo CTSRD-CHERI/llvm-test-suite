@@ -22,7 +22,11 @@ int
 main ()
 {
   struct S *p;
+#ifdef __CHERI_PURE_CAPABILITY__
+  asm ("" : "=C" (p) : "0" (&s));
+#else
   asm ("" : "=r" (p) : "0" (&s));
+#endif
   test (p);
   return 0;
 }

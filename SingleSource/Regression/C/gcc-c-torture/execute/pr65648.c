@@ -10,13 +10,21 @@ unsigned char j = 0;
 __attribute__((noinline, noclone)) void
 foo (int x, int *y)
 {
+#ifdef __CHERI_PURE_CAPABILITY__
+  asm volatile ("" : : "r" (x), "C" (y) : "memory");
+#else
   asm volatile ("" : : "r" (x), "r" (y) : "memory");
+#endif
 }
 
 __attribute__((noinline, noclone)) void
 bar (const char *x, long long y)
 {
+#ifdef __CHERI_PURE_CAPABILITY__
+  asm volatile ("" : : "C" (x), "C" (&y) : "memory");
+#else
   asm volatile ("" : : "r" (x), "r" (&y) : "memory");
+#endif
   if (y != 0)
     __builtin_abort ();
 }

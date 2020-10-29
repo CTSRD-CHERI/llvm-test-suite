@@ -3,7 +3,11 @@
 __attribute__ ((noinline, noclone)) void
 baz (const char *t, ...)
 {
+#ifdef __CHERI_PURE_CAPABILITY__
+  asm volatile (""::"C" (t):"memory");
+#else
   asm volatile (""::"r" (t):"memory");
+#endif
   if (*t == 'T')
     __builtin_abort ();
 }

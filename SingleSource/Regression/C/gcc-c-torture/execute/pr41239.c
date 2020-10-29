@@ -38,8 +38,13 @@ main (void)
 __attribute__((noinline)) char
 fn1 (int x, const char *y, int z, const char *w, const char *v)
 {
+#ifdef __CHERI_PURE_CAPABILITY__
+  asm volatile ("" : : "C" (w), "C" (v) : "memory");
+  asm volatile ("" : "+r" (x) : "C" (y), "r" (z) : "memory");
+#else
   asm volatile ("" : : "r" (w), "r" (v) : "memory");
   asm volatile ("" : "+r" (x) : "r" (y), "r" (z) : "memory");
+#endif
   return x;
 }
 
@@ -53,7 +58,11 @@ fn3 (int x)
 __attribute__((noinline)) int
 fn4 (const char *x, ...)
 {
+#ifdef __CHERI_PURE_CAPABILITY__
+  asm volatile ("" : "+C" (x) : : "memory");
+#else
   asm volatile ("" : "+r" (x) : : "memory");
+#endif
   return *x;
 }
 
