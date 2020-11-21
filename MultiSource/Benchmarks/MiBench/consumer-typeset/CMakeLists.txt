@@ -8,4 +8,4 @@ list(APPEND LDFLAGS -lm)
 set(RUN_OPTIONS -x -I data/include -D data/data -F data/font -C data/maps -H data/hyph large.lout)
 
 llvm_multisource(consumer-typeset)
-llvm_test_data(consumer-typeset large.lout data)
+llvm_test_data(consumer-typeset large.lout small.lout data)
