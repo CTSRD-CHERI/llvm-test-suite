@@ -1,5 +1,6 @@
 add_subdirectory(automotive-basicmath)
 add_subdirectory(automotive-bitcount)
+add_subdirectory(automotive-qsort)
 add_subdirectory(automotive-susan)
 add_subdirectory(consumer-jpeg)
 add_subdirectory(consumer-typeset)
