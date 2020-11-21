@@ -1,2 +1,2 @@
 #!/bin/sh
-${COUNT_STATS} ./bitcnts 75000 > /dev/null
+${COUNT_STATS} ./automotive-bitcount 75000 > /dev/null

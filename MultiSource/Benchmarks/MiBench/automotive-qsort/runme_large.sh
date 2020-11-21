@@ -1,2 +1,2 @@
 #!/bin/sh
-${COUNT_STATS} ./qsort_large input_large.dat > /dev/null
+${COUNT_STATS} ./automotive-qsort-large input_large.dat > /dev/null

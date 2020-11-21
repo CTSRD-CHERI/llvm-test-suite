@@ -1,2 +1,2 @@
 #!/bin/sh
-${COUNT_STATS} ./dijkstra input.dat large > /dev/null
+${COUNT_STATS} ./network-dijkstra input.dat large > /dev/null

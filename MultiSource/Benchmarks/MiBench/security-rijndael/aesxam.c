@@ -299,11 +299,7 @@ int main(int argc, char *argv[])
     {                           /* decryption in Cipher Block Chaining mode */
         set_key(key, key_len, dec, ctx);
 
-        #if 1
-        err = decfile(fin, stdout, ctx, argv[1], argv[2]);
-        #else
         err = decfile(fin, fout, ctx, argv[1], argv[2]);
-        #endif
     }
 exit:   
     if(fout) 

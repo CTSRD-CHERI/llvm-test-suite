@@ -2,4 +2,4 @@ list(APPEND CPPFLAGS -DHAVEMPGLIB -DLAMEPARSE -DNDEBUG -D__NO_MATH_INLINES -DLAM
 list(APPEND LDFLAGS -lm)
 set(RUN_OPTIONS -S large.wav /dev/null)
 llvm_multisource(consumer-lame)
-llvm_test_data(consumer-lame large.wav)
+llvm_test_data(consumer-lame large.wav small.wav)

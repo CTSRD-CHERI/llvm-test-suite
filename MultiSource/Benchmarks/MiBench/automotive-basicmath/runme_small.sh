@@ -1,2 +1,2 @@
 #!/bin/sh
-${COUNT_STATS} ./basicmath_small > /dev/null
+${COUNT_STATS} ./automotive-basicmath-small > /dev/null

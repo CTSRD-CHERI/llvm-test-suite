@@ -1,2 +1,5 @@
 list(APPEND LDFLAGS -lm)
-llvm_multisource(office-stringsearch)
+llvm_multisource(office-stringsearch bmhasrch.c bmhisrch.c bmhsrch.c pbmsrch_large.c)
+llvm_multisource(office-stringsearch-small bmhasrch.c bmhisrch.c bmhsrch.c  pbmsrch_small.c)
+llvm_test_data(office-stringsearch runme_large.sh runme_small.sh)
+llvm_test_data(office-stringsearch-small runme_large.sh)

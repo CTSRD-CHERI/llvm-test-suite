@@ -1,2 +1,2 @@
 #!/bin/sh
-${COUNT_STATS} ./crc small.pcm > /dev/null
+${COUNT_STATS} ./telecomm-crc32 small.pcm > /dev/null

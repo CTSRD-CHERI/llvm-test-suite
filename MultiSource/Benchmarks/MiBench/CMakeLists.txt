@@ -22,3 +22,5 @@ if(NOT TEST_SUITE_BENCHMARKING_ONLY)
     add_subdirectory(office-ispell)
   endif()
 endif()
+
+configure_file(run_all.sh ${CMAKE_CURRENT_BINARY_DIR}/run_all.sh COPYONLY)

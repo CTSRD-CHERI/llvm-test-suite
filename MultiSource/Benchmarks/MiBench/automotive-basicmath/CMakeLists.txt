@@ -1,4 +1,6 @@
 list(APPEND LDFLAGS -lm)
 set(HASH_PROGRAM_OUTPUT 1)
 llvm_multisource(automotive-basicmath basicmath_large.c rad2deg.c cubic.c isqrt.c)
-llvm_multisource(automotive-basicmath_small basicmath_small.c rad2deg.c cubic.c isqrt.c)
+llvm_multisource(automotive-basicmath-small basicmath_small.c rad2deg.c cubic.c isqrt.c)
+llvm_test_data(automotive-basicmath runme_large.sh)
+llvm_test_data(automotive-basicmath-small runme_small.sh)

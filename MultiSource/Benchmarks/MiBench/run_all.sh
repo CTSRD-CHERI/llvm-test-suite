@@ -107,15 +107,18 @@ CPU=$1
 COUNT_STATS=""
 case $CPU in
     mips64|mips64-hybrid|mips64-purecap)
-    COUNT_STATS=beri_count_stats
+    COUNT_STATS="beri_count_stats"
     ;;
     riscv64|riscv64-hybrid|riscv64-purecap)
     COUNT_STATS="minimal_count_stats --format csv"
     # FIXME: counters currently broken due to ASR bug
     COUNT_STATS="${COUNT_STATS} -e cycles -e time -e instret"
     ;;
+    native)
+    COUNT_STATS="time"
+    ;;
     *)
-    echo "!!!! please provide the cpu to run for which to run, one of mips64{,-hybrid,-purecap} or riscv64{,-hybrid,-purecap}"
+    echo "!!!! please provide the cpu to run for which to run, one of mips64{,-hybrid,-purecap} or riscv64{,-hybrid,-purecap} or native"
     exit 1
     ;;
 esac
@@ -146,8 +149,8 @@ for family in $BENCH_FAMILY; do
     eval BENCH_LIST=\$$BENCH_LIST_var
     #echo $BENCH_LIST
     for bench in $BENCH_LIST; do
-        echo "---> Running $family - $bench benchmark"
-        cd $BENCHMARK_ROOT/$family/$bench
+        echo "---> Running $family-$bench benchmark"
+        cd $BENCHMARK_ROOT/$family-$bench
         echo "---> Unsetting statcounters output file for discarded runs"
         unset STATCOUNTERS_OUTPUT
         unset STATCOUNTERS_ARCHNAME
@@ -155,7 +158,8 @@ for family in $BENCH_FAMILY; do
         i=0
         while [ $i != $DISCARD_RUN ]
         do
-            sh -x ./runme_$SIZE.sh 2> /dev/null || echo "Failed to run $BENCHMARK_ROOT/$family/$bench"
+            sh -x ./runme_$SIZE.sh 2> /dev/null
+            # || echo "Failed to run $BENCHMARK_ROOT/$family-$bench"
             i=$(($i+1))
         done
         echo "... discarded $DISCARD_RUN run(s)"
@@ -168,11 +172,12 @@ for family in $BENCH_FAMILY; do
         i=0
         while [ $i != $SAMPLE_RUN ]
         do
-            sh -x ./runme_$SIZE.sh || echo "Failed to run $BENCHMARK_ROOT/$family/$bench"
+            sh -x ./runme_$SIZE.sh
+            # || echo "Failed to run $BENCHMARK_ROOT/$family-$bench"
             echo "... $family - $bench $SIZE benchmark run $i done"
             i=$(($i+1))
         done
-        echo "---> Done running $family - $bench benchmark"
+        echo "---> Done running $family-$bench benchmark"
     done
 done
 

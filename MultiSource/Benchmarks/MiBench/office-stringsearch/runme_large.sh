@@ -1,2 +1,2 @@
 #!/bin/sh
-${COUNT_STATS} ./search_large > /dev/null
+${COUNT_STATS} ./office-stringsearch > /dev/null

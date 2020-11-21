@@ -1,2 +1,2 @@
 #!/bin/sh
-${COUNT_STATS} ./patricia large.udp > /dev/null
+${COUNT_STATS} ./network-patricia large.udp > /dev/null

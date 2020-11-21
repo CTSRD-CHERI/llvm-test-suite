@@ -1,2 +1,2 @@
 #!/bin/sh
-./sha input_large.asc > /dev/null
+${COUNT_STATS} ./security-sha input_large.asc > /dev/null
