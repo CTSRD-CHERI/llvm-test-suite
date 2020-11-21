@@ -144,16 +144,26 @@ int dijkstra(int chStart, int chEnd)
 }
 
 int main(int argc, char *argv[]) {
-  int i,j,k;
+  int i, j, k;
+  int count;
   FILE *fp;
-  
-  if (argc<2) {
-    fprintf(stderr, "Usage: dijkstra <filename>\n");
+
+  if (argc < 3) {
+    fprintf(stderr, "Usage: dijkstra <filename> <large|small>\n");
     fprintf(stderr, "Only supports matrix size is #define'd.\n");
+    exit(1);
   }
 
   /* open the adjacency matrix file */
-  fp = fopen (argv[1],"r");
+  fp = fopen(argv[1], "r");
+  if (strcmp(argv[2], "large") == 0) {
+    count = 100;
+  } else if (strcmp(argv[2], "small") == 0) {
+    count = 20;
+  } else {
+    fprintf(stderr, "Invalid problm size %s.\n", argv[2]);
+    exit(1);
+  }
 
   /* make a fully connected matrix */
   for (i=0;i<NUM_NODES;i++) {
@@ -165,7 +175,7 @@ int main(int argc, char *argv[]) {
   }
 
   /* finds 10 shortest paths between nodes */
-  for (i=0,j=NUM_NODES/2;i<100;i++,j++) {
+  for (i=0,j=NUM_NODES/2;i<count;i++,j++) {
 			j=j%NUM_NODES;
       dijkstra(i,j);
   }
