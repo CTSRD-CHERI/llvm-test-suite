@@ -297,8 +297,8 @@ int print_test_data()
 	printf("\niv[8]     = ");
 	for (j=0; j<8; j++)
 		printf("%02X",cbc_iv[j]);
-	printf("\ndata[%d]  = '%s'",strlen(cbc_data)+1,cbc_data);
-	printf("\ndata[%d]  = ",strlen(cbc_data)+1);
+	printf("\ndata[%zd]  = '%s'",strlen(cbc_data)+1,cbc_data);
+	printf("\ndata[%zd]  = ",strlen(cbc_data)+1);
 	for (j=0; j<strlen(cbc_data)+1; j++)
 		printf("%02X",cbc_data[j]);
 	printf("\n");
@@ -309,13 +309,13 @@ int print_test_data()
 	printf("\n");
 
 	printf("cfb64 cipher text\n");
-	printf("cipher[%d]= ",strlen(cbc_data)+1);
+	printf("cipher[%zd]= ",strlen(cbc_data)+1);
 	for (j=0; j<strlen(cbc_data)+1; j++)
 		printf("%02X",cfb64_ok[j]);
 	printf("\n");
 
 	printf("ofb64 cipher text\n");
-	printf("cipher[%d]= ",strlen(cbc_data)+1);
+	printf("cipher[%zd]= ",strlen(cbc_data)+1);
 	for (j=0; j<strlen(cbc_data)+1; j++)
 		printf("%02X",ofb64_ok[j]);
 	printf("\n");
