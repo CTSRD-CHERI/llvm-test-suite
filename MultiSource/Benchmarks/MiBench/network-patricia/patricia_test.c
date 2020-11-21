@@ -175,8 +175,10 @@ main(int argc, char **argv)
 		//if(pfind->p_key==(addr.s_addr&pfind->p_m->pm_mask))
 		if(pfind->p_key==addr.s_addr)
 		{
-			printf("%f %08x: ", time, addr.s_addr);
-			printf("Found.\n");
+            // XXX: remove printfs to not spend time in syscalls, which seems
+            // to take 90% of the total time.
+			//printf("%f %08x: ", time, addr.s_addr);
+			//printf("Found.\n");
 		}
 		else
 		{

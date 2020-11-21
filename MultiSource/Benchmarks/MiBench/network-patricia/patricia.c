@@ -35,7 +35,7 @@ static __inline
 unsigned long
 bit(int i, unsigned long key)
 {
-	return key & (1 << (31-i));
+	return key & (1u << (31-i));
 }
 
 
