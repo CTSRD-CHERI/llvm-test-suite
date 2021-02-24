@@ -111,8 +111,6 @@ case $CPU in
     ;;
     riscv64|riscv64-hybrid|riscv64-purecap)
     COUNT_STATS="minimal_count_stats --format csv"
-    # FIXME: counters currently broken due to ASR bug
-    COUNT_STATS="${COUNT_STATS} -e cycles -e time -e instret"
     ;;
     native)
     COUNT_STATS="time"
