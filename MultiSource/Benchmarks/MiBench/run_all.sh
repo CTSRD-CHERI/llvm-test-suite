@@ -170,7 +170,7 @@ for family in $BENCH_FAMILY; do
         i=0
         while [ $i != $SAMPLE_RUN ]
         do
-            sh -x ./runme_$SIZE.sh
+            cpuset -l 0 sh -x ./runme_$SIZE.sh
             # || echo "Failed to run $BENCHMARK_ROOT/$family-$bench"
             echo "... $family - $bench $SIZE benchmark run $i done"
             i=$(($i+1))
