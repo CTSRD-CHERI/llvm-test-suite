@@ -57,19 +57,9 @@ file(GLOB UnsupportedTests CONFIGURE_DEPENDS
   pr28865.c
 
   # GCC Extension: __builtin_*
-  20071018-1.c       # __builtin_malloc
-  20071120-1.c       # __builtin_malloc
-  builtin-bitops-1.c # __builtin_clrsb, __builtin_clrsbl, __builtin_clrsbll
-  pr36765.c          # __builtin_malloc
   pr39228.c          # __builtin_isinff, __builtin_isinfl
-  pr43008.c          # __builtin_malloc
   pr47237.c          # __builtin_apply, __builtin_apply_args
-  pr78586.c          # __builtin_sprintf
-  pr79327.c          # __builtin_sprintf
-  pr84339.c          # __builtin_malloc, __builtin_free
-  pr84478.c          # __builtin_malloc
   pr85331.c          # __builtin_shuffle
-  strlen-7.c         # __builtin_malloc
   va-arg-pack-1.c    # __builtin_va_arg_pack
 
   # Clang does not support 'DD' suffix on floating constant
@@ -140,6 +130,9 @@ file(GLOB UnsupportedTests CONFIGURE_DEPENDS
   vfprintf-chk-1.c
   vprintf-chk-1.c
 
+  # Clang at -O0 does not enable -finstrument-functions
+  # (https://bugs.llvm.org/show_bug.cgi?id=49143)
+  eeprof-1.c
 )
 list(APPEND TestsToSkip ${UnsupportedTests})
 
@@ -303,6 +296,26 @@ if(ARCH MATCHES "AArch64")
   list(APPEND TestsToSkip ${AArch64TestsToSkip})
 endif()
 
+# ARM Test Blacklist
+if(ARCH MATCHES "ARM")
+  file(GLOB ARMTestsToSkip CONFIGURE_DEPENDS
+    # No support for __int128 on ARM 32-bit
+    pr84748.c
+
+    # With some command line options, linking fails with:
+    # pr89434.c:(.text+0xac): undefined reference to `__mulodi4'
+    pr89434.c
+
+    # Fails in the front end with:
+    # clang: llvm/include/llvm/Support/Casting.h:269: typename
+    #   cast_retty<X, Y *>::ret_type llvm::cast(Y *) [X = llvm::PointerType,
+    #   Y = llvm::Type]: Assertion `isa<X>(Val) && "cast<Ty>() argument of
+    #   incompatible type!"' failed.
+    va-arg-22.c
+  )
+
+  list(APPEND TestsToSkip ${ARMTestsToSkip})
+endif()
 
 # Darwin Test Blacklist
 if(TARGET_OS STREQUAL "Darwin")

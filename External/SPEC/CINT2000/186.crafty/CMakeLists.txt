@@ -25,6 +25,7 @@ check_type_size("long long" LONG_LONG_TYPE_SIZE BUILTIN_TYPES_ONLY)
 if(LONG_LONG_TYPE_SIZE GREATER 7)
   list(APPEND CPPFLAGS -DHAS_LONGLONG)
 endif()
+list(APPEND CFLAGS -fcommon)
 
 set(SourceNames
   attacks.c
@@ -72,11 +73,11 @@ foreach(FILENAME ${SourceNames})
 endforeach()
 
 macro(test_input run_type)
-  llvm_test_run(RUN_TYPE ${run_type} WORKDIR ${CMAKE_CURRENT_BINARY_DIR}
+  llvm_test_run(RUN_TYPE ${run_type} WORKDIR %S
     < data/${run_type}/input/crafty.in > crafty.out
   )
-  llvm_test_verify(RUN_TYPE ${run_type} WORKDIR ${CMAKE_CURRENT_BINARY_DIR}
-    ${FPCMP} data/${run_type}/output/crafty.out crafty.out
+  llvm_test_verify(RUN_TYPE ${run_type}
+    %b/${FPCMP} %S/data/${run_type}/output/crafty.out %S/crafty.out
   )
 endmacro()
 
