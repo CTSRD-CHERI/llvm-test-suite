@@ -23,7 +23,11 @@ init_umul_table()
 {
 	int	i, j;
 	int	n;
+#ifdef __CHERI_PURE_CAPABILITY__
+	unsigned int	 * p = &__builtin_no_change_bounds(umul_table)[0][0];
+#else
 	unsigned int	 * p = &umul_table[0][0];
+#endif
 
 	for (i = 0; i < 513; i++) {
 		n = 0;
