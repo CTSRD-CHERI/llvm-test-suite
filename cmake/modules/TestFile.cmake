@@ -46,6 +46,7 @@ macro(llvm_test_run)
   llvm_test_check_paths("${JOINED_ARGUMENTS}")
   if(NOT DEFINED ARGS_RUN_TYPE OR "${ARGS_RUN_TYPE}" STREQUAL "${TEST_SUITE_RUN_TYPE}")
     set(TESTSCRIPT "${TESTSCRIPT}RUN: ${ARGS_EXECUTABLE} ${JOINED_ARGUMENTS}\n")
+    set(TESTSCRIPT_SH "${TESTSCRIPT_SH}${ARGS_EXECUTABLE} ${JOINED_ARGUMENTS}\n")
   endif()
 endmacro()
 
@@ -64,6 +65,7 @@ macro(llvm_test_verify)
   llvm_test_check_paths("${JOINED_ARGUMENTS}")
   if(NOT DEFINED ARGS_RUN_TYPE OR "${ARGS_RUN_TYPE}" STREQUAL "${TEST_SUITE_RUN_TYPE}")
     set(TESTSCRIPT "${TESTSCRIPT}VERIFY: ${JOINED_ARGUMENTS}\n")
+    set(TESTSCRIPT_SH "${TESTSCRIPT_SH}${JOINED_ARGUMENTS}\n")
   endif()
 endmacro()
 
@@ -106,9 +108,20 @@ endmacro()
 function(llvm_add_test testfile executable)
   # Replace $EXECUTABLE$ placeholder.
   string(REPLACE "$EXECUTABLE$" "${executable}" TESTSCRIPT "${TESTSCRIPT}")
+  string(REPLACE "$EXECUTABLE$" "${executable}" TESTSCRIPT_SH "${TESTSCRIPT_SH}")
+  string(REPLACE "%S" "\${scriptdir}" TESTSCRIPT_SH "${TESTSCRIPT_SH}")
+  string(REPLACE "%b" "\${toolsdir}" TESTSCRIPT_SH "${TESTSCRIPT_SH}")
+  file(RELATIVE_PATH _toolsdir_relative ${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_BINARY_DIR}/tools)
+  set(TESTSCRIPT_SH "#!/bin/sh
+set -e
+scriptdir=\$(CDPATH= cd -- \"\$(dirname -- \"\$0\")\" && pwd)
+toolsdir=\"\${scriptdir}/${_toolsdir_relative}\"
+${TESTSCRIPT_SH}")
 
   # Produce .test file
   file(GENERATE OUTPUT ${testfile} CONTENT "${TESTSCRIPT}")
+  # And a .test.sh for hosts where lit is not/cannot be installed.
+  file(GENERATE OUTPUT ${testfile}.sh CONTENT "${TESTSCRIPT_SH}")
   # flush the test script
   set(TESTSCRIPT "" PARENT_SCOPE)
 endfunction()
