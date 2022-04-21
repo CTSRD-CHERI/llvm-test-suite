@@ -1,7 +1,7 @@
 add_subdirectory(ieee)
 
 # GCC C Torture Suite is conventionally run without warnings
-list(APPEND CFLAGS "-w")
+list(APPEND CFLAGS  -Wno-implicit-function-declaration -w)
 
 set(TestsToSkip)
 
@@ -55,6 +55,9 @@ file(GLOB UnsupportedTests CONFIGURE_DEPENDS
 
   # Initialization of flexible array member
   pr28865.c
+
+  # Initialization of union is not required to initialize padding.
+  pr19687.c
 
   # GCC Extension: __builtin_*
   pr39228.c          # __builtin_isinff, __builtin_isinfl

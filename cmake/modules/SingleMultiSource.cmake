@@ -14,9 +14,9 @@
 #
 # llvm_singlesource([PREFIX p])
 #
-#   Invokes llvm_test_executable() for each c/c++ source file.  If
-#   'sources is emptyno sources are specified, creates test executables
-#   for all C/C++ files in current directory.
+#   Invokes llvm_test_executable() for each C/C++/Fortran source file. If
+#   'sources is empty no sources are specified, creates test executables
+#   for all source files in the current directory.
 #   Passes optional PREFIX parameter to llvm_test_executable().
 #
 # llvm_multisource(target)
@@ -27,7 +27,7 @@
 include(TestSuite)
 
 # Configure the current directory as a SingleSource subdirectory - i.e. every
-# file in *.{c,cpp,cc} is treated as its own test.
+# C/C++/Fortran file is treated as its own test.
 function(llvm_singlesource)
   cmake_parse_arguments(_LSARG "" "PREFIX" "" ${ARGN})
   if(DEFINED Source)
@@ -111,6 +111,8 @@ function(llvm_test_traditional target)
       set(REFERENCE_OUTPUT ${name}.reference_output.${SIZE_SUFFIX})
     elseif(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/${name}.reference_output.${ENDIAN}-endian)
       set(REFERENCE_OUTPUT ${name}.reference_output.${ENDIAN}-endian)
+    elseif(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/${name}.reference_output.${TARGET_OS})
+      set(REFERENCE_OUTPUT ${name}.reference_output.${TARGET_OS})
     elseif(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/${name}.reference_output)
       set(REFERENCE_OUTPUT ${name}.reference_output)
     else()
