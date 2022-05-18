@@ -28,6 +28,8 @@ RSYNC_FLAGS+=" --exclude=.ninja_log"
 RSYNC_FLAGS+=" --exclude=build.ninja"
 RSYNC_FLAGS+=" --exclude=rules.ninja"
 RSYNC_FLAGS+=" --exclude=CMakeFiles/"
+RSYNC_FLAGS+=" --exclude=spec-extracted/"
+RSYNC_FLAGS+=" --exclude=thinlto-cache/"
 
 set -x
 ssh $DEVICE mkdir -p "$BUILDDIR"
