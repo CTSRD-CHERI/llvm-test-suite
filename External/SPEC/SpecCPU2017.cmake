@@ -161,6 +161,9 @@ macro (speccpu2017_benchmark)
       # Windows x86/x64
     elseif (TARGET_OS STREQUAL "Darwin")
       add_definitions(-DSPEC_MACOSX)
+    elseif (TARGET_OS STREQUAL "FreeBSD")
+        # For FreeBSD passing -DSPEC_MACOSX selects the right options.
+        list(APPEND CPPFLAGS -DSPEC_MACOSX)
     else ()
       message("ARCH: ${ARCH}")
       message("TARGET_OS: ${TARGET_OS}")

@@ -815,4 +815,10 @@ speccpu2017_add_executable(
   YearDatatypeValidator.cpp
   YearMonthDatatypeValidator.cpp
 )
+
+if (TARGET_OS STREQUAL "FreeBSD")
+  # On FreeBSD ftime is in -lcompat
+  target_link_libraries(${PROG} PRIVATE compat)
+endif()
+
 speccpu2017_prepare_rundir()
