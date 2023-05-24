@@ -4,6 +4,8 @@ const char *str = "ARCHITECTURE IS AArch64";
 const char *str = "ARCHITECTURE IS ARM";
 #elif defined(__alpha__)
 const char *str = "ARCHITECTURE IS Alpha";
+#elif defined(__loongarch__)
+const char *str = "ARCHITECTURE IS LoongArch";
 #elif defined(__mips__)
 const char *str = "ARCHITECTURE IS Mips";
 #elif defined(__powerpc__) || defined(__ppc__) || defined(__power__)
@@ -24,6 +26,8 @@ const char *str = "ARCHITECTURE IS XCore";
 const char *str = "ARCHITECTURE IS x86";
 #elif defined(__hexagon__)
 const char *str = "ARCHITECTURE IS Hexagon";
+#elif defined(__csky__) || defined(__CSKY__)
+const char *str = "ARCHITECTURE IS CSKY";
 #endif
 
 int main(int argc, char **argv) {

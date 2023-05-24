@@ -2,9 +2,15 @@ cmake_minimum_required(VERSION 3.13.4)
 
 include(CheckSymbolExists)
 
-option(TEST_SUITE_FORTRAN "Enable Fortran test suite" OFF)
 
 project(test-suite C CXX)
+
+if("Fortran" IN_LIST TEST_SUITE_SUBDIRS)
+  set(TEST_SUITE_FORTRAN_default ON)
+else()
+  set(TEST_SUITE_FORTRAN_default OFF)
+endif()
+option(TEST_SUITE_FORTRAN "Enable Fortran test suite" ${TEST_SUITE_FORTRAN_default})
 
 if(TEST_SUITE_FORTRAN)
   enable_language(Fortran)
@@ -53,7 +59,10 @@ if(${TEST_SUITE_SUPPRESS_WARNINGS})
 endif()
 
 # We want reproducible builds, so using __DATE__ and __TIME__ is bad
-add_definitions(-Werror=date-time)
+# FIXME: Add this unconditionally when flang starts supporting it.
+if(NOT CMAKE_Fortran_COMPILER_ID STREQUAL "LLVMFlang")
+  add_definitions(-Werror=date-time)
+endif()
 
 # Add path for custom modules
 set(CMAKE_MODULE_PATH

@@ -2,10 +2,15 @@ include(CheckCCompilerFlag)
 
 add_subdirectory(C++11)
 add_subdirectory(Float)
+add_subdirectory(Matrix)
 add_subdirectory(SignlessTypes)
 add_subdirectory(Threads)
 add_subdirectory(Vector)
 add_subdirectory(Vectorizer)
+add_subdirectory(X86)
+
+list(APPEND CFLAGS -Wno-implicit-function-declaration -Wno-implicit-int)
+
 # FIXME: Disable SJLJ tests for now, until EH edges are represented.
 # add_subdirectory(SetjmpLongjmp)
 if(TARGET_OS STREQUAL "Darwin")

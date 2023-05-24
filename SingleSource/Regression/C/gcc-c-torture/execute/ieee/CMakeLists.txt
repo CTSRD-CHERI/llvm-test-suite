@@ -1,5 +1,5 @@
 # GCC C Torture Suite is conventionally run without warnings
-list(APPEND CFLAGS -Wno-implicit-function-declaration -w)
+list(APPEND CFLAGS -Wno-implicit-int -Wno-implicit-function-declaration -w)
 set(TestsToSkip)
 
 ##
@@ -34,6 +34,14 @@ file(GLOB TestRequiresFNoTrappingMath CONFIGURE_DEPENDS
   # Needs additional flags from compare-fp-3.x
   compare-fp-3.c
 )
+
+if(TEST_SUITE_PROFILE_GENERATE OR TEST_SUITE_PROFILE_USE)
+  file(GLOB UnsupportedWithPGO CONFIGURE_DEPENDS
+    # Fails to compile when compiling with instrumentation
+    compare-fp-3.c
+  )
+  list(APPEND TestsToSkip ${UnsupportedWithPGO})
+endif()
 
 ##
 ## Architecture-specific Test Blacklists

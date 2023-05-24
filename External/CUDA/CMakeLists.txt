@@ -37,6 +37,11 @@ set(SUPPORTED_GPU_CUDA_11_3 ${SUPPORTED_GPU_CUDA_11_2})
 set(SUPPORTED_GPU_CUDA_11_4 ${SUPPORTED_GPU_CUDA_11_3})
 set(SUPPORTED_GPU_CUDA_11_5 ${SUPPORTED_GPU_CUDA_11_4})
 set(SUPPORTED_GPU_CUDA_11_6 ${SUPPORTED_GPU_CUDA_11_5})
+set(SUPPORTED_GPU_CUDA_11_7 ${SUPPORTED_GPU_CUDA_11_6})
+set(SUPPORTED_GPU_CUDA_11_8 ${SUPPORTED_GPU_CUDA_11_7}
+  sm_89 sm_90)
+
+set(CUDA_NEW_DRIVER ON CACHE BOOL "Use the new Clang offloading Driver")
 
 # Create targets for CUDA tests that are part of the test suite.
 macro(create_local_cuda_tests VariantSuffix)
@@ -296,6 +301,10 @@ macro(create_cuda_tests)
       continue()
     endif()
     list(APPEND _Cuda_CPPFLAGS ${_CudaArchFlags})
+    if (CUDA_NEW_DRIVER)
+      list(APPEND _Cuda_CPPFLAGS -fgpu-rdc --offload-new-driver)
+      list(APPEND _Cuda_LDFLAGS --offload-new-driver)
+    endif()
 
     set(_Cuda_Libs cudart-${_CudaVersion})
     foreach(_Std IN ITEMS "c++98" "c++11" "c++14" "c++17" "c++20")

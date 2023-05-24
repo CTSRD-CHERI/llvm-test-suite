@@ -23,7 +23,12 @@ if(TEST_SUITE_SPEC2006_ROOT)
   elseif(TARGET_OS STREQUAL "Linux")
     list(APPEND CPPFLAGS -DSPEC_CPU_LINUX)
   elseif(TARGET_OS STREQUAL "FreeBSD")
-    # For FreeBSD passing -DSPEC_CPU_MACOSX selects the right options.
+    list(APPEND CPPFLAGS -DSPEC_CPU_BSD)
+    # As support for SPEC_CPU_BSD is incomplete in SPEC2006, we also have to
+    # pass -DSPEC_CPU_MACOSX to avoid the use of gcvt() in 400.perlbench as
+    # this function is not available on FreeBSD. Additionally, this define
+    # ensures that all required functions are compiled in 483.xalancbmk and
+    # that complex.h is included in 462.libquantum.
     list(APPEND CPPFLAGS -DSPEC_CPU_MACOSX)
   else()
     message(WARNING "Unsupported SPEC2006 TARGET_OS: ${TARGET_OS}")
@@ -49,10 +54,7 @@ if(TEST_SUITE_SPEC2006_ROOT)
     list(APPEND CPPFLAGS -DSPEC_CPU_LP64)
   endif()
 
-  if(TARGET_OS STREQUAL "Darwin")
-    # Work around built in -Werror=implicit-function-declaration default on iOS
-    list(APPEND CPPFLAGS -Wno-implicit-function-declaration)
-  endif()
+  list(APPEND CFLAGS -Wno-implicit-function-declaration)
 
   macro(cpu2006_subdir BENCHMARK)
     set(BENCHMARK_DIR ${TEST_SUITE_SPEC2006_ROOT}/benchspec/CPU2006/${BENCHMARK})

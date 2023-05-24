@@ -1,7 +1,7 @@
 add_subdirectory(ieee)
 
 # GCC C Torture Suite is conventionally run without warnings
-list(APPEND CFLAGS  -Wno-implicit-function-declaration -w)
+list(APPEND CFLAGS -Wno-implicit-int -Wno-int-conversion -Wno-implicit-function-declaration -w)
 
 set(TestsToSkip)
 
@@ -136,6 +136,15 @@ file(GLOB UnsupportedTests CONFIGURE_DEPENDS
   # Clang at -O0 does not enable -finstrument-functions
   # (https://bugs.llvm.org/show_bug.cgi?id=49143)
   eeprof-1.c
+
+  # Size of array element is not a multiple of its alignment.
+  pr36093.c
+  pr43783.c
+
+  # Uses an incorrect method to prevent tailcalls which clang at -O1 or above
+  # can see through and tail call regardless. Also the callee compares
+  # pointers to different objects, which is undefined behaviour.
+  frame-address.c
 )
 list(APPEND TestsToSkip ${UnsupportedTests})
 
@@ -189,12 +198,6 @@ file(GLOB TestRequiresLibM CONFIGURE_DEPENDS
   complex-5.c  # -lm needed on FreeBSD
 )
 
-# Tests that require newnlib Nano IO (--undefined=_printf_float ldflag)
-file(GLOB TestRequiresNanoIO CONFIGURE_DEPENDS
-  920501-8.c
-  930513-1.c
-)
-
 ##
 ## Architecture-specific Test Blacklists
 ##
@@ -245,6 +248,19 @@ if(ARCH MATCHES "Mips")
   endif()
 
   list(APPEND TestsToSkip ${MipsTestsToSkip})
+endif()
+
+# LoongArch Test Blacklist
+if(ARCH MATCHES "LoongArch")
+  file(GLOB LoongArchTestsToSkip CONFIGURE_DEPENDS
+    # No backend support for __builtin_longjmp/__builtin_setjmp
+    built-in-setjmp.c
+    pr84521.c
+    # Triggers "return address can be determined only for current frame"
+    20030323-1.c
+  )
+
+  list(APPEND TestsToSkip ${LoongArchTestsToSkip})
 endif()
 
 # RISC-V Test Blacklist
@@ -374,10 +390,6 @@ foreach(File ${TestFiles})
 
   if(${File} IN_LIST TestRequiresFWrapV)
     list(APPEND MaybeCFlags "-fwrapv")
-  endif()
-
-  if(${File} IN_LIST TestRequiresNanoIO)
-    list(APPEND MaybeLDFlags "-Wl,-u,_printf_float")
   endif()
 
   # Add Test Target
