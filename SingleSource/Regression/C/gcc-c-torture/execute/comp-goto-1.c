@@ -9,7 +9,11 @@ typedef signed int sint32;
 
 typedef uint32 reg_t;
 
+#ifdef __CHERI_PURE_CAPABILITY__
+typedef char *host_addr_t;
+#else
 typedef unsigned long int host_addr_t;
+#endif
 typedef uint32 target_addr_t;
 typedef sint32 target_saddr_t;
 
@@ -33,7 +37,12 @@ typedef union
 typedef struct
 {
   target_addr_t vaddr_tag;
+#ifdef __CHERI_PURE_CAPABILITY__
+  host_addr_t paddr_base;
+  sint32 paddr_offs;
+#else
   unsigned long int rigged_paddr;
+#endif
 } tlb_entry_t;
 
 typedef struct
@@ -96,11 +105,20 @@ simulator_kernel (int what, environment_t *env)
     for (;;)
       {
 	target_addr_t tag = tlb[x].vaddr_tag;
+#ifdef __CHERI_PURE_CAPABILITY__
+	host_addr_t paddr_base = tlb[x].paddr_base;
+	sint32 paddr_offs = tlb[x].paddr_offs;
+#else
 	host_addr_t rigged_paddr = tlb[x].rigged_paddr;
+#endif
 
 	if (tag == vaddr_page)
 	  {
+#ifdef __CHERI_PURE_CAPABILITY__
+	    *(reg_t *) (((char *) regs) + s1) = *(uint32 *) (paddr_base + (paddr_offs + r2));
+#else
 	    *(reg_t *) (((char *) regs) + s1) = *(uint32 *) (rigged_paddr + r2);
+#endif
 	    r2 = *(reg_t *) (((char *) regs) + (insn.f1.s2 << 2));
 	    s1 = insn.f1.s1 << 2;
 	    goto *(base_addr + insn.f1.offset);
@@ -135,10 +153,20 @@ main ()
   host_addr_t a_page = (host_addr_t) malloc (2 * 4096);
   target_addr_t a_vaddr = 0x123450;
   target_addr_t vaddr_page = a_vaddr / 4096;
+#ifdef __CHERI_PURE_CAPABILITY__
+  unsigned long offs_in_page = ((unsigned long)a_page) & (4096 - 1);
+  if (offs_in_page) a_page += (4096 - offs_in_page);
+#else
   a_page = (a_page + 4096 - 1) & -4096;
+#endif
 
   env.tlb_tab[((vaddr_page) % 0x100)].vaddr_tag = vaddr_page;
+#ifdef __CHERI_PURE_CAPABILITY__
+  env.tlb_tab[((vaddr_page) % 0x100)].paddr_base = a_page;
+  env.tlb_tab[((vaddr_page) % 0x100)].paddr_offs = -vaddr_page * 4096;
+#else
   env.tlb_tab[((vaddr_page) % 0x100)].rigged_paddr = a_page - vaddr_page * 4096;
+#endif
   insn.f1.offset = LOAD32_RR;
   env.registers[0] = 0;
   env.registers[2] = a_vaddr;
