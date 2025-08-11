@@ -11,13 +11,7 @@
 
 #define I 1.0iF
 
-#if defined(__FreeBSD__) || defined(__OpenBSD__) || defined(__MINGW32__)
-#include <complex.h>
-#elif defined(__APPLE__)
 #include <math.h>
-#else
-#include <tgmath.h>
-#endif
 
 #include <stdio.h>
 
