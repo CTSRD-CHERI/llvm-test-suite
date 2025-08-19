@@ -6,14 +6,4 @@
 #
 #===------------------------------------------------------------------------===#
 
-# These tests fail at runtime.
-file(GLOB Failing CONFIGURE_DEPENDS
-  pr60510.f
-)
-
-list(APPEND UnsupportedTests "")
-list(APPEND UnimplementedTests "")
-list(APPEND SkippedTests "")
-list(APPEND FailingTests "${Failing}")
-
-add_tests("${UnsupportedTests}" "${UnimplementedTests}" "${SkippedTests}" "${FailingTests}")
+gfortran_populate_tests()

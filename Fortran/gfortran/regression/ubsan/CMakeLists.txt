@@ -6,5 +6,4 @@
 #
 #===------------------------------------------------------------------------===#
 
-# There are currently no tests in this directory to be disabled for any reason.
-add_tests("" "" "" "")
+gfortran_populate_tests()

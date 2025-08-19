@@ -17,3 +17,21 @@ llvm_test_executable(LoopVectorizationBenchmarks
 )
 
 target_link_libraries(LoopVectorizationBenchmarks benchmark)
+
+llvm_test_run()
+
+llvm_test_executable(LoopInterleavingBenchmarks
+  main.cpp
+  LoopInterleaving.cpp
+)
+
+target_link_libraries(LoopInterleavingBenchmarks benchmark)
+
+llvm_test_run()
+
+llvm_test_executable(LoopEpilogueVectorizationBenchmarks
+  main.cpp
+  EpilogueVectorization.cpp
+)
+
+target_link_libraries(LoopEpilogueVectorizationBenchmarks benchmark)

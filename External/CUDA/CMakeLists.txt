@@ -41,6 +41,20 @@ set(SUPPORTED_GPU_CUDA_11_7 ${SUPPORTED_GPU_CUDA_11_6})
 set(SUPPORTED_GPU_CUDA_11_8 ${SUPPORTED_GPU_CUDA_11_7}
   sm_89 sm_90)
 
+# CUDA-12.0 no longer supports sm_3x and older GPUs.
+set(SUPPORTED_GPU_CUDA_12_0
+  sm_50 sm_52 sm_53
+  sm_60 sm_61 sm_62
+  sm_70 sm_72 sm_75
+  sm_80 sm_86 sm_87 sm_89
+  sm_90 sm_90a
+)
+set(SUPPORTED_GPU_CUDA_12_1 ${SUPPORTED_GPU_CUDA_12_0})
+set(SUPPORTED_GPU_CUDA_12_2 ${SUPPORTED_GPU_CUDA_12_1})
+set(SUPPORTED_GPU_CUDA_12_3 ${SUPPORTED_GPU_CUDA_12_2})
+set(SUPPORTED_GPU_CUDA_12_4 ${SUPPORTED_GPU_CUDA_12_3})
+set(SUPPORTED_GPU_CUDA_12_5 ${SUPPORTED_GPU_CUDA_12_4})
+
 set(CUDA_NEW_DRIVER ON CACHE BOOL "Use the new Clang offloading Driver")
 
 # Create targets for CUDA tests that are part of the test suite.
@@ -337,7 +351,8 @@ macro(create_cuda_tests)
         # Tell clang to use libc++
         # We also need to add compiler's include path for cxxabi.h
         get_filename_component(_compiler_path ${CMAKE_CXX_COMPILER} DIRECTORY)
-        set(_Stdlib_CPPFLAGS -stdlib=libc++ -I${_compiler_path}/../include/c++/v1 -DSTDLIB_VERSION=2017)
+        set(_Stdlib_CPPFLAGS -stdlib=libc++ -I${_compiler_path}/../include/c++/v1
+            -DSTDLIB_VERSION=2017 -D_ALLOW_UNSUPPORTED_LIBCPP)
         set(_Stdlib_LDFLAGS  -stdlib=libc++)
         set(_Stdlib_Libs libcxx)
         create_cuda_test_variant(${_Std} "${_Cuda_Suffix}-${_Std_Suffix}-libc++")

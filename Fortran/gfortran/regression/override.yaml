@@ -1,0 +1,190 @@
+---
+# Overrides for DejaGNU annotations for tests in the directory in which this
+# file is present. To override tests in subdirectories, create/edit an
+# override.yaml file in that subdirectory.
+#
+# Please see gfortran/README.md for instructions on editing this file.
+#
+# This file is broadly divided into two. The first section contains tests that
+# are "temporarily" overridden. These are usually tests that fail on certain
+# platforms, but pass on others, but are intended to pass everywhere. When the
+# underlying issue is addressed, the tests should be removed. Eventually, there
+# should be no tests at all in this section. The second section contains tests
+# that are "permanently" overridden - usually because flang's behavior deviates
+# from gfortran, but we want the tests to run anyway.
+#
+# When adding a test to this file, please leave a comment describing why the
+# behavior of the test is being overridden.
+
+
+# ------------------------ TEMPORARILY OVERRIDDEN TESTS ------------------------
+
+# findloc_8.f90 currently causes an assertion failure in SelectionDAG.cpp on
+# some platforms.
+#
+#     Assertion `Elt->getBitWidth() == EltVT.getSizeInBits() && "APInt size does not match type size!"' failed.
+#
+"findloc_8.f90":
+  disabled_on: ["aarch64-*-*", "loongarch64-*-*", "ppc64le-*-*", "powerpc-*-*"]
+
+# entry_23.f raises a segmentation fault at runtime, on some platforms.
+"entry_23.f":
+  disabled_on: ["aarch64-*-*", "loongarch64-*-*", "ppc64le-*-*"]
+
+# pr91497.f90 fails to compile on some platforms with the following message:
+# error: 'kind=' argument must be a constant scalar integer whose value is a
+# supported kind for the intrinsic result type.
+"pr91497.f90":
+  disabled_on: ["aarch64-*-*", "loongarch64-*-*", "ppc64le-*-*", "powerpc-*-*"]
+
+# maxlocval_1.f90 fails at runtime with "STOP: code 1" on AArch64. This is not
+# expected and does not occur on other targets.
+"maxlocval_1.f90":
+  disabled_on: ["aarch64-*-*"]
+
+# unsupported real type on PPC platform
+"gamma_4.f90":
+  disabled_on: ["ppc64le-*-*", "powerpc-*-*"]
+
+"boz_15.f90":
+  disabled_on: ["ppc64le-*-*", "powerpc-*-*"]
+
+"array_constructor_23.f":
+  disabled_on: ["ppc64le-*-*", "powerpc-*-*"]
+
+"internal_pack_2.f90":
+  disabled_on: ["ppc64le-*-*", "powerpc-*-*"]
+
+"intrinsic_pack_2.f90":
+  disabled_on: ["ppc64le-*-*", "powerpc-*-*"]
+
+"intrinsic_spread_2.f90":
+  disabled_on: ["ppc64le-*-*", "powerpc-*-*"]
+
+"intrinsic_unpack_2.f90":
+  disabled_on: ["ppc64le-*-*", "powerpc-*-*"]
+
+"transpose_reshape_r10.f90":
+  disabled_on: ["ppc64le-*-*", "powerpc-*-*"]
+
+"unf_io_convert_3.f90":
+  disabled_on: ["ppc64le-*-*", "powerpc-*-*"]
+
+"c_f_pointer_complex.f03":
+  disabled_on: ["ppc64le-*-*", "powerpc-*-*"]
+
+"large_real_kind_form_io_2.f90":
+  disabled_on: ["ppc64le-*-*", "powerpc-*-*"]
+
+"pr36006-2.f90":
+  disabled_on: ["ppc64le-*-*", "powerpc-*-*"]
+
+"pr35944-2.f90":
+  disabled_on: ["ppc64le-*-*", "powerpc-*-*"]
+
+"default_format_2.f90":
+  disabled_on: ["ppc64le-*-*", "powerpc-*-*"]
+
+"default_format_denormal_2.f90":
+  disabled_on: ["ppc64le-*-*", "powerpc-*-*"]
+
+"nan_7.f90":
+  disabled_on: ["ppc64le-*-*", "powerpc-*-*"]
+
+# unimplemented feature on AIX: Nested arguments are unimplemented
+"assumed_type_1.f90":
+  disabled_on: ["powerpc-*-aix"]
+
+"do_check_14.f90":
+  disabled_on: ["powerpc-*-aix"]
+
+"do_check_15.f90":
+  disabled_on: ["powerpc-*-aix"]
+
+"do_subscript_3.f90":
+  disabled_on: ["powerpc-*-aix"]
+
+"intrinsic_actual_2.f90":
+  disabled_on: ["powerpc-*-aix"]
+
+"pr47054_1.f90":
+  disabled_on: ["powerpc-*-aix"]
+
+"pr98016.f90":
+  disabled_on: ["powerpc-*-aix"]
+
+"round_4.f90":
+  disabled_on: ["powerpc-*-aix"]
+
+"transpose_1.f90":
+  disabled_on: ["powerpc-*-aix"]
+
+"typebound_call_11.f03":
+  disabled_on: ["powerpc-*-aix"]
+
+"use_25.f90":
+  disabled_on: ["powerpc-*-aix"]
+
+"used_dummy_types_5.f90":
+  disabled_on: ["powerpc-*-aix"]
+
+"used_types_10.f90":
+  disabled_on: ["powerpc-*-aix"]
+
+"warn_target_lifetime_1.f90":
+  disabled_on: ["powerpc-*-aix"]
+
+"warn_unused_dummy_argument_5.f90":
+  disabled_on: ["powerpc-*-aix"]
+
+"zero_sized_14.f90":
+  disabled_on: ["powerpc-*-aix"]
+
+# libm's routine lround returns incorrect values on AIX
+"nint_2.f90":
+  disabled_on: ["powerpc-*-aix"]
+
+# ------------------------ PERMANENTLY OVERRIDDEN TESTS ------------------------
+
+# namelist_print_2.f and print_fmt_2.f90 use ```print <namelist name>```. This
+# is a non-standard extension that is not supported in certain cases in
+# gfortran, but is always supported in flang.
+
+"namelist_print_2.f":
+  xfail: false
+
+"print_fmt_2.f90":
+  xfail: false
+
+# float bessel functions are not supported on AIX
+"bessel_1.f90":
+  disabled_on: ["powerpc-*-aix"]
+
+"bessel_5.f90":
+  disabled_on: ["powerpc-*-aix"]
+
+# The test case passes the non-bind(c) derived type to the C routine
+# and expects the same alignment of the components. However, on AIX,
+# non-bind(c) derived type has the natural alignment and bind(c) derived
+# type the special alignment rule applies.
+"c_f_pointer_tests.f90":
+  disabled_on: ["powerpc-*-aix"]
+
+# The test cases expect seg fault but not occur on AIX.
+"PR100136.f90":
+  disabled_on: ["powerpc-*-aix"]
+
+"bounds_check_fail_5.f90":
+  disabled_on: ["powerpc-*-aix"]
+
+# This test contains a single #error message directive in the file which will
+# obviously fail. The test checks that diagnostics are written to a file, but
+# it is an argument that is not supported in flang. Just mark it as xfail since
+# this is not worth marking as "permanently unsupported".
+"diagnostic-format-sarif-1.F90":
+  xfail: true
+
+# This test case is designed for little endian target. Disable the test case
+# on big endian target.
+"unsigned_21.f90":
+  disabled_on: ["powerpc-*-aix"]

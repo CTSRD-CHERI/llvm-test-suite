@@ -181,6 +181,7 @@ file(GLOB TestRequiresFWrapV CONFIGURE_DEPENDS
   20040409-1.c
   20040409-2.c
   20040409-3.c
+  950704-1.c
 )
 
 # Tests that require -Wno-return-type
@@ -334,6 +335,20 @@ if(ARCH MATCHES "ARM")
   )
 
   list(APPEND TestsToSkip ${ARMTestsToSkip})
+endif()
+
+if(ARCH MATCHES "Hexagon")
+    file(GLOB HexagonTestsToSkip CONFIGURE_DEPENDS
+	990127-1.c
+	alloca-1.c
+	va-arg-22.c
+	# No support for __int128 on Hexagon
+	pr84748.c
+	built-in-setjmp.c
+	pr84521.c
+  )
+
+  list(APPEND TestsToSkip ${HexagonTestsToSkip})
 endif()
 
 # Darwin Test Blacklist

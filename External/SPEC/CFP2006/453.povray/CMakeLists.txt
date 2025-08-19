@@ -1,11 +1,23 @@
 list(APPEND LDFLAGS -lm)
 
-if(ARCH STREQUAL "AArch64")
-  # On AArch64 and for C/C++ the new behavior is to flip 'fpp-contract' to
-  # 'on'. This breaks floating point comparison of results.
+if(ARCH STREQUAL "AArch64" OR ARCH STREQUAL "LoongArch")
+  # On AArch64/LoongArch and for C/C++ the new behavior is to flip
+  # '-ffp-contract' to 'on'. This breaks floating point comparison
+  # of results.
   # Turn off the flag so that the result image matches the reference
   # output.
   list(APPEND CXXFLAGS -ffp-contract=off)
+endif()
+
+if(APPLE)
+  # Building Povray breaks with -fdefine-target-os-macros, add flag to disable
+  # it as workaround.
+  include(CheckCCompilerFlag)
+  check_c_compiler_flag(-fno-define-target-os-macros
+                        COMPILER_HAS_NO_DEFINE_TARGET_OS_MACROS)
+  if (COMPILER_HAS_NO_DEFINE_TARGET_OS_MACROS)
+    add_compile_options(-fno-define-target-os-macros)
+  endif()
 endif()
 
 macro(test_input run_type stdout_reltol)
