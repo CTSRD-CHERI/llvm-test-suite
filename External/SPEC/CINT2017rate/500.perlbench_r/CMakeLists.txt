@@ -8,7 +8,11 @@ speccpu2017_benchmark(RATE)
 
 if (TARGET_OS STREQUAL "Darwin")
   add_definitions(-DSPEC_MACOSX_X64)
-endif ()
+elseif (TARGET_OS STREQUAL "FreeBSD")
+  # Force include of <signal.h> to get SIG_DFL. It appears this is being pulled
+  # in implicitly on all other operating systems but not FreeBSD
+  add_compile_options(-include signal.h)
+endif()
 
 add_definitions(
   -DPERL_CORE

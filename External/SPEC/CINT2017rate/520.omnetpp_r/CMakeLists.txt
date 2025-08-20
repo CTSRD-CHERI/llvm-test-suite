@@ -6,6 +6,11 @@ endif ()
 
 speccpu2017_benchmark(RATE)
 
+if (TARGET_OS STREQUAL "FreeBSD")
+  # Force include of <stdio.h> to get sprintf() in the __FreeBSD__ codepath.
+  add_compile_options(-include stdio.h)
+endif()
+
 add_definitions(-DWITH_NETBUILDER)
 speccpu2017_add_include_dirs(
   simulator/platdep

@@ -12,6 +12,10 @@ speccpu2017_add_include_dirs(
   x264_src/common
 )
 link_libraries(-lm)
+if (TARGET_OS STREQUAL "FreeBSD")
+  # Force include of <string.h> to get strcmp() in the getopt codepath.
+  add_compile_options(-include string.h)
+endif()
 
 ## test ########################################################################
 

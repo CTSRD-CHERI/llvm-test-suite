@@ -15,6 +15,17 @@ add_definitions(
   -DHAVE_UNSIGNED_CHAR
 )
 
+if (TARGET_OS STREQUAL "FreeBSD")
+  # Needed to get fpgetmask/fpsetmask
+  add_definitions(-DSPEC_NEED_IEEEFP_H)
+  # Needed to get FNM_CASEFOLD defined.
+  add_definitions(-DSPEC_FNM_MACROS)
+  # Work around not being able to include sys/rtprio.h without sys/types.h
+  add_compile_options(-include sys/types.h)
+  ## Forbidden flag according to SPEC, but it is needed to build for CHERI
+  #add_definitions(-DHAVE_PROTOTYPES)
+endif()
+
 if(APPLE)
   # Building Blender breaks with -fdefine-target-os-macros, add flag to disable
   # it as workaround.

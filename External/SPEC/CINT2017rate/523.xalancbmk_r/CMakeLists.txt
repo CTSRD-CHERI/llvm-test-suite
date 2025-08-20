@@ -836,8 +836,15 @@ speccpu2017_add_executable(
 )
 
 if (TARGET_OS STREQUAL "FreeBSD")
-  # On FreeBSD ftime is in -lcompat
-  target_link_libraries(${PROG} PRIVATE compat)
+  # On FreeBSD ftime is either in -lcompat or since
+  # https://reviews.freebsd.org/D39994 in -lutil
+  include(CheckLibraryExists)
+  check_library_exists(util ftime "" HAVE_FTIME_IN_LIBUTIL)
+  if (HAVE_FTIME_IN_LIBUTIL)
+    target_link_libraries(${PROG} PRIVATE util)
+  else()
+    target_link_libraries(${PROG} PRIVATE compat)
+  endif()
 endif()
 
 speccpu2017_prepare_rundir()
