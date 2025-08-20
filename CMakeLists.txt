@@ -293,6 +293,8 @@ if(ARCH STREQUAL "Mips")
   check_symbol_exists(__mips64 "" MIPS_IS_MIPS64_ENABLED)
 endif()
 
+check_symbol_exists(__CHERI_PURE_CAPABILITY__ "" CHERI_PURECAP)
+
 # PowerPC/Linux needs -ffp-contract=off so that:
 #     The outputs can be compared to gcc.
 #     The outputs match the reference outputs.

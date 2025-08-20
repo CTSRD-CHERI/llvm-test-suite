@@ -21,6 +21,7 @@ if (TARGET_OS STREQUAL "FreeBSD")
   # Needed to get FNM_CASEFOLD defined.
   add_definitions(-DSPEC_FNM_MACROS)
   # Work around not being able to include sys/rtprio.h without sys/types.h
+  # Fixed in  https://reviews.freebsd.org/D52041
   add_compile_options(-include sys/types.h)
   ## Forbidden flag according to SPEC, but it is needed to build for CHERI
   #add_definitions(-DHAVE_PROTOTYPES)
