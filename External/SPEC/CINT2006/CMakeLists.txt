@@ -1,10 +1,10 @@
 include(${CMAKE_SOURCE_DIR}/External/SPEC/SpecCPU2006.cmake)
 if(TEST_SUITE_SPEC2006_ROOT)
-  if(CMAKE_SIZEOF_VOID_P LESS_EQUAL 8)
+  if (NOT CHERI_PURECAP)
     cpu2006_subdir(400.perlbench) # Broken for purecap
   endif()
   cpu2006_subdir(401.bzip2)
-  if(CMAKE_SIZEOF_VOID_P LESS_EQUAL 8)
+  if (NOT CHERI_PURECAP)
     cpu2006_subdir(403.gcc) # Broken for purecap
     cpu2006_subdir(429.mcf) # Broken for purecap
   endif()
